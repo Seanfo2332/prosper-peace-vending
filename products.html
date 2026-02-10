@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products - Prosper Peace Vending | Vending Machines Malaysia</title>
+  <meta name="description" content="Browse our full range of vending machines — snack machines, beverage coolers, combo machines, and custom solutions. Cashless payment ready with full warranty and after-sales support.">
+  <meta name="keywords" content="vending machine products, snack machine malaysia, beverage vending machine, combo vending machine, custom vending solution, TCN vending, Fuji Electric">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Product Detail Modal CSS -->
+  <style>
+    /* ============================================
+       PRODUCT DETAIL MODAL
+       ============================================ */
+    .pdm-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #fff;
+      z-index: 9999;
+      overflow-y: auto;
+      overflow-x: hidden;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+      visibility: hidden;
+    }
+    .pdm-overlay.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Modal Top Bar */
+    .pdm-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 0 20px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+    .pdm-topbar-inner {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .pdm-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .pdm-back:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    .pdm-topbar-title {
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      max-width: 400px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pdm-topbar-cta {
+      display: flex;
+      gap: 10px;
+    }
+    .pdm-topbar-cta .btn { padding: 8px 20px; font-size: 0.82rem; }
+
+    /* Breadcrumb inside modal */
+    .pdm-breadcrumb {
+      background: var(--light-bg);
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pdm-breadcrumb-inner {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      flex-wrap: wrap;
+    }
+    .pdm-breadcrumb-inner a {
+      color: var(--text-medium);
+    }
+    .pdm-breadcrumb-inner a:hover {
+      color: var(--accent);
+    }
+    .pdm-breadcrumb-inner .sep {
+      color: var(--text-light);
+      font-size: 0.7rem;
+    }
+    .pdm-breadcrumb-inner .current {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* Main Content */
+    .pdm-content {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .pdm-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* Gallery */
+    .pdm-gallery { position: sticky; top: 84px; }
+    .pdm-main-img {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      cursor: zoom-in;
+      position: relative;
+    }
+    .pdm-main-img img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      padding: 20px;
+      transition: transform 0.4s ease;
+    }
+    .pdm-main-img:hover img { transform: scale(1.05); }
+    .pdm-img-count {
+      position: absolute; bottom: 12px; left: 12px;
+      background: rgba(0,0,0,0.6); color: #fff;
+      padding: 4px 12px; border-radius: var(--radius-full);
+      font-size: 0.8rem; font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pdm-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 8px;
+    }
+    .pdm-thumb {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--light-bg);
+    }
+    .pdm-thumb:hover, .pdm-thumb.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .pdm-thumb img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+    .pdm-share {
+      display: flex; align-items: center; gap: 12px; margin-top: 18px;
+    }
+    .pdm-share span {
+      font-size: 0.85rem; color: var(--text-light); font-weight: 500;
+    }
+    .pdm-share-icons { display: flex; gap: 8px; }
+    .pdm-share-icons a {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; color: #fff; transition: var(--transition);
+    }
+    .pdm-share-icons a:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .share-fb { background: #1877f2; }
+    .share-wa { background: #25d366; }
+    .share-ms { background: #0084ff; }
+    .share-wc { background: #07c160; }
+
+    /* Info Panel */
+    .pdm-info { display: flex; flex-direction: column; }
+    .pdm-cat-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.8rem; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .pdm-info h1 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 14px; line-height: 1.3;
+    }
+    /* Flashing stock dot */
+    @keyframes stockPulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+    }
+    @keyframes stockGlow {
+      0%, 100% { background: rgba(16,185,129,0.1); }
+      50% { background: rgba(16,185,129,0.2); }
+    }
+
+    .pdm-price-box {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 24px;
+    }
+    .pdm-price {
+      font-size: 1.5rem; font-weight: 800; color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .pdm-stock {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 16px;
+      background: rgba(16,185,129,0.1); color: #059669;
+      font-size: 0.78rem; font-weight: 700; border-radius: var(--radius-full);
+      text-transform: uppercase; letter-spacing: 0.5px;
+      animation: stockGlow 2s ease-in-out infinite;
+    }
+    .pdm-stock i {
+      font-size: 0.5rem;
+      animation: stockPulse 1.5s ease-in-out infinite;
+      border-radius: 50%;
+    }
+
+    /* Description */
+    .pdm-desc {
+      font-size: 0.95rem; color: var(--text-medium); line-height: 1.75;
+      margin-bottom: 24px;
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* Feature tags */
+    .pdm-feature-tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+    }
+    .pdm-feature-tags span {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 16px;
+      background: linear-gradient(135deg, #f0f9ff, #eff6ff);
+      border: 1px solid rgba(14,165,233,0.15);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem; color: var(--primary); font-weight: 600;
+      transition: var(--transition);
+    }
+    .pdm-feature-tags span:hover {
+      background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+      border-color: rgba(14,165,233,0.3);
+      transform: translateY(-1px);
+    }
+    .pdm-feature-tags span i { color: var(--accent); font-size: 0.7rem; }
+
+    /* Special fields */
+    .pdm-fields {
+      display: flex; flex-direction: column; gap: 24px; margin-bottom: 24px;
+      padding: 24px;
+      background: var(--light-bg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+    .pdm-field label {
+      display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-dark);
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;
+    }
+    .pdm-field label i { color: var(--accent); margin-right: 6px; }
+    .pdm-radios { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pdm-radio { position: relative; }
+    .pdm-radio input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .pdm-radio .rlabel {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 11px 22px;
+      border: 2px solid var(--border); border-radius: 50px;
+      font-size: 0.85rem; font-weight: 600; color: var(--text-medium);
+      cursor: pointer; transition: all 0.25s ease; background: #fff;
+    }
+    .pdm-radio .rlabel i { font-size: 0.9rem; color: var(--text-light); transition: all 0.25s ease; }
+    .pdm-radio input:checked + .rlabel {
+      border-color: var(--accent); background: var(--accent); color: #fff;
+      box-shadow: 0 4px 15px rgba(14,165,233,0.35);
+    }
+    .pdm-radio input:checked + .rlabel i { color: #fff; }
+    .pdm-radio .rlabel:hover {
+      border-color: var(--accent); background: rgba(14,165,233,0.04);
+      transform: translateY(-1px);
+    }
+    .pdm-radio input:checked + .rlabel:hover { background: #0d95d1; }
+    .pdm-field textarea {
+      width: 100%; padding: 14px 18px;
+      background: #fff; border: 2px solid var(--border);
+      border-radius: var(--radius-md); font-size: 0.92rem;
+      color: var(--text-dark); transition: var(--transition);
+      font-family: var(--font-main); resize: vertical; min-height: 80px;
+    }
+    .pdm-field textarea:focus {
+      border-color: var(--accent); background: #fff;
+      box-shadow: 0 0 0 4px var(--accent-glow); outline: none;
+    }
+    .pdm-field textarea::placeholder { color: var(--text-light); }
+
+    /* Quantity */
+    .pdm-qty-row {
+      display: flex; align-items: center; gap: 18px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .pdm-qty-row .qlabel { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+    .pdm-qty-sel {
+      display: flex; align-items: center;
+      border: 2px solid var(--border); border-radius: 50px; overflow: hidden;
+      background: var(--light-bg);
+    }
+    .pdm-qty-sel button {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: var(--text-medium);
+      background: transparent; transition: all 0.2s ease;
+    }
+    .pdm-qty-sel button:hover { background: var(--accent); color: #fff; }
+    .pdm-qty-sel input {
+      width: 60px; height: 44px; text-align: center; border: none;
+      border-left: 2px solid var(--border); border-right: 2px solid var(--border);
+      font-size: 1.05rem; font-weight: 700; color: var(--text-dark); background: #fff;
+      -moz-appearance: textfield;
+    }
+    .pdm-qty-sel input::-webkit-outer-spin-button,
+    .pdm-qty-sel input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+    /* Action buttons */
+    @keyframes btnShimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .pdm-actions {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+    .pdm-actions .btn {
+      flex: 1; min-width: 130px; justify-content: center; padding: 14px 22px;
+      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.02em;
+      border-radius: 50px; position: relative; overflow: hidden;
+    }
+    .btn-wa {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #fff; box-shadow: 0 4px 18px rgba(37,211,102,0.35);
+    }
+    .btn-wa:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.45);
+    }
+    .btn-wa::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      background-size: 200% 100%;
+      animation: btnShimmer 3s ease-in-out infinite;
+    }
+    .btn-inq {
+      background: linear-gradient(135deg, var(--primary) 0%, #1e3a5f 100%);
+      color: #fff; box-shadow: 0 4px 18px rgba(10,22,40,0.25);
+    }
+    .btn-inq:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(10,22,40,0.35);
+    }
+    .pdm-actions .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, #0284c7 100%);
+      box-shadow: 0 4px 18px rgba(14,165,233,0.35);
+    }
+    .pdm-actions .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(14,165,233,0.45);
+    }
+    .pdm-actions .btn-primary::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+      background-size: 200% 100%;
+      animation: btnShimmer 3s ease-in-out infinite 0.5s;
+    }
+
+    /* Tabs */
+    .pdm-tabs-section {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    .pdm-tabs {
+      display: flex; gap: 4px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .pdm-tab {
+      padding: 12px 24px; font-size: 0.92rem; font-weight: 600;
+      color: var(--text-medium); background: transparent;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px; transition: var(--transition);
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+    }
+    .pdm-tab:hover { color: var(--accent); }
+    .pdm-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .pdm-tab-panel { display: none; animation: fadeIn 0.4s ease; }
+    .pdm-tab-panel.active { display: block; }
+
+    /* Specs table */
+    .pdm-specs {
+      width: 100%; border-collapse: collapse; margin-bottom: 28px;
+    }
+    .pdm-specs tr { border-bottom: 1px solid var(--border); }
+    .pdm-specs tr:last-child { border-bottom: none; }
+    .pdm-specs td { padding: 13px 16px; font-size: 0.92rem; }
+    .pdm-specs td:first-child {
+      font-weight: 600; color: var(--text-dark);
+      width: 220px; background: var(--light-bg); white-space: nowrap;
+    }
+    .pdm-specs td:last-child { color: var(--text-medium); }
+
+    /* Features grid */
+    .pdm-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px; margin-top: 28px;
+    }
+    .pdm-feat-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      background: var(--light-bg); border-radius: var(--radius-sm);
+      border: 1px solid var(--border); transition: var(--transition);
+    }
+    .pdm-feat-item:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
+    .pdm-feat-icon {
+      width: 42px; height: 42px;
+      background: rgba(14,165,233,0.1); color: var(--accent);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .pdm-feat-item span { font-size: 0.92rem; font-weight: 500; color: var(--text-dark); }
+
+    /* Inquiry */
+    .pdm-inquiry {
+      margin-top: 36px; background: #fff;
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 36px; box-shadow: var(--shadow-sm);
+    }
+    .pdm-inquiry h3 {
+      margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+    }
+    .pdm-inquiry h3 i { color: var(--accent); }
+    .pdm-inquiry > p {
+      color: var(--text-medium); font-size: 0.9rem; margin-bottom: 20px;
+    }
+    .pdm-inq-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .pdm-inq-grid .full { grid-column: span 2; }
+
+    /* Related */
+    .pdm-related {
+      background: var(--light-bg);
+      padding: 50px 20px;
+    }
+    .pdm-related-inner {
+      max-width: var(--container-width);
+      margin: 0 auto;
+    }
+    .pdm-related-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px;
+    }
+    .pdm-related-header h2 { font-size: 1.5rem; }
+    .pdm-related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .pdm-rel-card {
+      background: #fff; border-radius: var(--radius-md);
+      overflow: hidden; border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm); transition: var(--transition);
+      cursor: pointer;
+    }
+    .pdm-rel-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .pdm-rel-card .rc-img {
+      height: 200px; overflow: hidden; background: var(--light-bg);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pdm-rel-card .rc-img img {
+      width: 100%; height: 100%; object-fit: contain; padding: 12px;
+      transition: transform 0.5s ease;
+    }
+    .pdm-rel-card:hover .rc-img img { transform: scale(1.05); }
+    .pdm-rel-card .rc-body { padding: 16px; }
+    .pdm-rel-card .rc-body h4 { font-size: 0.95rem; margin-bottom: 10px; }
+    .pdm-rel-card .rc-actions { display: flex; gap: 8px; padding: 0 16px 16px; }
+    .pdm-rel-card .rc-actions .btn { flex: 1; justify-content: center; font-size: 0.8rem; padding: 8px 12px; }
+
+    /* Image Lightbox */
+    .pdm-lightbox {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.92); z-index: 10001;
+      display: none; align-items: center; justify-content: center; padding: 40px;
+    }
+    .pdm-lightbox.active { display: flex; }
+    .pdm-lightbox img { max-width: 85%; max-height: 85vh; object-fit: contain; border-radius: var(--radius-md); }
+    .pdm-lb-close {
+      position: absolute; top: 20px; right: 30px;
+      width: 50px; height: 50px; background: rgba(255,255,255,0.1);
+      color: #fff; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 1.5rem;
+      cursor: pointer; transition: var(--transition);
+    }
+    .pdm-lb-close:hover { background: rgba(255,255,255,0.2); }
+    .pdm-lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 50px; height: 50px; background: rgba(255,255,255,0.1);
+      color: #fff; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 1.2rem;
+      cursor: pointer; transition: var(--transition);
+    }
+    .pdm-lb-nav:hover { background: rgba(255,255,255,0.25); }
+    .pdm-lb-prev { left: 20px; }
+    .pdm-lb-next { right: 20px; }
+    .pdm-lb-counter {
+      position: absolute; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6); font-size: 0.9rem; font-weight: 500;
+    }
+
+    /* Toast notification */
+    .pdm-toast-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 10002; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    }
+    .pdm-toast-overlay.show { opacity: 1; visibility: visible; }
+    .pdm-toast-box {
+      background: #fff; border-radius: 20px; padding: 40px 44px;
+      text-align: center; max-width: 380px; width: 90%;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+      transform: scale(0.7) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .pdm-toast-overlay.show .pdm-toast-box {
+      transform: scale(1) translateY(0);
+    }
+    .pdm-toast-check {
+      width: 72px; height: 72px; margin: 0 auto 20px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 25px rgba(16,185,129,0.35);
+    }
+    .pdm-toast-check i { color: #fff; font-size: 1.8rem; }
+    @keyframes toastCheckPop {
+      0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+      50% { transform: scale(1.2) rotate(0deg); }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .pdm-toast-overlay.show .pdm-toast-check {
+      animation: toastCheckPop 0.5s ease 0.15s both;
+    }
+    .pdm-toast-box h3 {
+      font-size: 1.2rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .pdm-toast-box p {
+      font-size: 0.9rem; color: var(--text-medium); line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .pdm-toast-box .pdm-toast-product {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px; background: var(--light-bg); border-radius: 12px;
+      margin-bottom: 24px; text-align: left;
+    }
+    .pdm-toast-box .pdm-toast-product img {
+      width: 56px; height: 56px; object-fit: contain; border-radius: 8px;
+      background: #fff; border: 1px solid var(--border); padding: 4px;
+    }
+    .pdm-toast-box .pdm-toast-product .tp-info {
+      flex: 1; min-width: 0;
+    }
+    .pdm-toast-box .pdm-toast-product .tp-name {
+      font-size: 0.85rem; font-weight: 700; color: var(--text-dark);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .pdm-toast-box .pdm-toast-product .tp-qty {
+      font-size: 0.78rem; color: var(--text-light); margin-top: 2px;
+    }
+    .pdm-toast-actions { display: flex; gap: 10px; }
+    .pdm-toast-actions .btn {
+      flex: 1; padding: 12px 18px; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700; justify-content: center;
+    }
+    .pdm-toast-actions .btn-continue {
+      background: var(--light-bg); color: var(--text-dark);
+      border: 2px solid var(--border);
+    }
+    .pdm-toast-actions .btn-continue:hover {
+      background: var(--border); transform: translateY(-1px);
+    }
+    .pdm-toast-actions .btn-quote {
+      background: linear-gradient(135deg, var(--accent) 0%, #0284c7 100%);
+      color: #fff; box-shadow: 0 4px 15px rgba(14,165,233,0.35);
+    }
+    .pdm-toast-actions .btn-quote:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(14,165,233,0.45);
+    }
+
+    /* Make product cards clickable */
+    .product-detail-card { cursor: pointer; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .pdm-layout { grid-template-columns: 1fr; gap: 24px; }
+      .pdm-gallery { position: static; }
+      .pdm-actions { flex-direction: column; }
+      .pdm-actions .btn { min-width: auto; }
+      .pdm-specs td:first-child { width: auto; white-space: normal; }
+      .pdm-inq-grid { grid-template-columns: 1fr; }
+      .pdm-inq-grid .full { grid-column: span 1; }
+      .pdm-inquiry { padding: 24px; }
+      .pdm-topbar-title { display: none; }
+      .pdm-topbar-cta { display: none; }
+      .pdm-related-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .pdm-radios { flex-direction: column; }
+      .pdm-features { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+        </a>
+
+        <!-- Nav -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <div class="nav-item-dropdown">
+            <a href="products.html" class="active">Our Products <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="products.html#snack">Snack Machines</a>
+              <a href="products.html#beverage">Beverage Machines</a>
+              <a href="products.html#combo">Combo Machines</a>
+              <a href="products.html#custom">Custom Solutions</a>
+              <a href="products.html#cleaning">Cleaning Machines</a>
+            </div>
+          </div>
+          <div class="nav-item-dropdown">
+            <a href="gallery.html">Gallery <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="gallery.html#photos">Photos</a>
+              <a href="gallery.html#videos">Videos</a>
+            </div>
+          </div>
+          <a href="tips.html">Tips & News</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+
+        <div class="header-cta">
+          <!-- Language Toggle -->
+          <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>BM</button>
+          </div>
+          <!-- Cart Icon -->
+          <a href="quotation.html" class="cart-icon" title="View Quotation">
+            <i class="fas fa-file-invoice"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       PAGE BANNER
+       ============================================ -->
+  <section class="page-banner">
+    <div class="container">
+      <h1>Our Products</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>Our Products</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRODUCT FILTER & GRID
+       ============================================ -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Our Products</span>
+        <h2>Vending Solutions for Every Need</h2>
+        <p>From compact snack machines to large-scale combo units and fully customized solutions, we have the perfect vending machine for your business.</p>
+        <div class="underline"></div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="gallery-filters reveal" style="margin-bottom:40px;">
+        <button class="gallery-filter-btn product-filter-btn active" data-filter="all">All</button>
+        <button class="gallery-filter-btn product-filter-btn" data-filter="snack">Snack Machines</button>
+        <button class="gallery-filter-btn product-filter-btn" data-filter="beverage">Beverage Machines</button>
+        <button class="gallery-filter-btn product-filter-btn" data-filter="combo">Combo Machines</button>
+        <button class="gallery-filter-btn product-filter-btn" data-filter="custom">Custom Solutions</button>
+        <button class="gallery-filter-btn product-filter-btn" data-filter="cleaning">Cleaning Machines</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-detailed-grid stagger-children" id="productsGrid">
+
+        <!-- 1. Helmet & Shoes Cleaning Machine (HCVM-2HS) -->
+        <div class="product-detail-card" data-category="cleaning" data-product-id="9" id="cleaning">
+          <div class="product-img-wrapper">
+            <img src="https://cdn1.npcdn.net/images/dab00ed298dc8f4794bc90136007bba7_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=9" alt="Helmet & Shoes Cleaning Machine (HCVM-2HS)">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Cleaning Machine</div>
+            <h3>Helmet & Shoes Cleaning Machine (HCVM-2HS)</h3>
+            <p>Dual-compartment helmet and shoes cleaning machine with 21.5" touch screen, remote monitoring system, and multiple payment options. Compact and reliable design for high-traffic locations.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Dual Compartment</span>
+              <span><i class="fas fa-check"></i> Touch Screen</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Remote Monitoring</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(9);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 2. Helmet Cleaning Machine (HCVM-2) -->
+        <div class="product-detail-card" data-category="cleaning" data-product-id="10">
+          <div class="product-img-wrapper">
+            <img src="https://cdn1.npcdn.net/images/16bf1185fcc5704613e5dc5d1b76fea6_1762507148.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9" alt="Helmet Cleaning Machine (HCVM-2)">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Cleaning Machine</div>
+            <h3>Helmet Cleaning Machine (HCVM-2)</h3>
+            <p>Dual-compartment helmet cleaning machine featuring smart management system, touch screen interface, and multiple payment options for automated helmet sanitization services.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Dual Compartment</span>
+              <span><i class="fas fa-check"></i> Smart System</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Easy Maintenance</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(10);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 3. Helmet Cleaning Machine (HCVM-1) -->
+        <div class="product-detail-card" data-category="cleaning" data-product-id="11">
+          <div class="product-img-wrapper">
+            <img src="https://cdn1.npcdn.net/images/a4c7b7bda6f1b10c5e9a478f92415d3c_1762571530.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9" alt="Helmet Cleaning Machine (HCVM-1)">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Cleaning Machine</div>
+            <h3>Helmet Cleaning Machine (HCVM-1)</h3>
+            <p>Single-compartment helmet cleaning machine with advanced cleaning technology, compact design, and cashless payment support. Perfect entry-level automated cleaning solution.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Single Compartment</span>
+              <span><i class="fas fa-check"></i> Compact Design</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Low Power</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(11);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 4. Helmet Cleaning Machine (HCVM-1S) -->
+        <div class="product-detail-card" data-category="cleaning" data-product-id="12">
+          <div class="product-img-wrapper">
+            <img src="https://cdn1.npcdn.net/images/bae0586a0dfb83228ce0e940e94fdbe7_1762995428.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9" alt="Helmet Cleaning Machine (HCVM-1S)">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Cleaning Machine</div>
+            <h3>Helmet Cleaning Machine (HCVM-1S)</h3>
+            <p>Upgraded single-compartment helmet cleaning machine with enhanced cleaning technology, shoes cleaning capability, and smart management system for versatile cleaning services.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Enhanced Cleaning</span>
+              <span><i class="fas fa-check"></i> Smart System</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Remote Monitoring</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(12);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 5. TCN Snack Machine S800-10C -->
+        <div class="product-detail-card" data-category="snack" data-product-id="0" id="snack">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=600&q=80" alt="TCN Snack Machine S800-10C">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Snack Machine</div>
+            <h3>TCN Snack Machine S800-10C</h3>
+            <p>High-capacity snack vending machine with 10 adjustable trays, smart inventory tracking, and LED display. Perfect for offices, factories, and public spaces.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Large Capacity</span>
+              <span><i class="fas fa-check"></i> LED Display</span>
+              <span><i class="fas fa-check"></i> Anti-Theft</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(0);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 2. Mini Snack Machine Compact -->
+        <div class="product-detail-card" data-category="snack" data-product-id="1">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Mini Snack Machine Compact">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Snack Machine</div>
+            <h3>Mini Snack Machine Compact</h3>
+            <p>Space-saving compact snack vending machine ideal for small offices, co-working spaces, and retail shops. Easy to install and maintain.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Compact Size</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Energy Efficient</span>
+              <span><i class="fas fa-check"></i> Low Maintenance</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(1);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 3. Fuji Electric Beverage Cooler -->
+        <div class="product-detail-card" data-category="beverage" data-product-id="2" id="beverage">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1527960471264-932f39eb5846?w=600&q=80" alt="Fuji Electric Beverage Cooler">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Beverage Machine</div>
+            <h3>Fuji Electric Beverage Cooler</h3>
+            <p>Premium Japanese-engineered beverage cooler with advanced temperature control. Dispenses canned and bottled drinks at perfect temperature every time.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Fuji Quality</span>
+              <span><i class="fas fa-check"></i> Temperature Control</span>
+              <span><i class="fas fa-check"></i> Energy Efficient</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(2);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 4. Large Capacity Drink Machine -->
+        <div class="product-detail-card" data-category="beverage" data-product-id="3">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Large Capacity Drink Machine">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Beverage Machine</div>
+            <h3>Large Capacity Drink Machine</h3>
+            <p>High-volume beverage vending machine designed for busy locations. Holds up to 500 cans/bottles with dual-zone cooling for maximum variety.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Large Capacity</span>
+              <span><i class="fas fa-check"></i> Dual Zone Cooling</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Remote Monitoring</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(3);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 5. Premium Coffee Vending Machine -->
+        <div class="product-detail-card" data-category="beverage" data-product-id="4">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Premium Coffee Vending Machine">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Beverage Machine</div>
+            <h3>Premium Coffee Vending Machine</h3>
+            <p>Bean-to-cup coffee vending machine offering espresso, latte, cappuccino, and more. Built-in grinder and milk frother for cafe-quality beverages on the go.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Bean-to-Cup</span>
+              <span><i class="fas fa-check"></i> Touch Screen</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Self-Cleaning</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(4);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 6. TCN Combo Machine D900-11G -->
+        <div class="product-detail-card" data-category="combo" data-product-id="5" id="combo">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="TCN Combo Machine D900-11G">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Combo Machine</div>
+            <h3>TCN Combo Machine D900-11G</h3>
+            <p>All-in-one snack and drink vending machine with 11 trays combining cooled beverages and ambient snacks in a single unit. Maximize product variety in one footprint.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Snack + Drink</span>
+              <span><i class="fas fa-check"></i> Large Capacity</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Energy Efficient</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(5);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 7. Smart Combo Touch Screen -->
+        <div class="product-detail-card" data-category="combo" data-product-id="6">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="Smart Combo Touch Screen">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Combo Machine</div>
+            <h3>Smart Combo Touch Screen</h3>
+            <p>Next-generation combo vending machine with a 22-inch HD touch screen interface. Supports advertising display, real-time inventory tracking, and cloud management.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Touch Screen</span>
+              <span><i class="fas fa-check"></i> Ad Display</span>
+              <span><i class="fas fa-check"></i> Cloud Management</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(6);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 8. Custom Frozen Food Machine -->
+        <div class="product-detail-card" data-category="custom" data-product-id="7" id="custom">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Custom Frozen Food Machine">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Custom Solution</div>
+            <h3>Custom Frozen Food Machine</h3>
+            <p>Specially designed frozen food vending machine with sub-zero compartments for ice cream, frozen meals, and frozen snacks. Ideal for 24/7 convenience locations.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Sub-Zero Cooling</span>
+              <span><i class="fas fa-check"></i> Custom Layout</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Heavy Duty</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(7);">Learn More</a>
+          </div>
+        </div>
+
+        <!-- 9. Custom Branded Machine -->
+        <div class="product-detail-card" data-category="custom" data-product-id="8">
+          <div class="product-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&q=80" alt="Custom Branded Machine">
+          </div>
+          <div class="product-info">
+            <div class="product-category">Custom Solution</div>
+            <h3>Custom Branded Machine</h3>
+            <p>Fully customizable vending machine with your brand wrap, logo, and colour scheme. Choose your own product layout, pricing structure, and payment options to match your business identity.</p>
+            <div class="product-features">
+              <span><i class="fas fa-check"></i> Full Branding</span>
+              <span><i class="fas fa-check"></i> Custom Layout</span>
+              <span><i class="fas fa-check"></i> Cashless Ready</span>
+              <span><i class="fas fa-check"></i> Remote Monitoring</span>
+            </div>
+          </div>
+          <div class="product-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm" onclick="event.preventDefault(); openProductModal(8);">Learn More</a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PAYMENT FEATURES
+       ============================================ -->
+  <section class="section why-us" id="payment-features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Smart Features</span>
+        <h2>Cashless & Digital Payment Ready</h2>
+        <p>All our machines come equipped with modern payment options to maximize your sales and customer convenience.</p>
+        <div class="underline"></div>
+      </div>
+      <div class="why-grid stagger-children">
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fas fa-qrcode"></i></div>
+          <h4>Ewallet QR</h4>
+          <p>Support for Touch 'n Go, Boost, GrabPay, ShopeePay, and other major Malaysian e-wallets.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fas fa-credit-card"></i></div>
+          <h4>Card Payment</h4>
+          <p>Accept debit and credit cards with secure contactless tap-to-pay NFC technology.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fas fa-coins"></i></div>
+          <h4>Cash & Coin</h4>
+          <p>Full cash and coin acceptor with bill validator for customers who prefer traditional payment.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fas fa-mobile-screen-button"></i></div>
+          <h4>Remote Monitoring</h4>
+          <p>Track sales, inventory, and machine status in real-time from your smartphone or computer.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon"><i class="fas fa-chart-line"></i></div>
+          <h4>Online Sales Report</h4>
+          <p>Comprehensive monthly sales reporting dashboard accessible online anytime, anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+       ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Can't Find What You're Looking For?</h2>
+        <p>We offer fully customized vending solutions tailored to your specific needs. Contact our team for a free consultation and personalized quotation.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-gold"><i class="fas fa-file-invoice"></i> Request Free Quotation</a>
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20products." class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+            <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+          </a>
+          <p>Malaysia's trusted vending machine supplier providing end-to-end solutions with modern cashless payment technology and dedicated after-sales support.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="products.html"><i class="fas fa-chevron-right"></i> Our Products</a>
+            <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="tips.html"><i class="fas fa-chevron-right"></i> Tips & News</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <div class="footer-links">
+            <a href="products.html#snack"><i class="fas fa-chevron-right"></i> Snack Machines</a>
+            <a href="products.html#beverage"><i class="fas fa-chevron-right"></i> Beverage Machines</a>
+            <a href="products.html#combo"><i class="fas fa-chevron-right"></i> Combo Machines</a>
+            <a href="products.html#custom"><i class="fas fa-chevron-right"></i> Custom Solutions</a>
+            <a href="products.html#cleaning"><i class="fas fa-chevron-right"></i> Cleaning Machines</a>
+            <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <div class="label">Address</div>
+              <p>Bukit Mertajam, Penang, Malaysia</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <div class="label">Phone</div>
+              <a href="tel:+60147592229">+6014-759 2229</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="label">Email</div>
+              <a href="mailto:info@vendingmachinemalaysia.com.my">info@vendingmachinemalaysia.com.my</a>
+            </div>
+          </div>
+          <h4 style="margin-top:24px;">Newsletter</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Subscribe for latest updates and offers</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Prosper Peace Vending Sdn. Bhd. (202201039206 / 1484903-U). All rights reserved.</p>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- ============================================
+       PRODUCT DETAIL MODAL (hidden by default)
+       ============================================ -->
+  <div class="pdm-overlay" id="pdmOverlay">
+    <!-- Top Bar -->
+    <div class="pdm-topbar">
+      <div class="pdm-topbar-inner">
+        <div class="pdm-back" onclick="closeProductModal()">
+          <i class="fas fa-arrow-left"></i> Back to Products
+        </div>
+        <div class="pdm-topbar-title" id="pdmTopTitle"></div>
+        <div class="pdm-topbar-cta">
+          <a href="contact.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="pdm-breadcrumb">
+      <div class="pdm-breadcrumb-inner">
+        <a href="index.html"><i class="fas fa-home"></i></a>
+        <span class="sep"><i class="fas fa-chevron-right"></i></span>
+        <a href="#" onclick="closeProductModal(); return false;">Our Products</a>
+        <span class="sep"><i class="fas fa-chevron-right"></i></span>
+        <span class="current" id="pdmBreadcrumb"></span>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="pdm-content">
+      <div class="pdm-layout">
+        <!-- Gallery -->
+        <div class="pdm-gallery">
+          <div class="pdm-main-img" onclick="pdmOpenLightbox()">
+            <img id="pdmMainImg" src="" alt="">
+            <div class="pdm-img-count" id="pdmImgCount"><i class="fas fa-images"></i> 1 / 1</div>
+          </div>
+          <div class="pdm-thumbs" id="pdmThumbs"></div>
+          <div class="pdm-share">
+            <span>Share:</span>
+            <div class="pdm-share-icons">
+              <a href="#" class="share-fb" id="pdmShareFb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="share-wa" id="pdmShareWa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a href="#" class="share-ms" id="pdmShareMs" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
+              <a href="#" class="share-wc" id="pdmShareWc" target="_blank"><i class="fab fa-weixin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="pdm-info">
+          <span class="pdm-cat-link" id="pdmCatLink"><i class="fas fa-tag"></i> <span></span></span>
+          <h1 id="pdmTitle"></h1>
+          <div class="pdm-price-box">
+            <span class="pdm-price">Contact Us</span>
+            <span class="pdm-stock"><i class="fas fa-circle"></i> In Stock</span>
+          </div>
+          <p class="pdm-desc" id="pdmDesc"></p>
+          <div class="pdm-feature-tags" id="pdmFeatureTags"></div>
+
+          <!-- Special Fields -->
+          <div class="pdm-fields">
+            <div class="pdm-field">
+              <label><i class="fas fa-credit-card"></i> Payment System</label>
+              <div class="pdm-radios">
+                <label class="pdm-radio">
+                  <input type="radio" name="pdm_pay" value="Cash or Coin">
+                  <span class="rlabel"><i class="fas fa-coins"></i> Cash or Coin</span>
+                </label>
+                <label class="pdm-radio">
+                  <input type="radio" name="pdm_pay" value="E-wallet">
+                  <span class="rlabel"><i class="fas fa-qrcode"></i> E-wallet</span>
+                </label>
+                <label class="pdm-radio">
+                  <input type="radio" name="pdm_pay" value="Card">
+                  <span class="rlabel"><i class="fas fa-credit-card"></i> Card</span>
+                </label>
+              </div>
+            </div>
+            <div class="pdm-field">
+              <label><i class="fas fa-truck"></i> Delivery Area</label>
+              <textarea placeholder="Full Address Required [ Street Name / City / Postcode / State ]"></textarea>
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="pdm-qty-row">
+            <span class="qlabel">Quantity:</span>
+            <div class="pdm-qty-sel">
+              <button onclick="pdmQty(-1)"><i class="fas fa-minus"></i></button>
+              <input type="number" id="pdmQtyInput" value="1" min="1" max="99999">
+              <button onclick="pdmQty(1)"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="pdm-actions">
+            <a href="#" class="btn btn-primary" onclick="showPdmToast(); return false;">
+              <i class="fas fa-cart-plus"></i> Add to Quotation
+            </a>
+            <a href="#" class="btn btn-wa" id="pdmWaBtn" target="_blank">
+              <i class="fab fa-whatsapp"></i> Get Price Now!
+            </a>
+            <a href="#" class="btn btn-inq" onclick="pdmScrollInquiry(); return false;">
+              <i class="fas fa-edit"></i> Inquire Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="pdm-tabs-section">
+      <div class="pdm-tabs">
+        <button class="pdm-tab active" data-pdm-tab="desc"><i class="fas fa-list-ul"></i> Description</button>
+        <button class="pdm-tab" data-pdm-tab="specs"><i class="fas fa-cogs"></i> Specifications</button>
+      </div>
+      <div class="pdm-tab-panel active" id="pdmTabDesc">
+        <table class="pdm-specs" id="pdmSpecsTable"></table>
+        <h3 style="margin: 8px 0 16px; display:flex; align-items:center; gap:10px;">
+          <span style="display:inline-block;width:4px;height:24px;background:linear-gradient(180deg, var(--accent), var(--gold));border-radius:2px;"></span>
+          Features
+        </h3>
+        <div class="pdm-features" id="pdmFeaturesGrid"></div>
+      </div>
+      <div class="pdm-tab-panel" id="pdmTabSpecs">
+        <div id="pdmSpecCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;"></div>
+      </div>
+
+      <!-- Inquiry -->
+      <div class="pdm-inquiry" id="pdmInquiry">
+        <h3><i class="fas fa-envelope"></i> <span id="pdmInqTitle">Inquiry</span></h3>
+        <p>Fill in the form below and we will get back to you shortly.</p>
+        <form id="pdmInqForm">
+          <div class="pdm-inq-grid">
+            <div class="form-group">
+              <label>Name <span class="required">*</span></label>
+              <input type="text" class="form-control" name="name" placeholder="Enter name here" required>
+            </div>
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" class="form-control" name="email" placeholder="Enter email address here" required>
+            </div>
+            <div class="form-group full">
+              <label>Contact Number <span class="required">*</span></label>
+              <input type="text" class="form-control" name="phone" placeholder="Enter contact number here" required>
+            </div>
+            <div class="form-group full">
+              <label>Message (optional)</label>
+              <textarea class="form-control" name="message" rows="3" placeholder="Tell us more about your requirements..."></textarea>
+            </div>
+            <div class="form-group full">
+              <button type="submit" class="btn btn-wa"><i class="fab fa-whatsapp"></i> Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="pdm-related">
+      <div class="pdm-related-inner">
+        <div class="pdm-related-header">
+          <h2>Related Products</h2>
+        </div>
+        <div class="pdm-related-grid" id="pdmRelated"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="pdm-toast-overlay" id="pdmToast" onclick="if(event.target===this)closePdmToast()">
+    <div class="pdm-toast-box">
+      <div class="pdm-toast-check"><i class="fas fa-check"></i></div>
+      <h3>Added to Quotation!</h3>
+      <p>Your item has been added successfully.</p>
+      <div class="pdm-toast-product">
+        <img id="pdmToastImg" src="" alt="">
+        <div class="tp-info">
+          <div class="tp-name" id="pdmToastName"></div>
+          <div class="tp-qty" id="pdmToastQty"></div>
+        </div>
+      </div>
+      <div class="pdm-toast-actions">
+        <a href="#" class="btn btn-continue" onclick="closePdmToast(); return false;">
+          <i class="fas fa-arrow-left"></i>&nbsp; Continue
+        </a>
+        <a href="contact.html" class="btn btn-quote">
+          <i class="fas fa-file-invoice"></i>&nbsp; View Quote
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Image Lightbox -->
+  <div class="pdm-lightbox" id="pdmLightbox">
+    <div class="pdm-lb-close" onclick="pdmCloseLightbox()"><i class="fas fa-times"></i></div>
+    <div class="pdm-lb-nav pdm-lb-prev" onclick="pdmNavLb(-1)"><i class="fas fa-chevron-left"></i></div>
+    <img id="pdmLbImg" src="" alt="">
+    <div class="pdm-lb-nav pdm-lb-next" onclick="pdmNavLb(1)"><i class="fas fa-chevron-right"></i></div>
+    <div class="pdm-lb-counter" id="pdmLbCounter"></div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+
+  <!-- Product Detail Modal JS -->
+  <script>
+  (function() {
+    // ============================
+    // PRODUCT DATA
+    // ============================
+    const products = [
+      {
+        name: 'TCN Snack Machine S800-10C',
+        category: 'Snack Machine',
+        desc: 'High-capacity snack vending machine with 10 adjustable trays, smart inventory tracking, and LED display. Perfect for offices, factories, and public spaces. Designed for high-traffic environments with robust build quality.',
+        images: ['https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=800&q=80'],
+        featureTags: ['Cashless Ready','Large Capacity','LED Display','Anti-Theft'],
+        specs: [
+          ['Model','S800-10C'],
+          ['Trays','10 Adjustable Trays'],
+          ['Capacity','Up to 600 items'],
+          ['Display','LED Display Panel'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi'],
+          ['Power','220V / 350W'],
+          ['Material','High Quality Steel Plate'],
+          ['Weight','250 kg'],
+          ['Dimensions','1930mm(H) x 1060mm(W) x 830mm(D)']
+        ],
+        features: [
+          {icon:'fa-box-open', text:'10 Adjustable Trays'},
+          {icon:'fa-chart-bar', text:'Smart Inventory Tracking'},
+          {icon:'fa-tv', text:'LED Display Panel'},
+          {icon:'fa-shield-halved', text:'Anti-Theft System'},
+          {icon:'fa-wallet', text:'Multiple Payment Methods'},
+          {icon:'fa-wifi', text:'Remote Monitoring'}
+        ]
+      },
+      {
+        name: 'Mini Snack Machine Compact',
+        category: 'Snack Machine',
+        desc: 'Space-saving compact snack vending machine ideal for small offices, co-working spaces, and retail shops. Easy to install and maintain with low power consumption.',
+        images: ['https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80'],
+        featureTags: ['Compact Size','Cashless Ready','Energy Efficient','Low Maintenance'],
+        specs: [
+          ['Model','Mini Compact Series'],
+          ['Trays','5 Adjustable Trays'],
+          ['Capacity','Up to 200 items'],
+          ['Display','LED Display'],
+          ['Payment','Cash / Coin / E-wallet'],
+          ['Connectivity','Wi-Fi'],
+          ['Power','220V / 180W'],
+          ['Material','Steel Plate'],
+          ['Weight','120 kg'],
+          ['Dimensions','1550mm(H) x 720mm(W) x 680mm(D)']
+        ],
+        features: [
+          {icon:'fa-compress', text:'Compact Space-Saving Design'},
+          {icon:'fa-bolt', text:'Energy Efficient'},
+          {icon:'fa-wrench', text:'Low Maintenance'},
+          {icon:'fa-wallet', text:'Cashless Payment Ready'},
+          {icon:'fa-plug', text:'Easy Installation'},
+          {icon:'fa-wifi', text:'Wi-Fi Connected'}
+        ]
+      },
+      {
+        name: 'Fuji Electric Beverage Cooler',
+        category: 'Beverage Machine',
+        desc: 'Premium Japanese-engineered beverage cooler with advanced temperature control. Dispenses canned and bottled drinks at perfect temperature every time. Renowned Fuji Electric quality and reliability.',
+        images: ['https://images.unsplash.com/photo-1527960471264-932f39eb5846?w=800&q=80'],
+        featureTags: ['Fuji Quality','Temperature Control','Energy Efficient','Cashless Ready'],
+        specs: [
+          ['Model','Fuji Electric Beverage Series'],
+          ['Brand','Fuji Electric (Japan)'],
+          ['Capacity','Up to 400 cans/bottles'],
+          ['Cooling','Advanced Temperature Control'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi'],
+          ['Power','220V / 450W'],
+          ['Material','Premium Steel Plate'],
+          ['Weight','200 kg'],
+          ['Dimensions','1830mm(H) x 960mm(W) x 750mm(D)']
+        ],
+        features: [
+          {icon:'fa-temperature-low', text:'Advanced Temperature Control'},
+          {icon:'fa-award', text:'Japanese Engineering Quality'},
+          {icon:'fa-bolt', text:'Energy Efficient Compressor'},
+          {icon:'fa-wallet', text:'Multiple Payment Options'},
+          {icon:'fa-globe', text:'Remote Monitoring System'},
+          {icon:'fa-shield-halved', text:'Built-in Security Lock'}
+        ]
+      },
+      {
+        name: 'Large Capacity Drink Machine',
+        category: 'Beverage Machine',
+        desc: 'High-volume beverage vending machine designed for busy locations. Holds up to 500 cans/bottles with dual-zone cooling for maximum variety. Perfect for malls, stadiums, and factories.',
+        images: ['https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80'],
+        featureTags: ['Large Capacity','Dual Zone Cooling','Cashless Ready','Remote Monitoring'],
+        specs: [
+          ['Model','LCB-500 Series'],
+          ['Capacity','Up to 500 cans/bottles'],
+          ['Cooling','Dual-Zone Cooling System'],
+          ['Display','Touch Screen Interface'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi'],
+          ['Power','220V / 600W'],
+          ['Material','Cold Rolled Steel'],
+          ['Weight','280 kg'],
+          ['Dimensions','1950mm(H) x 1200mm(W) x 850mm(D)']
+        ],
+        features: [
+          {icon:'fa-boxes-stacked', text:'500 Can/Bottle Capacity'},
+          {icon:'fa-snowflake', text:'Dual-Zone Cooling'},
+          {icon:'fa-chart-line', text:'Remote Sales Monitoring'},
+          {icon:'fa-wallet', text:'Cashless Payment Ready'},
+          {icon:'fa-tv', text:'Touch Screen Display'},
+          {icon:'fa-gears', text:'Auto Inventory Alerts'}
+        ]
+      },
+      {
+        name: 'Premium Coffee Vending Machine',
+        category: 'Beverage Machine',
+        desc: 'Bean-to-cup coffee vending machine offering espresso, latte, cappuccino, and more. Built-in grinder and milk frother for cafe-quality beverages on the go.',
+        images: ['https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80'],
+        featureTags: ['Bean-to-Cup','Touch Screen','Cashless Ready','Self-Cleaning'],
+        specs: [
+          ['Model','Coffee Pro Series'],
+          ['Beverages','Espresso, Latte, Cappuccino, Mocha, Hot Chocolate'],
+          ['Bean Hopper','2 kg capacity'],
+          ['Milk System','Fresh Milk / Powder'],
+          ['Display','10" Touch Screen'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi'],
+          ['Power','220V / 2200W'],
+          ['Weight','90 kg'],
+          ['Dimensions','1800mm(H) x 600mm(W) x 580mm(D)']
+        ],
+        features: [
+          {icon:'fa-mug-hot', text:'Bean-to-Cup Fresh Brewing'},
+          {icon:'fa-tv', text:'10" Touch Screen Interface'},
+          {icon:'fa-broom', text:'Automatic Self-Cleaning'},
+          {icon:'fa-blender', text:'Built-in Grinder & Frother'},
+          {icon:'fa-wallet', text:'Multiple Payment Options'},
+          {icon:'fa-temperature-half', text:'Precise Temperature Control'}
+        ]
+      },
+      {
+        name: 'TCN Combo Machine D900-11G',
+        category: 'Combo Machine',
+        desc: 'All-in-one snack and drink vending machine with 11 trays combining cooled beverages and ambient snacks in a single unit. Maximize product variety in one footprint.',
+        images: ['https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80'],
+        featureTags: ['Snack + Drink','Large Capacity','Cashless Ready','Energy Efficient'],
+        specs: [
+          ['Model','D900-11G'],
+          ['Trays','11 Trays (Snack + Drink)'],
+          ['Capacity','Up to 800 items total'],
+          ['Cooling','Beverage cooling zone'],
+          ['Display','21.5" Touch Screen'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi'],
+          ['Power','220V / 550W'],
+          ['Material','High Quality Steel Plate'],
+          ['Weight','320 kg'],
+          ['Dimensions','1930mm(H) x 1300mm(W) x 860mm(D)']
+        ],
+        features: [
+          {icon:'fa-layer-group', text:'11 Combination Trays'},
+          {icon:'fa-snowflake', text:'Beverage Cooling Zone'},
+          {icon:'fa-tv', text:'21.5" HD Touch Screen'},
+          {icon:'fa-bolt', text:'Energy Efficient Design'},
+          {icon:'fa-wallet', text:'All Payment Methods'},
+          {icon:'fa-chart-bar', text:'Cloud Sales Dashboard'}
+        ]
+      },
+      {
+        name: 'Smart Combo Touch Screen',
+        category: 'Combo Machine',
+        desc: 'Next-generation combo vending machine with a 22-inch HD touch screen interface. Supports advertising display, real-time inventory tracking, and cloud management.',
+        images: ['https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80'],
+        featureTags: ['Touch Screen','Ad Display','Cloud Management','Cashless Ready'],
+        specs: [
+          ['Model','Smart Combo Pro'],
+          ['Display','22" HD Touch Screen'],
+          ['Trays','10 Adjustable Trays'],
+          ['Capacity','Up to 700 items'],
+          ['Ad Display','Built-in Advertising System'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi / Bluetooth'],
+          ['Power','220V / 500W'],
+          ['Material','Premium Steel Plate'],
+          ['Weight','300 kg'],
+          ['Dimensions','1930mm(H) x 1250mm(W) x 850mm(D)']
+        ],
+        features: [
+          {icon:'fa-tv', text:'22" HD Touch Screen'},
+          {icon:'fa-ad', text:'Built-in Ad Display System'},
+          {icon:'fa-cloud', text:'Cloud Management Platform'},
+          {icon:'fa-chart-line', text:'Real-Time Inventory Tracking'},
+          {icon:'fa-wallet', text:'All Payment Methods'},
+          {icon:'fa-mobile-screen', text:'Mobile App Management'}
+        ]
+      },
+      {
+        name: 'Custom Frozen Food Machine',
+        category: 'Custom Solution',
+        desc: 'Specially designed frozen food vending machine with sub-zero compartments for ice cream, frozen meals, and frozen snacks. Ideal for 24/7 convenience locations.',
+        images: ['https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80'],
+        featureTags: ['Sub-Zero Cooling','Custom Layout','Cashless Ready','Heavy Duty'],
+        specs: [
+          ['Model','Custom Frozen Series'],
+          ['Temperature','Sub-Zero (-18\u00b0C to -25\u00b0C)'],
+          ['Compartments','Customizable Layout'],
+          ['Capacity','Varies by configuration'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi'],
+          ['Power','220V / 1500W'],
+          ['Material','Heavy Duty Steel Plate'],
+          ['Insulation','Double-wall insulated'],
+          ['Dimensions','Customizable']
+        ],
+        features: [
+          {icon:'fa-snowflake', text:'Sub-Zero Temperature Control'},
+          {icon:'fa-cubes', text:'Customizable Compartment Layout'},
+          {icon:'fa-shield-halved', text:'Heavy Duty Construction'},
+          {icon:'fa-temperature-low', text:'Double-Wall Insulation'},
+          {icon:'fa-wallet', text:'Multiple Payment Options'},
+          {icon:'fa-clock', text:'24/7 Reliable Operation'}
+        ]
+      },
+      {
+        name: 'Custom Branded Machine',
+        category: 'Custom Solution',
+        desc: 'Fully customizable vending machine with your brand wrap, logo, and colour scheme. Choose your own product layout, pricing structure, and payment options to match your business identity.',
+        images: ['https://images.unsplash.com/photo-1556742111-a301076d9d18?w=800&q=80'],
+        featureTags: ['Full Branding','Custom Layout','Cashless Ready','Remote Monitoring'],
+        specs: [
+          ['Model','Custom Branded Series'],
+          ['Branding','Full Body Custom Wrap'],
+          ['Layout','Customizable Product Layout'],
+          ['Display','21.5" Touch Screen'],
+          ['Payment','Cash / Coin / E-wallet / Card'],
+          ['Connectivity','4G / Wi-Fi'],
+          ['Power','220V / Varies'],
+          ['Material','High Quality Steel Plate'],
+          ['Full Body Sticker','Customizable Design'],
+          ['Dimensions','Multiple sizes available']
+        ],
+        features: [
+          {icon:'fa-palette', text:'Full Custom Brand Wrap'},
+          {icon:'fa-th-large', text:'Flexible Product Layout'},
+          {icon:'fa-tv', text:'21.5" Touch Screen Display'},
+          {icon:'fa-chart-line', text:'Remote Monitoring System'},
+          {icon:'fa-wallet', text:'All Payment Methods'},
+          {icon:'fa-headset', text:'Dedicated Support Team'}
+        ]
+      },
+      {
+        name: 'Helmet & Shoes Cleaning Machine (HCVM-2HS)',
+        category: 'Cleaning Machine',
+        desc: 'Dual-compartment helmet and shoes cleaning machine with 21.5" touch screen, remote monitoring system, and multiple payment options. Compact and reliable design perfect for petrol stations, malls, and high-traffic locations.',
+        images: [
+          'https://cdn1.npcdn.net/images/dab00ed298dc8f4794bc90136007bba7_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=9',
+          'https://cdn1.npcdn.net/images/765adf370e27f31043e15af8db637c8c_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+          'https://cdn1.npcdn.net/images/1219c29c705ef898ea6390bc13d5d463_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+          'https://cdn1.npcdn.net/images/31992471db362905430e2ae42a9233bf_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+          'https://cdn1.npcdn.net/images/1fb1f15d3e5abb0e0ae0d0976f910621_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+          'https://cdn1.npcdn.net/images/739ef629837eee1c0108a1cbed5fc912_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1'
+        ],
+        featureTags: ['Dual Compartment','21.5" Touch Screen','Cashless Ready','Remote Monitoring'],
+        specs: [
+          ['Model','HCVM-2HS'],
+          ['External Dimensions','1900mm(H) x 640mm(W) x 585mm(D)'],
+          ['Weight','88 kg'],
+          ['TouchScreen','21.5" Touch Screen'],
+          ['Communication Module','4G / Wi-Fi'],
+          ['Management System','Remote Monitoring System'],
+          ['Cleaning Compartment','2 (Compartment A & B)'],
+          ['Purchase Options','Cash or Coin / E-wallet QR / Card (Optional)'],
+          ['Power Consumption','2500W'],
+          ['Power','220V'],
+          ['Material','High Quality Cold Rolled Steel Plate'],
+          ['Full Body Sticker','Customizable']
+        ],
+        features: [
+          {icon:'fa-helmet-safety', text:'Dual Cleaning Compartment (Helmets and Shoes)'},
+          {icon:'fa-microchip', text:'Smart Management System'},
+          {icon:'fa-tv', text:'21.5" HD Display'},
+          {icon:'fa-spray-can-sparkles', text:'Advanced Cleaning Technology'},
+          {icon:'fa-wallet', text:'Multiple Payment Methods'},
+          {icon:'fa-cube', text:'Compact & Reliable Design'}
+        ]
+      },
+      {
+        name: 'Helmet Cleaning Machine (HCVM-2)',
+        category: 'Cleaning Machine',
+        desc: 'Dual-compartment helmet cleaning machine featuring smart management system, touch screen interface, and multiple payment options for automated helmet sanitization services.',
+        images: [
+          'https://cdn1.npcdn.net/images/16bf1185fcc5704613e5dc5d1b76fea6_1762507148.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9'
+        ],
+        featureTags: ['Dual Compartment','Smart System','Cashless Ready','Easy Maintenance'],
+        specs: [
+          ['Model','HCVM-2'],
+          ['Cleaning Compartment','2 (Compartment A & B)'],
+          ['TouchScreen','21.5" Touch Screen'],
+          ['Communication Module','4G / Wi-Fi'],
+          ['Management System','Remote Monitoring System'],
+          ['Purchase Options','Cash or Coin / E-wallet QR / Card (Optional)'],
+          ['Power','220V'],
+          ['Material','High Quality Cold Rolled Steel Plate']
+        ],
+        features: [
+          {icon:'fa-helmet-safety', text:'Dual Cleaning Compartment'},
+          {icon:'fa-microchip', text:'Smart Management System'},
+          {icon:'fa-tv', text:'Touch Screen Interface'},
+          {icon:'fa-wallet', text:'Multiple Payment Methods'},
+          {icon:'fa-wrench', text:'Easy Maintenance'},
+          {icon:'fa-cube', text:'Compact Design'}
+        ]
+      },
+      {
+        name: 'Helmet Cleaning Machine (HCVM-1)',
+        category: 'Cleaning Machine',
+        desc: 'Single-compartment helmet cleaning machine with advanced cleaning technology, compact design, and cashless payment support. Perfect entry-level automated cleaning solution.',
+        images: [
+          'https://cdn1.npcdn.net/images/a4c7b7bda6f1b10c5e9a478f92415d3c_1762571530.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9'
+        ],
+        featureTags: ['Single Compartment','Compact Design','Cashless Ready','Low Power'],
+        specs: [
+          ['Model','HCVM-1'],
+          ['Cleaning Compartment','1'],
+          ['TouchScreen','21.5" Touch Screen'],
+          ['Communication Module','4G / Wi-Fi'],
+          ['Management System','Remote Monitoring System'],
+          ['Purchase Options','Cash or Coin / E-wallet QR / Card (Optional)'],
+          ['Power','220V'],
+          ['Material','High Quality Cold Rolled Steel Plate']
+        ],
+        features: [
+          {icon:'fa-helmet-safety', text:'Single Cleaning Compartment'},
+          {icon:'fa-microchip', text:'Smart Management System'},
+          {icon:'fa-compress', text:'Compact Design'},
+          {icon:'fa-wallet', text:'Multiple Payment Methods'},
+          {icon:'fa-bolt', text:'Low Power Consumption'},
+          {icon:'fa-cube', text:'Easy Installation'}
+        ]
+      },
+      {
+        name: 'Helmet Cleaning Machine (HCVM-1S)',
+        category: 'Cleaning Machine',
+        desc: 'Upgraded single-compartment helmet cleaning machine with enhanced cleaning technology, shoes cleaning capability, and smart management system for versatile cleaning services.',
+        images: [
+          'https://cdn1.npcdn.net/images/bae0586a0dfb83228ce0e940e94fdbe7_1762995428.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9'
+        ],
+        featureTags: ['Enhanced Cleaning','Smart System','Cashless Ready','Remote Monitoring'],
+        specs: [
+          ['Model','HCVM-1S'],
+          ['Cleaning Compartment','1 (Enhanced)'],
+          ['TouchScreen','21.5" Touch Screen'],
+          ['Communication Module','4G / Wi-Fi'],
+          ['Management System','Remote Monitoring System'],
+          ['Purchase Options','Cash or Coin / E-wallet QR / Card (Optional)'],
+          ['Power','220V'],
+          ['Material','High Quality Cold Rolled Steel Plate']
+        ],
+        features: [
+          {icon:'fa-helmet-safety', text:'Enhanced Cleaning Technology'},
+          {icon:'fa-microchip', text:'Smart Management System'},
+          {icon:'fa-shoe-prints', text:'Shoes Cleaning Capable'},
+          {icon:'fa-wallet', text:'Multiple Payment Methods'},
+          {icon:'fa-chart-line', text:'Remote Monitoring System'},
+          {icon:'fa-cube', text:'Reliable Design'}
+        ]
+      }
+    ];
+
+    // ============================
+    // STATE
+    // ============================
+    let currentProduct = null;
+    let currentImgIdx = 0;
+    let lbIdx = 0;
+    let savedScrollY = 0;
+
+    // ============================
+    // OPEN / CLOSE MODAL
+    // ============================
+    window.openProductModal = function(idx) {
+      currentProduct = products[idx];
+      if (!currentProduct) return;
+      currentImgIdx = 0;
+      savedScrollY = window.scrollY;
+
+      // Populate
+      var p = currentProduct;
+      var enc = encodeURIComponent;
+      document.getElementById('pdmTopTitle').textContent = p.name;
+      document.getElementById('pdmBreadcrumb').textContent = p.name;
+      document.getElementById('pdmCatLink').querySelector('span').textContent = p.category;
+      document.getElementById('pdmTitle').textContent = p.name;
+      document.getElementById('pdmDesc').textContent = p.desc;
+
+      // Main image
+      document.getElementById('pdmMainImg').src = p.images[0];
+      document.getElementById('pdmMainImg').alt = p.name;
+      document.getElementById('pdmImgCount').innerHTML = '<i class="fas fa-images"></i> 1 / ' + p.images.length;
+
+      // Thumbnails
+      var thumbsHtml = '';
+      p.images.forEach(function(src, i) {
+        thumbsHtml += '<div class="pdm-thumb' + (i === 0 ? ' active' : '') + '" onclick="pdmSwitchImg(' + i + ', this)"><img src="' + src + '" alt="View ' + (i+1) + '"></div>';
+      });
+      document.getElementById('pdmThumbs').innerHTML = thumbsHtml;
+
+      // Feature tags
+      var tagsHtml = '';
+      p.featureTags.forEach(function(t) {
+        tagsHtml += '<span><i class="fas fa-check"></i> ' + t + '</span>';
+      });
+      document.getElementById('pdmFeatureTags').innerHTML = tagsHtml;
+
+      // Specs table
+      var specsHtml = '';
+      p.specs.forEach(function(s) {
+        specsHtml += '<tr><td>' + s[0] + '</td><td>' + s[1] + '</td></tr>';
+      });
+      document.getElementById('pdmSpecsTable').innerHTML = specsHtml;
+
+      // Features grid
+      var featHtml = '';
+      p.features.forEach(function(f) {
+        featHtml += '<div class="pdm-feat-item"><div class="pdm-feat-icon"><i class="fas ' + f.icon + '"></i></div><span>' + f.text + '</span></div>';
+      });
+      document.getElementById('pdmFeaturesGrid').innerHTML = featHtml;
+
+      // Spec cards
+      var cardsHtml = '';
+      p.specs.forEach(function(s) {
+        cardsHtml += '<div style="padding:20px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">';
+        cardsHtml += '<div style="font-size:0.78rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">' + s[0] + '</div>';
+        cardsHtml += '<div style="font-size:1.05rem;font-weight:700;color:var(--text-dark);">' + s[1] + '</div>';
+        cardsHtml += '</div>';
+      });
+      document.getElementById('pdmSpecCards').innerHTML = cardsHtml;
+
+      // WhatsApp
+      var waText = 'Hello, I am interested in ' + enc(p.name) + '.';
+      document.getElementById('pdmWaBtn').href = 'https://wa.me/60147592229?text=' + waText;
+
+      // Inquiry title
+      document.getElementById('pdmInqTitle').textContent = 'Inquiry - ' + p.name;
+
+      // Share links
+      var shareUrl = enc(window.location.href);
+      document.getElementById('pdmShareFb').href = 'https://www.addtoany.com/add_to/facebook?linkurl=' + shareUrl;
+      document.getElementById('pdmShareWa').href = 'https://www.addtoany.com/add_to/whatsapp?linkurl=' + shareUrl;
+      document.getElementById('pdmShareMs').href = 'https://www.addtoany.com/add_to/facebook_messenger?linkurl=' + shareUrl;
+      document.getElementById('pdmShareWc').href = 'https://www.addtoany.com/add_to/wechat?linkurl=' + shareUrl;
+
+      // Related products (same category, excluding current)
+      var relHtml = '';
+      products.forEach(function(rp, ri) {
+        if (ri !== idx && rp.category === p.category) {
+          relHtml += '<div class="pdm-rel-card" onclick="openProductModal(' + ri + '); document.getElementById(\'pdmOverlay\').scrollTop = 0;">';
+          relHtml += '<div class="rc-img"><img src="' + rp.images[0] + '" alt="' + rp.name + '"></div>';
+          relHtml += '<div class="rc-body"><h4>' + rp.name + '</h4></div>';
+          relHtml += '<div class="rc-actions"><a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>';
+          relHtml += '<a href="#" class="btn btn-outline btn-sm" onclick="event.stopPropagation(); event.preventDefault(); openProductModal(' + ri + '); document.getElementById(\'pdmOverlay\').scrollTop = 0;">View Details</a></div>';
+          relHtml += '</div>';
+        }
+      });
+      // If no same-category, show random others
+      if (!relHtml) {
+        products.forEach(function(rp, ri) {
+          if (ri !== idx && relHtml.split('pdm-rel-card').length <= 3) {
+            relHtml += '<div class="pdm-rel-card" onclick="openProductModal(' + ri + '); document.getElementById(\'pdmOverlay\').scrollTop = 0;">';
+            relHtml += '<div class="rc-img"><img src="' + rp.images[0] + '" alt="' + rp.name + '"></div>';
+            relHtml += '<div class="rc-body"><h4>' + rp.name + '</h4></div>';
+            relHtml += '<div class="rc-actions"><a href="contact.html" class="btn btn-primary btn-sm" onclick="event.stopPropagation();">Get Quote</a>';
+            relHtml += '<a href="#" class="btn btn-outline btn-sm" onclick="event.stopPropagation(); event.preventDefault(); openProductModal(' + ri + '); document.getElementById(\'pdmOverlay\').scrollTop = 0;">View Details</a></div>';
+            relHtml += '</div>';
+          }
+        });
+      }
+      document.getElementById('pdmRelated').innerHTML = relHtml;
+
+      // Reset tabs
+      document.querySelectorAll('.pdm-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.pdm-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+      document.querySelector('.pdm-tab[data-pdm-tab="desc"]').classList.add('active');
+      document.getElementById('pdmTabDesc').classList.add('active');
+
+      // Reset quantity
+      document.getElementById('pdmQtyInput').value = 1;
+
+      // Show overlay
+      var overlay = document.getElementById('pdmOverlay');
+      overlay.scrollTop = 0;
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeProductModal = function() {
+      document.getElementById('pdmOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      window.scrollTo(0, savedScrollY);
+    };
+
+    // ============================
+    // IMAGE SWITCHING
+    // ============================
+    window.pdmSwitchImg = function(idx, thumb) {
+      currentImgIdx = idx;
+      document.getElementById('pdmMainImg').src = currentProduct.images[idx];
+      document.querySelectorAll('.pdm-thumb').forEach(function(t) { t.classList.remove('active'); });
+      if (thumb) thumb.classList.add('active');
+      document.getElementById('pdmImgCount').innerHTML = '<i class="fas fa-images"></i> ' + (idx + 1) + ' / ' + currentProduct.images.length;
+    };
+
+    // ============================
+    // LIGHTBOX
+    // ============================
+    window.pdmOpenLightbox = function() {
+      if (!currentProduct) return;
+      lbIdx = currentImgIdx;
+      document.getElementById('pdmLbImg').src = currentProduct.images[lbIdx];
+      document.getElementById('pdmLbCounter').textContent = (lbIdx + 1) + ' / ' + currentProduct.images.length;
+      document.getElementById('pdmLightbox').classList.add('active');
+    };
+    window.pdmCloseLightbox = function() {
+      document.getElementById('pdmLightbox').classList.remove('active');
+    };
+    window.pdmNavLb = function(dir) {
+      if (!currentProduct) return;
+      var len = currentProduct.images.length;
+      lbIdx = (lbIdx + dir + len) % len;
+      document.getElementById('pdmLbImg').src = currentProduct.images[lbIdx];
+      document.getElementById('pdmLbCounter').textContent = (lbIdx + 1) + ' / ' + len;
+    };
+    document.getElementById('pdmLightbox').addEventListener('click', function(e) {
+      if (e.target === this) pdmCloseLightbox();
+    });
+
+    // ============================
+    // QUANTITY
+    // ============================
+    window.pdmQty = function(d) {
+      var inp = document.getElementById('pdmQtyInput');
+      var v = parseInt(inp.value) + d;
+      if (v < 1) v = 1;
+      if (v > 99999) v = 99999;
+      inp.value = v;
+    };
+
+    // ============================
+    // TABS
+    // ============================
+    document.querySelectorAll('.pdm-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.pdm-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.pdm-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        var target = tab.getAttribute('data-pdm-tab');
+        document.getElementById(target === 'desc' ? 'pdmTabDesc' : 'pdmTabSpecs').classList.add('active');
+      });
+    });
+
+    // ============================
+    // SCROLL TO INQUIRY
+    // ============================
+    window.pdmScrollInquiry = function() {
+      var el = document.getElementById('pdmInquiry');
+      var overlay = document.getElementById('pdmOverlay');
+      if (el && overlay) {
+        overlay.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+      }
+    };
+
+    // ============================
+    // INQUIRY FORM
+    // ============================
+    document.getElementById('pdmInqForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var fd = new FormData(this);
+      var pName = currentProduct ? currentProduct.name : 'N/A';
+      var msg = 'PRODUCT INQUIRY - ' + pName + '%0A';
+      msg += 'Name: ' + (fd.get('name') || '') + '%0A';
+      msg += 'Email: ' + (fd.get('email') || '') + '%0A';
+      msg += 'Phone: ' + (fd.get('phone') || '') + '%0A';
+      msg += 'Message: ' + (fd.get('message') || 'N/A');
+      window.open('https://wa.me/60147592229?text=' + msg, '_blank');
+    });
+
+    // ============================
+    // TOAST NOTIFICATION
+    // ============================
+    window.showPdmToast = function() {
+      if (!currentProduct) return;
+      var qty = document.getElementById('pdmQtyInput').value || 1;
+      document.getElementById('pdmToastImg').src = currentProduct.images[0];
+      document.getElementById('pdmToastName').textContent = currentProduct.name;
+      document.getElementById('pdmToastQty').textContent = 'Qty: ' + qty + ' unit' + (qty > 1 ? 's' : '');
+      document.getElementById('pdmToast').classList.add('show');
+    };
+    window.closePdmToast = function() {
+      document.getElementById('pdmToast').classList.remove('show');
+    };
+
+    // ============================
+    // CARD CLICK -> OPEN MODAL
+    // ============================
+    document.querySelectorAll('.product-detail-card[data-product-id]').forEach(function(card) {
+      card.addEventListener('click', function(e) {
+        // Don't open if clicking the Get Quote link
+        if (e.target.closest('a[href="contact.html"]')) return;
+        var id = parseInt(card.getAttribute('data-product-id'));
+        openProductModal(id);
+      });
+    });
+
+    // ============================
+    // KEYBOARD
+    // ============================
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (document.getElementById('pdmLightbox').classList.contains('active')) {
+          pdmCloseLightbox();
+        } else if (document.getElementById('pdmOverlay').classList.contains('active')) {
+          closeProductModal();
+        }
+      }
+      var lb = document.getElementById('pdmLightbox');
+      if (lb.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') pdmNavLb(-1);
+        if (e.key === 'ArrowRight') pdmNavLb(1);
+      }
+    });
+
+    // ============================
+    // BROWSER BACK BUTTON
+    // ============================
+    window.addEventListener('popstate', function() {
+      if (document.getElementById('pdmOverlay').classList.contains('active')) {
+        closeProductModal();
+      }
+    });
+
+  })();
+  </script>
+</body>
+</html>

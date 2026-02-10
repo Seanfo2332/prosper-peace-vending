@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotation - Prosper Peace Vending | Vending Machine Malaysia</title>
+  <meta name="description" content="Review your vending machine quotation from Prosper Peace Vending. Add products, adjust quantities, and submit your request via WhatsApp or our contact form.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+        </a>
+
+        <!-- Nav -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <div class="nav-item-dropdown">
+            <a href="products.html">Our Products <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="products.html#snack">Snack Machines</a>
+              <a href="products.html#beverage">Beverage Machines</a>
+              <a href="products.html#combo">Combo Machines</a>
+              <a href="products.html#custom">Custom Solutions</a>
+            </div>
+          </div>
+          <div class="nav-item-dropdown">
+            <a href="gallery.html">Gallery <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="gallery.html#photos">Photos</a>
+              <a href="gallery.html#videos">Videos</a>
+            </div>
+          </div>
+          <a href="tips.html">Tips & News</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+
+        <div class="header-cta">
+          <!-- Language Toggle -->
+          <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>BM</button>
+          </div>
+          <!-- Cart Icon -->
+          <a href="quotation.html" class="cart-icon" title="View Quotation">
+            <i class="fas fa-file-invoice"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       PAGE BANNER
+       ============================================ -->
+  <section class="page-banner">
+    <div class="container">
+      <h1>Quotation</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <a href="products.html">Our Products</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>Quotation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       QUOTATION TABLE
+       ============================================ -->
+  <section class="section">
+    <div class="container">
+      <!-- Edit link -->
+      <div class="quote-edit-row">
+        <a href="products.html" class="quote-edit-link"><i class="fas fa-plus"></i> Add More Products</a>
+      </div>
+
+      <!-- Quotation Table -->
+      <div class="quote-table-wrapper">
+        <table class="quote-table" id="quoteTable">
+          <thead>
+            <tr>
+              <th class="col-product">Product(s)</th>
+              <th class="col-price">Unit Price</th>
+              <th class="col-qty">Quantity</th>
+              <th class="col-total">Total Price</th>
+              <th class="col-action">Action</th>
+            </tr>
+          </thead>
+          <tbody id="quoteTableBody">
+            <!-- Cart items rendered by JS -->
+          </tbody>
+        </table>
+
+        <!-- Empty cart message -->
+        <div class="quote-empty" id="quoteEmpty" style="display:none;">
+          <div class="quote-empty-icon"><i class="fas fa-file-invoice"></i></div>
+          <h3>Your quotation is empty</h3>
+          <p>Browse our products and add items to your quotation request.</p>
+          <a href="products.html" class="btn btn-primary">Browse Products <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Checkout Buttons -->
+      <div class="quote-checkout" id="quoteCheckout">
+        <a href="#" class="btn btn-wa-checkout" id="checkoutWhatsApp">
+          <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+        </a>
+        <a href="#" class="btn btn-checkout" id="checkoutForm">
+          Checkout
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CHECKOUT FORM (hidden by default, shown on Checkout click)
+       ============================================ -->
+  <section class="section" style="background: var(--light-bg); display:none;" id="checkoutFormSection">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Complete Your Request</span>
+        <h2>Your Details</h2>
+        <p>Fill in your information and we'll prepare a customized quotation for you.</p>
+        <div class="underline"></div>
+      </div>
+
+      <div class="contact-form-card" style="max-width:800px;margin:0 auto;">
+        <form id="quotationSubmitForm" class="form-grid">
+          <!-- Name -->
+          <div class="form-group">
+            <label>Name <span class="required">*</span></label>
+            <input type="text" name="name" class="form-control" placeholder="Your full name" required>
+          </div>
+
+          <!-- Company -->
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="company" class="form-control" placeholder="Company name">
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label>Email <span class="required">*</span></label>
+            <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label>Phone <span class="required">*</span></label>
+            <input type="tel" name="phone" class="form-control" placeholder="+60XX-XXX XXXX" required>
+          </div>
+
+          <!-- Location -->
+          <div class="form-group full-width">
+            <label>Location / Address</label>
+            <input type="text" name="location" class="form-control" placeholder="Where will the machine(s) be placed?">
+          </div>
+
+          <!-- Additional Details -->
+          <div class="form-group full-width">
+            <label>Additional Details</label>
+            <textarea name="details" class="form-control" placeholder="Any specific requirements or questions..." rows="4"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-group full-width">
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              <i class="fab fa-whatsapp"></i> Submit via WhatsApp
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+       ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Need Help Choosing?</h2>
+        <p>Our team is ready to assist you in finding the perfect vending solution. Contact us for expert advice and a personalized quotation.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-gold"><i class="fas fa-file-invoice"></i> Contact Us</a>
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About -->
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+            <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+          </a>
+          <p>Malaysia's trusted vending machine supplier providing end-to-end solutions with modern cashless payment technology and dedicated after-sales support.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="products.html"><i class="fas fa-chevron-right"></i> Our Products</a>
+            <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="tips.html"><i class="fas fa-chevron-right"></i> Tips & News</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h4>Products</h4>
+          <div class="footer-links">
+            <a href="products.html#snack"><i class="fas fa-chevron-right"></i> Snack Machines</a>
+            <a href="products.html#beverage"><i class="fas fa-chevron-right"></i> Beverage Machines</a>
+            <a href="products.html#combo"><i class="fas fa-chevron-right"></i> Combo Machines</a>
+            <a href="products.html#custom"><i class="fas fa-chevron-right"></i> Custom Solutions</a>
+            <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <div class="label">Address</div>
+              <p>Bukit Mertajam, Penang, Malaysia</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <div class="label">Phone</div>
+              <a href="tel:+60147592229">+6014-759 2229</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="label">Email</div>
+              <a href="mailto:info@vendingmachinemalaysia.com.my">info@vendingmachinemalaysia.com.my</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Prosper Peace Vending Sdn. Bhd. (202201039206 / 1484903-U). All rights reserved.</p>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Prosper Peace Vending | Photos & Videos</title>
+  <meta name="description" content="Browse our gallery of vending machines, installations, events, and locations. See Prosper Peace Vending's solutions in action across Malaysia.">
+  <meta name="keywords" content="vending machine gallery, vending machine photos, vending machine installation, vending machine malaysia">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+        </a>
+
+        <!-- Nav -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <div class="nav-item-dropdown">
+            <a href="products.html">Our Products <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="products.html#snack">Snack Machines</a>
+              <a href="products.html#beverage">Beverage Machines</a>
+              <a href="products.html#combo">Combo Machines</a>
+              <a href="products.html#custom">Custom Solutions</a>
+            </div>
+          </div>
+          <div class="nav-item-dropdown">
+            <a href="gallery.html" class="active">Gallery <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="gallery.html#photos">Photos</a>
+              <a href="gallery.html#videos">Videos</a>
+            </div>
+          </div>
+          <a href="tips.html">Tips & News</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+
+        <div class="header-cta">
+          <!-- Language Toggle -->
+          <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>BM</button>
+          </div>
+          <!-- Cart Icon -->
+          <a href="quotation.html" class="cart-icon" title="View Quotation">
+            <i class="fas fa-file-invoice"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       PAGE BANNER
+       ============================================ -->
+  <section class="page-banner">
+    <div class="container">
+      <h1>Our Gallery</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>Gallery</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PHOTO GALLERY
+       ============================================ -->
+  <section class="section" id="photos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Photo Gallery</span>
+        <h2>See Our Vending Solutions in Action</h2>
+        <p>Browse through our collection of vending machines, installations, events, and prime locations across Malaysia.</p>
+        <div class="underline"></div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="gallery-filters reveal">
+        <button class="gallery-filter-btn active" data-filter="all">All</button>
+        <button class="gallery-filter-btn" data-filter="machines">Machines</button>
+        <button class="gallery-filter-btn" data-filter="installation">Installation</button>
+        <button class="gallery-filter-btn" data-filter="events">Events</button>
+        <button class="gallery-filter-btn" data-filter="locations">Locations</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid stagger-children">
+        <!-- Machine 1 -->
+        <div class="gallery-item" data-category="machines">
+          <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=600&q=80" alt="Modern Snack Vending Machine">
+          <div class="gallery-item-overlay">
+            <span>Modern Snack Vending Machine</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Machine 2 -->
+        <div class="gallery-item" data-category="machines">
+          <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&q=80" alt="Beverage Vending Machine">
+          <div class="gallery-item-overlay">
+            <span>Beverage Vending Machine</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Machine 3 -->
+        <div class="gallery-item" data-category="machines">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Combo Vending Machine with Cashless Payment">
+          <div class="gallery-item-overlay">
+            <span>Combo Machine with Cashless Payment</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Installation 1 -->
+        <div class="gallery-item" data-category="installation">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Vending Machine Installation Process">
+          <div class="gallery-item-overlay">
+            <span>Professional Installation Process</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Installation 2 -->
+        <div class="gallery-item" data-category="installation">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="On-Site Setup and Configuration">
+          <div class="gallery-item-overlay">
+            <span>On-Site Setup and Configuration</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Events 1 -->
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Vending Industry Trade Show">
+          <div class="gallery-item-overlay">
+            <span>Vending Industry Trade Show</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Events 2 -->
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80" alt="Product Launch Event">
+          <div class="gallery-item-overlay">
+            <span>Product Launch Event</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Locations 1 -->
+        <div class="gallery-item" data-category="locations">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Office Building Vending Setup">
+          <div class="gallery-item-overlay">
+            <span>Office Building Vending Setup</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Locations 2 -->
+        <div class="gallery-item" data-category="locations">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80" alt="Corporate Lounge Installation">
+          <div class="gallery-item-overlay">
+            <span>Corporate Lounge Installation</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Machine 4 (duplicate for 12 items) -->
+        <div class="gallery-item" data-category="machines">
+          <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=600&q=80" alt="Smart Vending Machine Display">
+          <div class="gallery-item-overlay">
+            <span>Smart Vending Machine Display</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Installation 3 (duplicate for 12 items) -->
+        <div class="gallery-item" data-category="installation">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Technical Team at Work">
+          <div class="gallery-item-overlay">
+            <span>Technical Team at Work</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+
+        <!-- Events 3 (duplicate for 12 items) -->
+        <div class="gallery-item" data-category="events">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Client Appreciation Day">
+          <div class="gallery-item-overlay">
+            <span>Client Appreciation Day</span>
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       VIDEO SECTION
+       ============================================ -->
+  <section class="section" style="background: var(--light-bg);" id="videos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Video Gallery</span>
+        <h2>Watch Our Vending Solutions</h2>
+        <p>See our vending machines in action with product demos, installation walkthroughs, and client testimonials.</p>
+        <div class="underline"></div>
+      </div>
+
+      <div class="products-grid stagger-children">
+        <!-- Video Card 1 -->
+        <div class="product-card">
+          <div class="product-card-image" style="position:relative;cursor:pointer;">
+            <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=600&q=80" alt="Product Demo Video">
+            <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(10,22,40,0.5);display:flex;align-items:center;justify-content:center;">
+              <div style="width:70px;height:70px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-play" style="color:#fff;font-size:1.5rem;margin-left:4px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <h3>Product Demo: Combo Vending Machine</h3>
+            <p>Watch a full walkthrough of our latest combo vending machine with cashless payment and touchscreen interface.</p>
+            <div class="product-card-footer">
+              <span style="color:var(--text-light);font-size:0.85rem;"><i class="far fa-clock" style="margin-right:4px;"></i> 3:45</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 2 -->
+        <div class="product-card">
+          <div class="product-card-image" style="position:relative;cursor:pointer;">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Installation Guide Video">
+            <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(10,22,40,0.5);display:flex;align-items:center;justify-content:center;">
+              <div style="width:70px;height:70px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-play" style="color:#fff;font-size:1.5rem;margin-left:4px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <h3>Installation Guide: Start to Finish</h3>
+            <p>See how our professional team handles a complete vending machine installation from delivery to final testing.</p>
+            <div class="product-card-footer">
+              <span style="color:var(--text-light);font-size:0.85rem;"><i class="far fa-clock" style="margin-right:4px;"></i> 5:12</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 3 -->
+        <div class="product-card">
+          <div class="product-card-image" style="position:relative;cursor:pointer;">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Cashless Payment Setup Video">
+            <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(10,22,40,0.5);display:flex;align-items:center;justify-content:center;">
+              <div style="width:70px;height:70px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-play" style="color:#fff;font-size:1.5rem;margin-left:4px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <h3>Cashless Payment: How It Works</h3>
+            <p>Learn how our Ewallet QR and contactless card payment system works on our vending machines.</p>
+            <div class="product-card-footer">
+              <span style="color:var(--text-light);font-size:0.85rem;"><i class="far fa-clock" style="margin-right:4px;"></i> 2:30</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 4 -->
+        <div class="product-card">
+          <div class="product-card-image" style="position:relative;cursor:pointer;">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Client Testimonial Video">
+            <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(10,22,40,0.5);display:flex;align-items:center;justify-content:center;">
+              <div style="width:70px;height:70px;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+                <i class="fas fa-play" style="color:#fff;font-size:1.5rem;margin-left:4px;"></i>
+              </div>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <h3>Client Testimonial: Office Solutions</h3>
+            <p>Hear from one of our corporate clients about how our vending machines improved their workplace experience.</p>
+            <div class="product-card-footer">
+              <span style="color:var(--text-light);font-size:0.85rem;"><i class="far fa-clock" style="margin-right:4px;"></i> 4:18</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+       ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Want to See Our Machines in Person?</h2>
+        <p>Schedule a visit to our showroom in Bukit Mertajam, Penang or request a free on-site demonstration at your location. Our team is ready to show you the perfect vending solution.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-gold"><i class="fas fa-calendar-check"></i> Schedule a Visit</a>
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'd%20like%20to%20schedule%20a%20vending%20machine%20demo." class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       LIGHTBOX
+       ============================================ -->
+  <div class="lightbox">
+    <div class="lightbox-close"><i class="fas fa-times"></i></div>
+    <div class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></div>
+    <div class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></div>
+    <img src="" alt="Gallery Image">
+  </div>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About -->
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+            <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+          </a>
+          <p>Malaysia's trusted vending machine supplier providing end-to-end solutions with modern cashless payment technology and dedicated after-sales support.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="products.html"><i class="fas fa-chevron-right"></i> Our Products</a>
+            <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="tips.html"><i class="fas fa-chevron-right"></i> Tips & News</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h4>Products</h4>
+          <div class="footer-links">
+            <a href="products.html#snack"><i class="fas fa-chevron-right"></i> Snack Machines</a>
+            <a href="products.html#beverage"><i class="fas fa-chevron-right"></i> Beverage Machines</a>
+            <a href="products.html#combo"><i class="fas fa-chevron-right"></i> Combo Machines</a>
+            <a href="products.html#custom"><i class="fas fa-chevron-right"></i> Custom Solutions</a>
+            <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <div class="label">Address</div>
+              <p>Bukit Mertajam, Penang, Malaysia</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <div class="label">Phone</div>
+              <a href="tel:+60147592229">+6014-759 2229</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="label">Email</div>
+              <a href="mailto:info@vendingmachinemalaysia.com.my">info@vendingmachinemalaysia.com.my</a>
+            </div>
+          </div>
+          <h4 style="margin-top:24px;">Newsletter</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Subscribe for latest updates and offers</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Prosper Peace Vending Sdn. Bhd. (202201039206 / 1484903-U). All rights reserved.</p>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

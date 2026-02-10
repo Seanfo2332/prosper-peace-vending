@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips & News - Prosper Peace Vending | Vending Machine Business Tips Malaysia</title>
+  <meta name="description" content="Expert vending machine tips, maintenance guides, business strategies, and industry news from Prosper Peace Vending. Stay updated with the latest vending trends in Malaysia.">
+  <meta name="keywords" content="vending machine tips, vending business guide malaysia, vending machine maintenance, cashless vending, vending machine ROI">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Page-specific styles -->
+  <style>
+    /* Tips page layout */
+    .tips-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* Sidebar */
+    .tips-sidebar {
+      position: sticky;
+      top: 100px;
+    }
+
+    .sidebar-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .sidebar-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--light-bg);
+      color: var(--text-dark);
+    }
+
+    /* Categories list */
+    .categories-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .categories-list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-medium);
+      transition: var(--transition);
+    }
+
+    .categories-list a:hover {
+      background: var(--light-bg);
+      color: var(--accent);
+      padding-left: 18px;
+    }
+
+    .categories-list a .count {
+      background: var(--light-bg);
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .categories-list a:hover .count {
+      background: rgba(14, 165, 233, 0.1);
+      color: var(--accent);
+    }
+
+    /* Subscribe card */
+    .subscribe-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .subscribe-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.2), transparent);
+      border-radius: 50%;
+    }
+
+    .subscribe-card h4 {
+      color: #fff;
+      border-bottom-color: rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .subscribe-card p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.88rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .subscribe-card .subscribe-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .subscribe-card .subscribe-form input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .subscribe-card .subscribe-form input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .subscribe-card .subscribe-form input:focus {
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .subscribe-card .subscribe-form .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Popular tags */
+    .popular-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .popular-tags a {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--light-bg);
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-medium);
+      transition: var(--transition);
+    }
+
+    .popular-tags a:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Tip meta category badge */
+    .tip-meta .category-badge {
+      background: rgba(14, 165, 233, 0.1);
+      color: var(--accent);
+      padding: 2px 10px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* Results info */
+    .tips-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tips-header-bar p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .tips-header-bar p strong {
+      color: var(--text-dark);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .tips-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .tips-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .tips-sidebar .sidebar-card {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tips-sidebar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+        </a>
+
+        <!-- Nav -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <div class="nav-item-dropdown">
+            <a href="products.html">Our Products <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="products.html#snack">Snack Machines</a>
+              <a href="products.html#beverage">Beverage Machines</a>
+              <a href="products.html#combo">Combo Machines</a>
+              <a href="products.html#custom">Custom Solutions</a>
+            </div>
+          </div>
+          <div class="nav-item-dropdown">
+            <a href="gallery.html">Gallery <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="gallery.html#photos">Photos</a>
+              <a href="gallery.html#videos">Videos</a>
+            </div>
+          </div>
+          <a href="tips.html" class="active">Tips & News</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+
+        <div class="header-cta">
+          <!-- Language Toggle -->
+          <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>BM</button>
+          </div>
+          <!-- Cart Icon -->
+          <a href="quotation.html" class="cart-icon" title="View Quotation">
+            <i class="fas fa-file-invoice"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       PAGE BANNER
+       ============================================ -->
+  <section class="page-banner">
+    <div class="container">
+      <h1>Tips & News</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>Tips & News</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TIPS LISTING SECTION
+       ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="tips-layout">
+        <!-- Main Content -->
+        <div>
+          <div class="tips-header-bar reveal">
+            <p>Showing <strong>7</strong> articles</p>
+          </div>
+
+          <div class="tips-list">
+            <!-- Article 1 -->
+            <div class="tip-card-horizontal reveal">
+              <div class="tip-image">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="How to Start a Profitable Vending Machine Business in Malaysia">
+              </div>
+              <div class="tip-content">
+                <div class="tip-meta">
+                  <span><i class="far fa-calendar-alt"></i> Jan 15, 2025</span>
+                  <span class="category-badge">Business Tips</span>
+                  <span><i class="far fa-clock"></i> 5 min read</span>
+                </div>
+                <h3><a href="#">How to Start a Profitable Vending Machine Business in Malaysia</a></h3>
+                <p>Learn the essential steps to launch your vending machine business, from choosing strategic locations and selecting the right machines to understanding licensing requirements and maximizing your profit margins in the Malaysian market.</p>
+                <a href="#" class="btn btn-outline btn-sm">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="tip-card-horizontal reveal">
+              <div class="tip-image">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" alt="Essential Vending Machine Maintenance Checklist">
+              </div>
+              <div class="tip-content">
+                <div class="tip-meta">
+                  <span><i class="far fa-calendar-alt"></i> Jan 8, 2025</span>
+                  <span class="category-badge">Maintenance</span>
+                  <span><i class="far fa-clock"></i> 4 min read</span>
+                </div>
+                <h3><a href="#">Essential Vending Machine Maintenance Checklist</a></h3>
+                <p>Keep your vending machines running efficiently with our comprehensive maintenance guide covering daily, weekly, and monthly tasks. Proper maintenance extends machine lifespan and prevents costly breakdowns.</p>
+                <a href="#" class="btn btn-outline btn-sm">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="tip-card-horizontal reveal">
+              <div class="tip-image">
+                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="Why Cashless Payment is the Future of Vending">
+              </div>
+              <div class="tip-content">
+                <div class="tip-meta">
+                  <span><i class="far fa-calendar-alt"></i> Dec 28, 2024</span>
+                  <span class="category-badge">Technology</span>
+                  <span><i class="far fa-clock"></i> 3 min read</span>
+                </div>
+                <h3><a href="#">Why Cashless Payment is the Future of Vending</a></h3>
+                <p>Discover how cashless payment adoption is transforming the vending industry in Malaysia. From Touch 'n Go to GrabPay, learn why upgrading your machines with e-wallet and QR payment support is essential for growth.</p>
+                <a href="#" class="btn btn-outline btn-sm">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+
+            <!-- Article 4 -->
+            <div class="tip-card-horizontal reveal">
+              <div class="tip-image">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Top 5 High-Traffic Locations for Vending Machines">
+              </div>
+              <div class="tip-content">
+                <div class="tip-meta">
+                  <span><i class="far fa-calendar-alt"></i> Dec 15, 2024</span>
+                  <span class="category-badge">Business Tips</span>
+                  <span><i class="far fa-clock"></i> 4 min read</span>
+                </div>
+                <h3><a href="#">Top 5 High-Traffic Locations for Vending Machines</a></h3>
+                <p>Location is everything in the vending business. We reveal the top five high-traffic placement spots in Malaysia that consistently deliver the highest sales, from office buildings to university campuses.</p>
+                <a href="#" class="btn btn-outline btn-sm">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+
+            <!-- Article 5 -->
+            <div class="tip-card-horizontal reveal">
+              <div class="tip-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Understanding Vending Machine ROI: A Complete Guide">
+              </div>
+              <div class="tip-content">
+                <div class="tip-meta">
+                  <span><i class="far fa-calendar-alt"></i> Dec 1, 2024</span>
+                  <span class="category-badge">Finance</span>
+                  <span><i class="far fa-clock"></i> 6 min read</span>
+                </div>
+                <h3><a href="#">Understanding Vending Machine ROI: A Complete Guide</a></h3>
+                <p>A deep dive into calculating your vending machine return on investment. Learn how to factor in machine costs, product margins, location fees, electricity, and maintenance to project your realistic monthly earnings.</p>
+                <a href="#" class="btn btn-outline btn-sm">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+
+            <!-- Article 6 -->
+            <div class="tip-card-horizontal reveal">
+              <div class="tip-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="How to Choose the Right Vending Machine for Your Business">
+              </div>
+              <div class="tip-content">
+                <div class="tip-meta">
+                  <span><i class="far fa-calendar-alt"></i> Nov 20, 2024</span>
+                  <span class="category-badge">Guide</span>
+                  <span><i class="far fa-clock"></i> 5 min read</span>
+                </div>
+                <h3><a href="#">How to Choose the Right Vending Machine for Your Business</a></h3>
+                <p>Not sure whether to go with a snack, beverage, or combo machine? This buyer's guide walks you through the key factors to consider including capacity, features, payment options, and target market alignment.</p>
+                <a href="#" class="btn btn-outline btn-sm">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+
+            <!-- Article 7 -->
+            <div class="tip-card-horizontal reveal">
+              <div class="tip-image">
+                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="Vending Machine Technical Maintenance: What You Need to Know">
+              </div>
+              <div class="tip-content">
+                <div class="tip-meta">
+                  <span><i class="far fa-calendar-alt"></i> Nov 10, 2024</span>
+                  <span class="category-badge">Maintenance</span>
+                  <span><i class="far fa-clock"></i> 4 min read</span>
+                </div>
+                <h3><a href="#">Vending Machine Technical Maintenance: What You Need to Know</a></h3>
+                <p>From compressor care to coin mechanism cleaning, this technical guide covers the hands-on maintenance procedures that keep your vending machines operational and minimize expensive service calls.</p>
+                <a href="#" class="btn btn-outline btn-sm">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="tips-sidebar">
+          <!-- Categories -->
+          <div class="sidebar-card reveal">
+            <h4><i class="fas fa-folder-open" style="color:var(--accent);margin-right:8px;"></i> Categories</h4>
+            <div class="categories-list">
+              <a href="#">
+                <span><i class="fas fa-chevron-right" style="font-size:0.7rem;margin-right:8px;color:var(--accent);"></i> All Articles</span>
+                <span class="count">7</span>
+              </a>
+              <a href="#">
+                <span><i class="fas fa-chevron-right" style="font-size:0.7rem;margin-right:8px;color:var(--accent);"></i> Business Tips</span>
+                <span class="count">2</span>
+              </a>
+              <a href="#">
+                <span><i class="fas fa-chevron-right" style="font-size:0.7rem;margin-right:8px;color:var(--accent);"></i> Maintenance</span>
+                <span class="count">2</span>
+              </a>
+              <a href="#">
+                <span><i class="fas fa-chevron-right" style="font-size:0.7rem;margin-right:8px;color:var(--accent);"></i> Technology</span>
+                <span class="count">1</span>
+              </a>
+              <a href="#">
+                <span><i class="fas fa-chevron-right" style="font-size:0.7rem;margin-right:8px;color:var(--accent);"></i> Finance</span>
+                <span class="count">1</span>
+              </a>
+              <a href="#">
+                <span><i class="fas fa-chevron-right" style="font-size:0.7rem;margin-right:8px;color:var(--accent);"></i> Guide</span>
+                <span class="count">1</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Subscribe -->
+          <div class="sidebar-card subscribe-card reveal">
+            <h4><i class="fas fa-envelope" style="margin-right:8px;"></i> Subscribe for Updates</h4>
+            <p>Get the latest vending industry tips, news, and exclusive offers delivered straight to your inbox.</p>
+            <form class="subscribe-form" id="subscribeForm">
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Your Email Address" required>
+              <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Subscribe Now</button>
+            </form>
+          </div>
+
+          <!-- Popular Tags -->
+          <div class="sidebar-card reveal">
+            <h4><i class="fas fa-tags" style="color:var(--accent);margin-right:8px;"></i> Popular Tags</h4>
+            <div class="popular-tags">
+              <a href="#">Vending Machine</a>
+              <a href="#">Malaysia</a>
+              <a href="#">Cashless Payment</a>
+              <a href="#">ROI</a>
+              <a href="#">Maintenance</a>
+              <a href="#">Business Tips</a>
+              <a href="#">E-Wallet</a>
+              <a href="#">Location</a>
+              <a href="#">Technology</a>
+              <a href="#">Snack Machine</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+       ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Ready to Start Your Vending Business?</h2>
+        <p>Get in touch with our team today for a free consultation and personalized quotation. We'll help you find the perfect vending solution for your location and budget.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-gold"><i class="fas fa-file-invoice"></i> Request Free Quotation</a>
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About -->
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+            <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+          </a>
+          <p>Malaysia's trusted vending machine supplier providing end-to-end solutions with modern cashless payment technology and dedicated after-sales support.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="products.html"><i class="fas fa-chevron-right"></i> Our Products</a>
+            <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="tips.html"><i class="fas fa-chevron-right"></i> Tips & News</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h4>Products</h4>
+          <div class="footer-links">
+            <a href="products.html#snack"><i class="fas fa-chevron-right"></i> Snack Machines</a>
+            <a href="products.html#beverage"><i class="fas fa-chevron-right"></i> Beverage Machines</a>
+            <a href="products.html#combo"><i class="fas fa-chevron-right"></i> Combo Machines</a>
+            <a href="products.html#custom"><i class="fas fa-chevron-right"></i> Custom Solutions</a>
+            <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <div class="label">Address</div>
+              <p>Bukit Mertajam, Penang, Malaysia</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <div class="label">Phone</div>
+              <a href="tel:+60147592229">+6014-759 2229</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="label">Email</div>
+              <a href="mailto:info@vendingmachinemalaysia.com.my">info@vendingmachinemalaysia.com.my</a>
+            </div>
+          </div>
+          <h4 style="margin-top:24px;">Newsletter</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Subscribe for latest updates and offers</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Prosper Peace Vending Sdn. Bhd. (202201039206 / 1484903-U). All rights reserved.</p>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+
+  <!-- Subscribe form handler -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const subscribeForm = document.querySelector('#subscribeForm');
+      if (subscribeForm) {
+        subscribeForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = subscribeForm.querySelector('input[type="text"]');
+          const email = subscribeForm.querySelector('input[type="email"]');
+          if (name && email && name.value && email.value) {
+            alert('Thank you, ' + name.value + '! You have been subscribed to our updates.');
+            name.value = '';
+            email.value = '';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

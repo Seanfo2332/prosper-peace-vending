@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helmet & Shoes Cleaning Machine (HCVM-2HS) - Prosper Peace Vending</title>
+  <meta name="description" content="HCVM-2HS Helmet & Shoes Cleaning Machine with dual compartments, 21.5 inch touch screen, remote monitoring, and multiple payment options. Contact us for pricing.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Product Detail Page CSS -->
+  <style>
+    /* ============================================
+       PRODUCT DETAIL PAGE
+       ============================================ */
+
+    /* Breadcrumb override for product page */
+    .page-banner.product-banner {
+      padding: 130px 0 40px;
+      text-align: left;
+    }
+
+    .page-banner.product-banner h1 {
+      display: none;
+    }
+
+    .page-banner.product-banner .breadcrumb {
+      justify-content: flex-start;
+      font-size: 0.85rem;
+    }
+
+    /* Product Detail Layout */
+    .product-detail-section {
+      padding: 40px 0 80px;
+    }
+
+    .product-detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* Image Gallery */
+    .product-gallery {
+      position: sticky;
+      top: 100px;
+    }
+
+    .product-main-image {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      cursor: zoom-in;
+      position: relative;
+    }
+
+    .product-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .product-main-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-main-image .image-count {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    .product-thumbnail {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--light-bg);
+    }
+
+    .product-thumbnail:hover,
+    .product-thumbnail.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .product-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+
+    /* Share buttons */
+    .product-share {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .product-share span {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .product-share .share-icons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .product-share .share-icons a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #fff;
+      transition: var(--transition);
+    }
+
+    .product-share .share-icons a:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .share-facebook { background: #1877f2; }
+    .share-whatsapp { background: #25d366; }
+    .share-messenger { background: #0084ff; }
+    .share-wechat { background: #07c160; }
+
+    /* Product Info */
+    .product-detail-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .product-detail-info .product-category-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .product-detail-info .product-category-link:hover {
+      color: var(--accent-dark);
+    }
+
+    .product-detail-info h1 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .product-price-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .product-price-box .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .product-price-box .stock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 14px;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+    }
+
+    .product-price-box .stock-badge i {
+      font-size: 0.7rem;
+    }
+
+    /* Special Fields */
+    .product-special-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .special-field-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .radio-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .radio-option {
+      position: relative;
+    }
+
+    .radio-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-option .radio-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-medium);
+      cursor: pointer;
+      transition: var(--transition);
+      background: #fff;
+    }
+
+    .radio-option .radio-label i {
+      font-size: 1rem;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .radio-option input[type="radio"]:checked + .radio-label {
+      border-color: var(--accent);
+      background: rgba(14, 165, 233, 0.05);
+      color: var(--accent);
+    }
+
+    .radio-option input[type="radio"]:checked + .radio-label i {
+      color: var(--accent);
+    }
+
+    .radio-option .radio-label:hover {
+      border-color: var(--accent);
+    }
+
+    .special-field-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--light-bg);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      transition: var(--transition);
+      font-family: var(--font-main);
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .special-field-group textarea:focus {
+      border-color: var(--accent);
+      background: #fff;
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+
+    .special-field-group textarea::placeholder {
+      color: var(--text-light);
+    }
+
+    /* Quantity Selector */
+    .product-quantity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .product-quantity .qty-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .qty-selector {
+      display: flex;
+      align-items: center;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .qty-selector button {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--text-medium);
+      background: var(--light-bg);
+      transition: var(--transition);
+    }
+
+    .qty-selector button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .qty-selector input {
+      width: 60px;
+      height: 44px;
+      text-align: center;
+      border: none;
+      border-left: 2px solid var(--border);
+      border-right: 2px solid var(--border);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      background: #fff;
+      -moz-appearance: textfield;
+    }
+
+    .qty-selector input::-webkit-outer-spin-button,
+    .qty-selector input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Action Buttons */
+    .product-action-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .product-action-buttons .btn {
+      flex: 1;
+      min-width: 140px;
+      justify-content: center;
+      padding: 14px 24px;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background: #1fb855;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-inquire {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-inquire:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+       DESCRIPTION & SPECS TABS
+       ============================================ */
+    .product-tabs-section {
+      padding: 0 0 80px;
+    }
+
+    .product-tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .product-tab {
+      padding: 14px 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      background: transparent;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .product-tab:hover {
+      color: var(--accent);
+    }
+
+    .product-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .product-tab-content {
+      display: none;
+    }
+
+    .product-tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    /* Specs Table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+
+    .specs-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .specs-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .specs-table td {
+      padding: 14px 16px;
+      font-size: 0.95rem;
+    }
+
+    .specs-table td:first-child {
+      font-weight: 600;
+      color: var(--text-dark);
+      width: 240px;
+      background: var(--light-bg);
+      white-space: nowrap;
+    }
+
+    .specs-table td:last-child {
+      color: var(--text-medium);
+    }
+
+    /* Features List */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--light-bg);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .feature-item:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feature-item .feature-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(14, 165, 233, 0.1);
+      color: var(--accent);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .feature-item span {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    /* ============================================
+       INQUIRY FORM
+       ============================================ */
+    .inquiry-section {
+      margin-top: 40px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .inquiry-section h3 {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .inquiry-section h3 i {
+      color: var(--accent);
+    }
+
+    .inquiry-section > p {
+      color: var(--text-medium);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .inquiry-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .inquiry-form-grid .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    /* ============================================
+       RELATED PRODUCTS
+       ============================================ */
+    .related-products-section {
+      padding: 60px 0 80px;
+      background: var(--light-bg);
+    }
+
+    .related-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .related-header h2 {
+      font-size: 1.6rem;
+    }
+
+    .related-header a {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .related-header a:hover {
+      gap: 10px;
+    }
+
+    .related-products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 24px;
+    }
+
+    .related-product-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .related-product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .related-product-card .card-image {
+      height: 240px;
+      overflow: hidden;
+      background: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .related-product-card .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 16px;
+      transition: transform 0.5s ease;
+    }
+
+    .related-product-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .related-product-card .card-body {
+      padding: 20px;
+    }
+
+    .related-product-card .card-body h4 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .related-product-card .card-body h4 a:hover {
+      color: var(--accent);
+    }
+
+    .related-product-card .card-actions {
+      display: flex;
+      gap: 8px;
+      padding: 0 20px 20px;
+    }
+
+    .related-product-card .card-actions .btn {
+      flex: 1;
+      justify-content: center;
+      font-size: 0.82rem;
+      padding: 9px 14px;
+    }
+
+    /* ============================================
+       IMAGE LIGHTBOX
+       ============================================ */
+    .product-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.92);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .product-lightbox.active {
+      display: flex;
+    }
+
+    .product-lightbox img {
+      max-width: 85%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+    }
+
+    .product-lightbox .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .product-lightbox .lb-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .product-lightbox .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .product-lightbox .lb-nav:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .product-lightbox .lb-prev { left: 20px; }
+    .product-lightbox .lb-next { right: 20px; }
+
+    .product-lightbox .lb-counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* ============================================
+       RESPONSIVE - PRODUCT DETAIL
+       ============================================ */
+    @media (max-width: 1024px) {
+      .product-detail-layout {
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-detail-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .product-gallery {
+        position: static;
+      }
+
+      .product-thumbnails {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .product-action-buttons {
+        flex-direction: column;
+      }
+
+      .product-action-buttons .btn {
+        min-width: auto;
+      }
+
+      .specs-table td:first-child {
+        width: auto;
+        white-space: normal;
+      }
+
+      .inquiry-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .inquiry-form-grid .form-group.full-width {
+        grid-column: span 1;
+      }
+
+      .inquiry-section {
+        padding: 28px;
+      }
+
+      .related-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .page-banner.product-banner {
+        padding: 110px 0 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .radio-options {
+        flex-direction: column;
+      }
+
+      .product-thumbnails {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD.">
+        </a>
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <div class="nav-item-dropdown">
+            <a href="products.html" class="active">Our Products <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="products.html#snack">Snack Machines</a>
+              <a href="products.html#beverage">Beverage Machines</a>
+              <a href="products.html#combo">Combo Machines</a>
+              <a href="products.html#custom">Custom Solutions</a>
+            </div>
+          </div>
+          <div class="nav-item-dropdown">
+            <a href="gallery.html">Gallery <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="gallery.html#photos">Photos</a>
+              <a href="gallery.html#videos">Videos</a>
+            </div>
+          </div>
+          <a href="tips.html">Tips & News</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+        <div class="header-cta">
+          <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>BM</button>
+          </div>
+          <!-- Cart Icon -->
+          <a href="quotation.html" class="cart-icon" title="View Quotation">
+            <i class="fas fa-file-invoice"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       BREADCRUMB BANNER
+       ============================================ -->
+  <section class="page-banner product-banner">
+    <div class="container">
+      <h1>Product Detail</h1>
+      <div class="breadcrumb">
+        <a href="index.html"><i class="fas fa-home"></i></a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <a href="products.html">Our Products</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>Helmet & Shoes Cleaning Machine (HCVM-2HS)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRODUCT DETAIL
+       ============================================ -->
+  <section class="product-detail-section">
+    <div class="container">
+      <div class="product-detail-layout">
+
+        <!-- LEFT: Image Gallery -->
+        <div class="product-gallery reveal-left">
+          <div class="product-main-image" id="mainImage" onclick="openProductLightbox(0)">
+            <img src="https://cdn1.npcdn.net/images/dab00ed298dc8f4794bc90136007bba7_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=9" alt="Helmet & Shoes Cleaning Machine (HCVM-2HS)" id="mainImg">
+            <div class="image-count"><i class="fas fa-images"></i> 1 / 6</div>
+          </div>
+
+          <div class="product-thumbnails">
+            <div class="product-thumbnail active" onclick="switchImage(0, this)">
+              <img src="https://cdn1.npcdn.net/images/dab00ed298dc8f4794bc90136007bba7_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=9" alt="View 1">
+            </div>
+            <div class="product-thumbnail" onclick="switchImage(1, this)">
+              <img src="https://cdn1.npcdn.net/images/765adf370e27f31043e15af8db637c8c_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1" alt="View 2">
+            </div>
+            <div class="product-thumbnail" onclick="switchImage(2, this)">
+              <img src="https://cdn1.npcdn.net/images/1219c29c705ef898ea6390bc13d5d463_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1" alt="View 3">
+            </div>
+            <div class="product-thumbnail" onclick="switchImage(3, this)">
+              <img src="https://cdn1.npcdn.net/images/31992471db362905430e2ae42a9233bf_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1" alt="View 4">
+            </div>
+            <div class="product-thumbnail" onclick="switchImage(4, this)">
+              <img src="https://cdn1.npcdn.net/images/1fb1f15d3e5abb0e0ae0d0976f910621_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1" alt="View 5">
+            </div>
+          </div>
+
+          <div class="product-share">
+            <span>Share:</span>
+            <div class="share-icons">
+              <a href="https://www.addtoany.com/add_to/facebook?linkurl=https://www.vendingmachinemalaysia.com.my/showproducts/productid/6220356/helmet-shoes-cleaning-machine-hcvm2hs/" target="_blank" class="share-facebook" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.addtoany.com/add_to/whatsapp?linkurl=https://www.vendingmachinemalaysia.com.my/showproducts/productid/6220356/helmet-shoes-cleaning-machine-hcvm2hs/" target="_blank" class="share-whatsapp" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://www.addtoany.com/add_to/facebook_messenger?linkurl=https://www.vendingmachinemalaysia.com.my/showproducts/productid/6220356/helmet-shoes-cleaning-machine-hcvm2hs/" target="_blank" class="share-messenger" title="Share on Messenger"><i class="fab fa-facebook-messenger"></i></a>
+              <a href="https://www.addtoany.com/add_to/wechat?linkurl=https://www.vendingmachinemalaysia.com.my/showproducts/productid/6220356/helmet-shoes-cleaning-machine-hcvm2hs/" target="_blank" class="share-wechat" title="Share on WeChat"><i class="fab fa-weixin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Product Info -->
+        <div class="product-detail-info reveal-right">
+          <a href="products.html#custom" class="product-category-link">
+            <i class="fas fa-tag"></i> Helmet Cleaning Machine
+          </a>
+
+          <h1>Helmet & Shoes Cleaning Machine (HCVM-2HS)</h1>
+
+          <div class="product-price-box">
+            <span class="price">Contact Us</span>
+            <span class="stock-badge"><i class="fas fa-circle"></i> In Stock</span>
+          </div>
+
+          <!-- Special Fields -->
+          <div class="product-special-fields">
+            <div class="special-field-group">
+              <label><i class="fas fa-credit-card" style="margin-right:6px;color:var(--accent);"></i> Payment System</label>
+              <div class="radio-options">
+                <label class="radio-option">
+                  <input type="radio" name="payment_system" value="Cash or Coin">
+                  <span class="radio-label"><i class="fas fa-coins"></i> Cash or Coin</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="payment_system" value="E-wallet">
+                  <span class="radio-label"><i class="fas fa-qrcode"></i> E-wallet</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="payment_system" value="Card">
+                  <span class="radio-label"><i class="fas fa-credit-card"></i> Card</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="special-field-group">
+              <label><i class="fas fa-truck" style="margin-right:6px;color:var(--accent);"></i> Delivery Area</label>
+              <textarea placeholder="Full Address Required [ Street Name / City / Postcode / State ]"></textarea>
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="product-quantity">
+            <span class="qty-label">Quantity:</span>
+            <div class="qty-selector">
+              <button onclick="changeQty(-1)"><i class="fas fa-minus"></i></button>
+              <input type="number" id="productQty" value="1" min="1" max="99999">
+              <button onclick="changeQty(1)"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="product-action-buttons">
+            <a href="#" class="btn btn-primary" onclick="addToQuotation(); return false;">
+              <i class="fas fa-cart-plus"></i> Add to Quotation
+            </a>
+            <a href="https://wa.me/60147592229?text=Hello, I am interested in Helmet%20%26%20Shoes%20Cleaning%20Machine%20%28HCVM-2HS%29. (https://www.vendingmachinemalaysia.com.my/showproducts/productid/6220356/)" target="_blank" class="btn btn-whatsapp">
+              <i class="fab fa-whatsapp"></i> Get Price Now!
+            </a>
+            <a href="#inquiry" class="btn btn-inquire" onclick="scrollToInquiry(); return false;">
+              <i class="fas fa-edit"></i> Inquire Now
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DESCRIPTION TABS
+       ============================================ -->
+  <section class="product-tabs-section">
+    <div class="container">
+      <div class="product-tabs reveal">
+        <button class="product-tab active" data-tab="description"><i class="fas fa-list-ul"></i> Description</button>
+        <button class="product-tab" data-tab="specs"><i class="fas fa-cogs"></i> Specifications</button>
+      </div>
+
+      <!-- Description Tab -->
+      <div class="product-tab-content active" id="tab-description">
+        <table class="specs-table">
+          <tr>
+            <td>Model</td>
+            <td>HCVM-2HS</td>
+          </tr>
+          <tr>
+            <td>External Dimensions</td>
+            <td>1900mm(H) x 640mm(W) x 585mm(D)</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td>88 kg</td>
+          </tr>
+          <tr>
+            <td>TouchScreen</td>
+            <td>21.5" Touch Screen</td>
+          </tr>
+          <tr>
+            <td>Communication Module</td>
+            <td>4G / Wi-Fi</td>
+          </tr>
+          <tr>
+            <td>Management System</td>
+            <td>Remote Monitoring System</td>
+          </tr>
+          <tr>
+            <td>Cleaning Compartment</td>
+            <td>2 (Compartment A & B)</td>
+          </tr>
+          <tr>
+            <td>Purchase Options</td>
+            <td>Cash or Coin / E-wallet QR / Card (Optional)</td>
+          </tr>
+          <tr>
+            <td>Power Consumption</td>
+            <td>2500W</td>
+          </tr>
+          <tr>
+            <td>Power</td>
+            <td>220V</td>
+          </tr>
+          <tr>
+            <td>Material</td>
+            <td>High Quality Cold Rolled Steel Plate</td>
+          </tr>
+          <tr>
+            <td>Full Body Sticker</td>
+            <td>Customizable</td>
+          </tr>
+        </table>
+
+        <h3 style="margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+          <span style="display:inline-block;width:4px;height:24px;background:linear-gradient(180deg, var(--accent), var(--gold));border-radius:2px;"></span>
+          Features
+        </h3>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-hard-hat"></i></div>
+            <span>Dual Cleaning Compartment (Helmets and Shoes)</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-brain"></i></div>
+            <span>Smart Management System</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-tv"></i></div>
+            <span>21.5" HD Display</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-broom"></i></div>
+            <span>Advanced Cleaning Technology</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-wallet"></i></div>
+            <span>Multiple Payment Methods</span>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-cube"></i></div>
+            <span>Compact & Reliable Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specs Tab -->
+      <div class="product-tab-content" id="tab-specs">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Model</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">HCVM-2HS</div>
+          </div>
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Dimensions</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">1900 x 640 x 585 mm</div>
+          </div>
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Weight</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">88 kg</div>
+          </div>
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Touch Screen</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">21.5" HD</div>
+          </div>
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Connectivity</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">4G / Wi-Fi</div>
+          </div>
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Power</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">220V / 2500W</div>
+          </div>
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Compartments</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">2 (A & B)</div>
+          </div>
+          <div style="padding:24px;background:var(--light-bg);border-radius:var(--radius-sm);border:1px solid var(--border);">
+            <div style="font-size:0.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;">Material</div>
+            <div style="font-size:1.1rem;font-weight:700;color:var(--text-dark);">Cold Rolled Steel</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inquiry Form -->
+      <div class="inquiry-section reveal" id="inquiry">
+        <h3><i class="fas fa-envelope"></i> Inquiry - Helmet & Shoes Cleaning Machine (HCVM-2HS)</h3>
+        <p>Fill in the form below and we will get back to you shortly.</p>
+
+        <form id="productInquiryForm">
+          <div class="inquiry-form-grid">
+            <div class="form-group">
+              <label>Name <span class="required">*</span></label>
+              <input type="text" class="form-control" name="name" placeholder="Enter name here" required>
+            </div>
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" class="form-control" name="email" placeholder="Enter email address here" required>
+            </div>
+            <div class="form-group full-width">
+              <label>Contact Number <span class="required">*</span></label>
+              <input type="text" class="form-control" name="phone" placeholder="Enter contact number here" required>
+            </div>
+            <div class="form-group full-width">
+              <label>Message (optional)</label>
+              <textarea class="form-control" name="message" rows="3" placeholder="Tell us more about your requirements..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <button type="submit" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Send Message
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       RELATED PRODUCTS
+       ============================================ -->
+  <section class="related-products-section">
+    <div class="container">
+      <div class="related-header reveal">
+        <h2>Related Products</h2>
+        <a href="products.html#custom">View All Helmet Cleaning Machines <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="related-products-grid stagger-children">
+        <!-- Related 1: HCVM-2 -->
+        <div class="related-product-card">
+          <div class="card-image">
+            <img src="https://cdn1.npcdn.net/images/16bf1185fcc5704613e5dc5d1b76fea6_1762507148.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9" alt="Helmet Cleaning Machine (HCVM-2)">
+          </div>
+          <div class="card-body">
+            <h4><a href="#">Helmet Cleaning Machine (HCVM-2)</a></h4>
+          </div>
+          <div class="card-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm">View Details</a>
+          </div>
+        </div>
+
+        <!-- Related 2: HCVM-1 -->
+        <div class="related-product-card">
+          <div class="card-image">
+            <img src="https://cdn1.npcdn.net/images/a4c7b7bda6f1b10c5e9a478f92415d3c_1762571530.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9" alt="Helmet Cleaning Machine (HCVM-1)">
+          </div>
+          <div class="card-body">
+            <h4><a href="#">Helmet Cleaning Machine (HCVM-1)</a></h4>
+          </div>
+          <div class="card-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm">View Details</a>
+          </div>
+        </div>
+
+        <!-- Related 3: HCVM-1S -->
+        <div class="related-product-card">
+          <div class="card-image">
+            <img src="https://cdn1.npcdn.net/images/bae0586a0dfb83228ce0e940e94fdbe7_1762995428.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&w=1736816700&from=png&type=9" alt="Helmet Cleaning Machine (HCVM-1S)">
+          </div>
+          <div class="card-body">
+            <h4><a href="#">Helmet Cleaning Machine (HCVM-1S)</a></h4>
+          </div>
+          <div class="card-actions">
+            <a href="contact.html" class="btn btn-primary btn-sm">Get Quote</a>
+            <a href="#" class="btn btn-outline btn-sm">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+       ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Interested in This Machine?</h2>
+        <p>Contact our team for a free consultation, site survey, and personalized quotation for the HCVM-2HS.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-gold"><i class="fas fa-file-invoice"></i> Request Free Quotation</a>
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20the%20HCVM-2HS%20Helmet%20%26%20Shoes%20Cleaning%20Machine." class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+            <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD.">
+          </a>
+          <p>Malaysia's trusted vending machine supplier providing end-to-end solutions with modern cashless payment technology and dedicated after-sales support.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="products.html"><i class="fas fa-chevron-right"></i> Our Products</a>
+            <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="tips.html"><i class="fas fa-chevron-right"></i> Tips & News</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <div class="footer-links">
+            <a href="products.html#snack"><i class="fas fa-chevron-right"></i> Snack Machines</a>
+            <a href="products.html#beverage"><i class="fas fa-chevron-right"></i> Beverage Machines</a>
+            <a href="products.html#combo"><i class="fas fa-chevron-right"></i> Combo Machines</a>
+            <a href="products.html#custom"><i class="fas fa-chevron-right"></i> Custom Solutions</a>
+            <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <div class="label">Address</div>
+              <p>Bukit Mertajam, Penang, Malaysia</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <div class="label">Phone</div>
+              <a href="tel:+60147592229">+6014-759 2229</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="label">Email</div>
+              <a href="mailto:info@vendingmachinemalaysia.com.my">info@vendingmachinemalaysia.com.my</a>
+            </div>
+          </div>
+          <h4 style="margin-top:24px;">Newsletter</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Subscribe for latest updates and offers</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Prosper Peace Vending Sdn. Bhd. (202201039206 / 1484903-U). All rights reserved.</p>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Image Lightbox -->
+  <div class="product-lightbox" id="productLightbox">
+    <div class="lb-close" onclick="closeProductLightbox()"><i class="fas fa-times"></i></div>
+    <div class="lb-nav lb-prev" onclick="navigateLightbox(-1)"><i class="fas fa-chevron-left"></i></div>
+    <img id="lightboxImage" src="" alt="Product Image">
+    <div class="lb-nav lb-next" onclick="navigateLightbox(1)"><i class="fas fa-chevron-right"></i></div>
+    <div class="lb-counter" id="lightboxCounter">1 / 6</div>
+  </div>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20the%20HCVM-2HS%20Helmet%20%26%20Shoes%20Cleaning%20Machine." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Main JS -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+
+  <!-- Product Detail JS -->
+  <script>
+    // Product Images
+    const productImages = [
+      'https://cdn1.npcdn.net/images/dab00ed298dc8f4794bc90136007bba7_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=9',
+      'https://cdn1.npcdn.net/images/765adf370e27f31043e15af8db637c8c_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+      'https://cdn1.npcdn.net/images/1219c29c705ef898ea6390bc13d5d463_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+      'https://cdn1.npcdn.net/images/31992471db362905430e2ae42a9233bf_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+      'https://cdn1.npcdn.net/images/1fb1f15d3e5abb0e0ae0d0976f910621_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1',
+      'https://cdn1.npcdn.net/images/739ef629837eee1c0108a1cbed5fc912_1763026643.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1000&new_height=1000&size=max&w=1736816700&from=png&type=1'
+    ];
+
+    let currentImageIndex = 0;
+
+    // Switch main image from thumbnail click
+    function switchImage(index, thumb) {
+      currentImageIndex = index;
+      document.getElementById('mainImg').src = productImages[index];
+      document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
+      if (thumb) thumb.classList.add('active');
+      updateImageCount();
+    }
+
+    function updateImageCount() {
+      const counter = document.querySelector('.image-count');
+      if (counter) counter.innerHTML = '<i class="fas fa-images"></i> ' + (currentImageIndex + 1) + ' / ' + productImages.length;
+    }
+
+    // Lightbox
+    let lightboxIndex = 0;
+
+    function openProductLightbox(index) {
+      lightboxIndex = index !== undefined ? index : currentImageIndex;
+      const lightbox = document.getElementById('productLightbox');
+      document.getElementById('lightboxImage').src = productImages[lightboxIndex];
+      document.getElementById('lightboxCounter').textContent = (lightboxIndex + 1) + ' / ' + productImages.length;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductLightbox() {
+      document.getElementById('productLightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function navigateLightbox(dir) {
+      lightboxIndex = (lightboxIndex + dir + productImages.length) % productImages.length;
+      document.getElementById('lightboxImage').src = productImages[lightboxIndex];
+      document.getElementById('lightboxCounter').textContent = (lightboxIndex + 1) + ' / ' + productImages.length;
+    }
+
+    // Close lightbox with Escape / click outside
+    document.getElementById('productLightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeProductLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      const lb = document.getElementById('productLightbox');
+      if (!lb.classList.contains('active')) return;
+      if (e.key === 'Escape') closeProductLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
+
+    // Quantity
+    function changeQty(delta) {
+      const input = document.getElementById('productQty');
+      let val = parseInt(input.value) + delta;
+      if (val < 1) val = 1;
+      if (val > 99999) val = 99999;
+      input.value = val;
+    }
+
+    // Tabs
+    document.querySelectorAll('.product-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.product-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.product-tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-tab');
+        document.getElementById('tab-' + target).classList.add('active');
+      });
+    });
+
+    // Scroll to inquiry
+    function scrollToInquiry() {
+      const el = document.getElementById('inquiry');
+      if (el) {
+        const headerHeight = document.querySelector('.header').offsetHeight || 80;
+        const pos = el.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+        window.scrollTo({ top: pos, behavior: 'smooth' });
+      }
+    }
+
+    // Add to quotation placeholder
+    function addToQuotation() {
+      alert('Added to quotation! View your cart to proceed.');
+    }
+
+    // Inquiry form -> WhatsApp
+    const inquiryForm = document.getElementById('productInquiryForm');
+    if (inquiryForm) {
+      inquiryForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = new FormData(this);
+        let msg = 'PRODUCT INQUIRY - Helmet & Shoes Cleaning Machine (HCVM-2HS)%0A';
+        msg += 'Name: ' + (data.get('name') || '') + '%0A';
+        msg += 'Email: ' + (data.get('email') || '') + '%0A';
+        msg += 'Phone: ' + (data.get('phone') || '') + '%0A';
+        msg += 'Message: ' + (data.get('message') || 'N/A');
+        window.open('https://wa.me/60147592229?text=' + msg, '_blank');
+      });
+    }
+  </script>
+</body>
+</html>

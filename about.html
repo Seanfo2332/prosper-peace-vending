@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Prosper Peace Vending | Malaysia's Trusted Vending Machine Supplier Since 1998</title>
+  <meta name="description" content="Learn about Prosper Peace Vending Sdn. Bhd., established in 1998 in Bukit Mertajam, Penang. Over 27 years of vending machine expertise with 500+ machines deployed nationwide.">
+  <meta name="keywords" content="about prosper peace vending, vending machine malaysia, vending supplier penang, bukit mertajam vending, cashless vending machine">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Page-Specific Styles -->
+  <style>
+    /* ============================================
+       ABOUT PAGE - COMPANY STORY
+       ============================================ */
+    .company-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .company-story-image {
+      position: relative;
+    }
+
+    .company-story-image .main-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .company-story-image .main-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .company-story-image .main-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .company-story-image .floating-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      padding: 28px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      z-index: 2;
+    }
+
+    .company-story-image .floating-badge .big-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .company-story-image .floating-badge .badge-text {
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-top: 6px;
+    }
+
+    .company-story-image .accent-badge {
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #fff;
+      padding: 16px 22px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      z-index: 2;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .company-story-text .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(14, 165, 233, 0.1);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .company-story-text h2 {
+      margin-bottom: 20px;
+    }
+
+    .company-story-text p {
+      margin-bottom: 18px;
+      font-size: 1.02rem;
+    }
+
+    .company-story-text .company-details {
+      background: var(--light-bg);
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent);
+      margin: 24px 0;
+    }
+
+    .company-story-text .company-details p {
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .company-story-text .company-details strong {
+      color: var(--text-dark);
+    }
+
+    .company-story-text .story-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .company-story-text .story-features .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .company-story-text .story-features .feature-item i {
+      width: 34px;
+      height: 34px;
+      background: rgba(14, 165, 233, 0.1);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .company-story-text .story-features .feature-item span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    /* ============================================
+       MISSION & VISION
+       ============================================ */
+    .mission-vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .mv-card {
+      background: #fff;
+      padding: 44px 36px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .mv-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .mv-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+    }
+
+    .mv-card .mv-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(14, 165, 233, 0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 24px;
+      transition: var(--transition);
+    }
+
+    .mv-card:hover .mv-icon {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .mv-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      color: var(--text-dark);
+    }
+
+    .mv-card p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-medium);
+    }
+
+    .mv-card .mv-number {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(14, 165, 233, 0.06);
+      line-height: 1;
+    }
+
+    /* ============================================
+       TIMELINE
+       ============================================ */
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      width: calc(50% - 40px);
+      background: #fff;
+      padding: 28px 32px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .timeline-content:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: auto;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      border: 4px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
+      z-index: 2;
+    }
+
+    .timeline-content .timeline-year {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .timeline-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .timeline-content p {
+      font-size: 0.9rem;
+      color: var(--text-medium);
+      line-height: 1.6;
+    }
+
+    .timeline-content .timeline-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(14, 165, 233, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    /* ============================================
+       VALUES SECTION
+       ============================================ */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .value-card {
+      background: #fff;
+      padding: 40px 28px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+
+    .value-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .value-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .value-card .value-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: rgba(14, 165, 233, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .value-card:hover .value-icon {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .value-card h4 {
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      color: var(--text-dark);
+    }
+
+    .value-card p {
+      font-size: 0.9rem;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       RESPONSIVE - ABOUT PAGE
+       ============================================ */
+    @media (max-width: 1024px) {
+      .company-story {
+        gap: 40px;
+      }
+
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .company-story {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .company-story-image .accent-badge {
+        top: 10px;
+        left: 10px;
+      }
+
+      .company-story-image .floating-badge {
+        right: 10px;
+        bottom: -10px;
+      }
+
+      .company-story-text .story-features {
+        grid-template-columns: 1fr;
+      }
+
+      .mission-vision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        flex-direction: row;
+        padding-left: 50px;
+      }
+
+      .timeline-content {
+        width: 100%;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .timeline-dot {
+        left: 20px;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Schema.org Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Prosper Peace Vending Sdn Bhd",
+      "description": "Malaysia's trusted vending machine supplier since 1998, based in Bukit Mertajam, Penang.",
+      "url": "https://www.vendingmachinemalaysia.com.my/about.html",
+      "telephone": "+60147592229",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bukit Mertajam",
+        "addressLocality": "Penang",
+        "addressCountry": "MY"
+      },
+      "foundingDate": "1998",
+      "taxID": "202201039206 / 1484903-U"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+        </a>
+
+        <!-- Nav -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html" class="active">About Us</a>
+          <div class="nav-item-dropdown">
+            <a href="products.html">Our Products <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="products.html#snack">Snack Machines</a>
+              <a href="products.html#beverage">Beverage Machines</a>
+              <a href="products.html#combo">Combo Machines</a>
+              <a href="products.html#custom">Custom Solutions</a>
+            </div>
+          </div>
+          <div class="nav-item-dropdown">
+            <a href="gallery.html">Gallery <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="gallery.html#photos">Photos</a>
+              <a href="gallery.html#videos">Videos</a>
+            </div>
+          </div>
+          <a href="tips.html">Tips & News</a>
+          <a href="terms.html">Terms</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+
+        <div class="header-cta">
+          <!-- Language Toggle -->
+          <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>BM</button>
+          </div>
+          <!-- Cart Icon -->
+          <a href="quotation.html" class="cart-icon" title="View Quotation">
+            <i class="fas fa-file-invoice"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ============================================
+       PAGE BANNER
+       ============================================ -->
+  <section class="page-banner">
+    <div class="container">
+      <h1>About Us</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="separator"><i class="fas fa-chevron-right"></i></span>
+        <span>About Us</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPANY STORY
+       ============================================ -->
+  <section class="section" id="story">
+    <div class="container">
+      <div class="company-story">
+        <div class="company-story-image reveal-left">
+          <div class="accent-badge">
+            <i class="fas fa-award"></i> Est. 1998
+          </div>
+          <div class="main-image">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80" alt="Prosper Peace Vending Team">
+          </div>
+          <div class="floating-badge">
+            <div class="big-number">27+</div>
+            <div class="badge-text">Years of<br>Experience</div>
+          </div>
+        </div>
+        <div class="company-story-text reveal-right">
+          <span class="badge">Our Story</span>
+          <h2>From Local Roots to Nationwide Reach</h2>
+          <p>Established in <strong>1998</strong> in <strong>Bukit Mertajam, Penang</strong>, Prosper Peace Vending began as a small local vending operator with a big vision. What started as a handful of machines serving the local community has since grown into one of Malaysia's most trusted vending machine suppliers.</p>
+          <p>Over the past two decades, we have built a reputation for reliability, innovation, and customer-centric service. Our journey from a local operator to a nationwide supplier reflects our commitment to excellence and our ability to adapt to the ever-evolving needs of the market.</p>
+          <div class="company-details">
+            <p><strong>Company:</strong> PROSPER PEACE VENDING SDN. BHD.</p>
+            <p><strong>Registration:</strong> SSM: 202201039206 / 1484903-U</p>
+            <p><strong>Headquarters:</strong> Bukit Mertajam, Penang, Malaysia</p>
+          </div>
+          <p>Today, we specialise in providing cutting-edge vending solutions equipped with cashless payment systems, Ewallet QR technology, and comprehensive online monthly sales reporting for business owners across all 13 states of Malaysia.</p>
+          <div class="story-features">
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>500+ Machines Deployed</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>13 States Covered</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>Cashless & QR Ready</span>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>24/7 Technical Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       MISSION & VISION
+       ============================================ -->
+  <section class="section" style="background: var(--light-bg);" id="mission-vision">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Our Purpose</span>
+        <h2>Mission & Vision</h2>
+        <p>Guided by purpose and driven by passion, we aim to transform the vending landscape in Malaysia.</p>
+        <div class="underline"></div>
+      </div>
+      <div class="mission-vision-grid stagger-children">
+        <!-- Mission Card -->
+        <div class="mv-card">
+          <div class="mv-number">01</div>
+          <div class="mv-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To provide innovative, reliable, and affordable vending solutions that empower businesses and enhance everyday convenience for communities across Malaysia. We are committed to delivering exceptional service, cutting-edge technology, and sustainable growth for our clients and partners.</p>
+        </div>
+        <!-- Vision Card -->
+        <div class="mv-card">
+          <div class="mv-number">02</div>
+          <div class="mv-icon">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3>Our Vision</h3>
+          <p>To be Malaysia's leading vending machine provider, recognised for excellence in technology integration, customer satisfaction, and nationwide accessibility. We envision a future where smart, cashless vending is within reach of every Malaysian, transforming how people access products daily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPANY TIMELINE
+       ============================================ -->
+  <section class="section" id="timeline">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Our Journey</span>
+        <h2>Company Milestones</h2>
+        <p>A timeline of growth, innovation, and commitment to excellence over more than two decades.</p>
+        <div class="underline"></div>
+      </div>
+      <div class="timeline">
+        <!-- 1998 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-icon"><i class="fas fa-flag"></i></div>
+            <span class="timeline-year">1998</span>
+            <h4>Company Founded</h4>
+            <p>Prosper Peace Vending was established in Bukit Mertajam, Penang, starting as a local vending machine operator serving the community.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <!-- 2005 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <span class="timeline-year">2005</span>
+            <h4>Multi-State Expansion</h4>
+            <p>Expanded operations beyond Penang to serve multiple states across Peninsular Malaysia, establishing regional partnerships.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <!-- 2010 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-icon"><i class="fas fa-boxes-stacked"></i></div>
+            <span class="timeline-year">2010</span>
+            <h4>100+ Machines Deployed</h4>
+            <p>Reached the milestone of deploying over 100 vending machines across various locations including offices, factories, and public spaces.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <!-- 2015 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-icon"><i class="fas fa-credit-card"></i></div>
+            <span class="timeline-year">2015</span>
+            <h4>Cashless Payment Integration</h4>
+            <p>Pioneered cashless payment integration in our vending machines, embracing Malaysia's shift towards digital transactions.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <!-- 2020 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-icon"><i class="fas fa-qrcode"></i></div>
+            <span class="timeline-year">2020</span>
+            <h4>Ewallet QR Technology</h4>
+            <p>Adopted Ewallet QR payment technology supporting Touch 'n Go, Boost, GrabPay, ShopeePay, and other major Malaysian e-wallets.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-icon"><i class="fas fa-building"></i></div>
+            <span class="timeline-year">2022</span>
+            <h4>Restructured as Sdn Bhd</h4>
+            <p>Company restructured and officially registered as Prosper Peace Vending Sdn. Bhd. (SSM: 202201039206 / 1484903-U), marking a new chapter of corporate growth.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-content">
+            <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
+            <span class="timeline-year">2024</span>
+            <h4>500+ Machines Nationwide</h4>
+            <p>Achieved the landmark of 500+ vending machines deployed across all 13 states of Malaysia, solidifying our position as a nationwide leader.</p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       STATS / COUNTER
+       ============================================ -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+          <div class="stat-number"><span data-count="27">0</span><span class="suffix">+</span></div>
+          <div class="stat-label">Years in Business</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-icon"><i class="fas fa-box"></i></div>
+          <div class="stat-number"><span data-count="500">0</span><span class="suffix">+</span></div>
+          <div class="stat-label">Machines Deployed</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <div class="stat-number"><span data-count="200">0</span><span class="suffix">+</span></div>
+          <div class="stat-label">Satisfied Clients</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="stat-number"><span data-count="13">0</span></div>
+          <div class="stat-label">States Covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       VALUES SECTION
+       ============================================ -->
+  <section class="section" id="values">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">What We Stand For</span>
+        <h2>Our Core Values</h2>
+        <p>The principles that guide everything we do and define who we are as a company.</p>
+        <div class="underline"></div>
+      </div>
+      <div class="values-grid stagger-children">
+        <!-- Integrity -->
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h4>Integrity</h4>
+          <p>We operate with honesty and transparency in every business relationship, building trust that lasts a lifetime.</p>
+        </div>
+        <!-- Innovation -->
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h4>Innovation</h4>
+          <p>We continuously embrace new technologies and solutions to keep our clients ahead in the fast-evolving vending industry.</p>
+        </div>
+        <!-- Customer First -->
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4>Customer First</h4>
+          <p>Our customers are at the centre of every decision. We listen, adapt, and deliver solutions tailored to their unique needs.</p>
+        </div>
+        <!-- Excellence -->
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h4>Excellence</h4>
+          <p>We strive for the highest standards in product quality, service delivery, and after-sales support in everything we do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA SECTION
+       ============================================ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content reveal">
+        <h2>Ready to Partner With Us?</h2>
+        <p>Join hundreds of satisfied clients across Malaysia. Whether you need a single vending machine or a fleet, our team is here to help you find the perfect solution.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-gold"><i class="fas fa-file-invoice"></i> Request Free Quotation</a>
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About -->
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+            <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+          </a>
+          <p>Malaysia's trusted vending machine supplier providing end-to-end solutions with modern cashless payment technology and dedicated after-sales support.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="products.html"><i class="fas fa-chevron-right"></i> Our Products</a>
+            <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="tips.html"><i class="fas fa-chevron-right"></i> Tips & News</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h4>Products</h4>
+          <div class="footer-links">
+            <a href="products.html#snack"><i class="fas fa-chevron-right"></i> Snack Machines</a>
+            <a href="products.html#beverage"><i class="fas fa-chevron-right"></i> Beverage Machines</a>
+            <a href="products.html#combo"><i class="fas fa-chevron-right"></i> Combo Machines</a>
+            <a href="products.html#custom"><i class="fas fa-chevron-right"></i> Custom Solutions</a>
+            <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <div class="label">Address</div>
+              <p>Bukit Mertajam, Penang, Malaysia</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <div class="label">Phone</div>
+              <a href="tel:+60147592229">+6014-759 2229</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="label">Email</div>
+              <a href="mailto:info@vendingmachinemalaysia.com.my">info@vendingmachinemalaysia.com.my</a>
+            </div>
+          </div>
+          <h4 style="margin-top:24px;">Newsletter</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Subscribe for latest updates and offers</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Prosper Peace Vending Sdn. Bhd. (202201039206 / 1484903-U). All rights reserved.</p>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
