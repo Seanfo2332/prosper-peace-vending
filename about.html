@@ -13,7 +13,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -38,14 +38,14 @@
     }
 
     .company-story-image .main-image {
-      border-radius: var(--radius-lg);
+      border-radius: 18% 0 18% 18%;
       overflow: hidden;
       box-shadow: var(--shadow-xl);
     }
 
     .company-story-image .main-image img {
       width: 100%;
-      height: 450px;
+      height: auto;
       object-fit: cover;
       transition: transform 0.6s ease;
     }
@@ -95,6 +95,24 @@
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+
+    .company-story-text .as-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px;
+      color: #972e33;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .company-story-text .a-title {
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 35px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
 
     .company-story-text .badge {
@@ -178,11 +196,8 @@
     }
 
     .mv-card {
-      background: #fff;
       padding: 44px 36px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border);
+      border-radius: 20px;
       position: relative;
       overflow: hidden;
       transition: var(--transition);
@@ -193,55 +208,173 @@
       box-shadow: var(--shadow-xl);
     }
 
-    .mv-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(90deg, var(--accent), var(--gold));
+    .mv-card.mv-vision {
+      background: #972e33;
+      color: #fff;
+    }
+
+    .mv-card.mv-mission {
+      background: #e8e8e8;
+      color: var(--text-dark);
     }
 
     .mv-card .mv-icon {
       width: 72px;
       height: 72px;
-      background: rgba(14, 165, 233, 0.1);
-      border-radius: var(--radius-md);
+      background: #fff;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: var(--accent);
+      color: #972e33;
       margin-bottom: 24px;
       transition: var(--transition);
-    }
-
-    .mv-card:hover .mv-icon {
-      background: var(--accent);
-      color: #fff;
     }
 
     .mv-card h3 {
       font-size: 1.4rem;
       margin-bottom: 16px;
-      color: var(--text-dark);
+    }
+
+    .mv-card.mv-vision h3 {
+      color: #fff;
     }
 
     .mv-card p {
       font-size: 0.95rem;
       line-height: 1.8;
+    }
+
+    .mv-card.mv-vision p {
+      color: rgba(255,255,255,0.9);
+    }
+
+    .mv-card.mv-mission p {
       color: var(--text-medium);
     }
 
-    .mv-card .mv-number {
-      position: absolute;
-      top: 20px;
-      right: 28px;
-      font-size: 5rem;
-      font-weight: 900;
-      color: rgba(14, 165, 233, 0.06);
-      line-height: 1;
+    /* ============================================
+       DEMOGRAPHICS SECTION
+       ============================================ */
+    .demograph-section {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .demograph-section .as-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 28px;
+      color: #972e33;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .demograph-section .a-title {
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 35px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .demograph-section .a-text {
+      font-size: 15px;
+      color: var(--text-medium);
+    }
+
+    .demograph-section img {
+      width: 100%;
+      border-radius: var(--radius-md);
+    }
+
+    /* ============================================
+       BRANDS SECTION
+       ============================================ */
+    .brands-section {
+      text-align: center;
+    }
+
+    .brands-section .brands-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 40px;
+    }
+
+    .brands-track-wrapper {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .brands-track {
+      display: flex;
+      animation: scrollBrands 20s linear infinite;
+      width: max-content;
+    }
+
+    .brands-track:hover {
+      animation-play-state: paused;
+    }
+
+    .brand-item {
+      flex: 0 0 220px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 20px;
+      background: #fff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: 16px;
+      transition: var(--transition);
+    }
+
+    .brand-item:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .brand-item img {
+      max-width: 100%;
+      max-height: 70px;
+      object-fit: contain;
+    }
+
+    @keyframes scrollBrands {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .brands-lists {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .brands-lists h5.brand-subtitle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .brands-lists h5.brand-content {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text-medium);
+      margin-bottom: 6px;
     }
 
     /* ============================================
@@ -443,6 +576,10 @@
       .values-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .demograph-section {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -463,6 +600,14 @@
 
       .company-story-text .story-features {
         grid-template-columns: 1fr;
+      }
+
+      .company-story-text .as-title {
+        font-size: 18px;
+      }
+
+      .company-story-text .a-title {
+        font-size: 28px;
       }
 
       .mission-vision-grid {
@@ -496,6 +641,15 @@
 
       .values-grid {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .brands-lists {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .brand-item {
+        flex: 0 0 160px;
       }
     }
 
@@ -622,7 +776,7 @@
             <i class="fas fa-award"></i> Est. 1998
           </div>
           <div class="main-image">
-            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80" alt="Prosper Peace Vending Team">
+            <img src="https://cdn1.npcdn.net/images/aboutusimages_new_1731550567.png?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1276&new_height=1194&type=4" alt="Prosper Peace Vending">
           </div>
           <div class="floating-badge">
             <div class="big-number">27+</div>
@@ -630,16 +784,16 @@
           </div>
         </div>
         <div class="company-story-text reveal-right">
-          <span class="badge">Our Story</span>
-          <h2>From Local Roots to Nationwide Reach</h2>
-          <p>Established in <strong>1998</strong> in <strong>Bukit Mertajam, Penang</strong>, Prosper Peace Vending began as a small local vending operator with a big vision. What started as a handful of machines serving the local community has since grown into one of Malaysia's most trusted vending machine suppliers.</p>
-          <p>Over the past two decades, we have built a reputation for reliability, innovation, and customer-centric service. Our journey from a local operator to a nationwide supplier reflects our commitment to excellence and our ability to adapt to the ever-evolving needs of the market.</p>
+          <div class="as-title">Who We Are</div>
+          <div class="a-title">Your Vending Machine Solution</div>
+          <p>Established since 1998, PROSPER PEACE VENDING SDN. BHD. is a leading vending machine, products, and system solutions provider with special emphasis on meeting customers' refreshment needs. Our headquarter is situated in Penang, Malaysia. We have the largest geographical footprint as an independent vending solutions provider within the Northern Region of Peninsular Malaysia.</p>
+          <p>With more than 20 years of experience in the vending machine, we have been growing from strength to strength and gaining reputation amongst our business partners and peer competitors. With our strong mission to provide more comprehensive sets of services on retail convenience, we set our sight on becoming one of the market leaders in the automation technology industry.</p>
           <div class="company-details">
             <p><strong>Company:</strong> PROSPER PEACE VENDING SDN. BHD.</p>
             <p><strong>Registration:</strong> SSM: 202201039206 / 1484903-U</p>
             <p><strong>Headquarters:</strong> Bukit Mertajam, Penang, Malaysia</p>
           </div>
-          <p>Today, we specialise in providing cutting-edge vending solutions equipped with cashless payment systems, Ewallet QR technology, and comprehensive online monthly sales reporting for business owners across all 13 states of Malaysia.</p>
+          <p>Our company is also a cutting-edge company at the forefront of revolutionizing payment systems with its specialization in cashless transactions. With a commitment to seamless and secure financial interactions, we have developed state-of-the-art cashless payment systems that cater to the evolving needs of businesses and consumers alike. One of our flagship products is the Ewallet QR System, a user-friendly and efficient solution that enables individuals to make transactions effortlessly through a simple scan of a QR code.</p>
           <div class="story-features">
             <div class="feature-item">
               <i class="fas fa-check"></i>
@@ -675,23 +829,87 @@
         <div class="underline"></div>
       </div>
       <div class="mission-vision-grid stagger-children">
+        <!-- Vision Card -->
+        <div class="mv-card mv-vision">
+          <div class="mv-icon">
+            <i class="far fa-eye"></i>
+          </div>
+          <h3>Our Vision</h3>
+          <p>Our vision is to be the leading provider of convenient, accessible, and reliable vending solutions for customers.</p>
+        </div>
         <!-- Mission Card -->
-        <div class="mv-card">
-          <div class="mv-number">01</div>
+        <div class="mv-card mv-mission">
           <div class="mv-icon">
             <i class="fas fa-bullseye"></i>
           </div>
           <h3>Our Mission</h3>
-          <p>To provide innovative, reliable, and affordable vending solutions that empower businesses and enhance everyday convenience for communities across Malaysia. We are committed to delivering exceptional service, cutting-edge technology, and sustainable growth for our clients and partners.</p>
+          <p>Our mission is to provide our customers with the most convenient and high-tech vending machines.</p>
         </div>
-        <!-- Vision Card -->
-        <div class="mv-card">
-          <div class="mv-number">02</div>
-          <div class="mv-icon">
-            <i class="fas fa-eye"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       DEMOGRAPHICS
+       ============================================ -->
+  <section class="section" id="demograph">
+    <div class="container">
+      <div class="demograph-section reveal">
+        <div>
+          <div class="as-title">Demograph</div>
+          <div class="a-title">Chart Of Vending Machines</div>
+          <p class="a-text">Here we have compiled a chart based on vending locations</p>
+        </div>
+        <div>
+          <img src="https://cdn1.npcdn.net/images/1706675444chart.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=png" alt="Chart of Vending Machine Locations">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BRANDS
+       ============================================ -->
+  <section class="section" style="background: var(--light-bg);" id="brands">
+    <div class="container">
+      <div class="brands-section reveal">
+        <div class="brands-title">Brands</div>
+        <div class="brands-track-wrapper">
+          <div class="brands-track">
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
+            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
           </div>
-          <h3>Our Vision</h3>
-          <p>To be Malaysia's leading vending machine provider, recognised for excellence in technology integration, customer satisfaction, and nationwide accessibility. We envision a future where smart, cashless vending is within reach of every Malaysian, transforming how people access products daily.</p>
+        </div>
+        <div class="brands-lists">
+          <div>
+            <h5 class="brand-subtitle">Vending Machine</h5>
+            <h5 class="brand-content">XY Vending Machine</h5>
+            <h5 class="brand-content">TCN Vending Machine</h5>
+            <h5 class="brand-content">Fuji Electric</h5>
+          </div>
+          <div>
+            <h5 class="brand-subtitle">Cashless</h5>
+            <h5 class="brand-content">Gest Technology</h5>
+            <h5 class="brand-content">T05 Pay (Northern)</h5>
+            <h5 class="brand-content">Yallvend</h5>
+          </div>
+          <div>
+            <h5 class="brand-subtitle">Cash Payment System</h5>
+            <h5 class="brand-content">ICT</h5>
+          </div>
         </div>
       </div>
     </div>
