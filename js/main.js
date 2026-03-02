@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    threshold: 0.15,
+    threshold: 0.01,
     rootMargin: '0px 0px -50px 0px'
   });
 
