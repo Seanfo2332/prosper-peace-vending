@@ -474,29 +474,16 @@ p {
   background: var(--primary);
 }
 
-.hero-slider {
+.hero-video-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
-.hero-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.hero-slide.active {
-  opacity: 1;
-}
-
-.hero-slide-bg {
+.hero-video-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
