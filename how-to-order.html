@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Order - Prosper Peace Vending | Easy Steps to Get Your Vending Machine</title>
+  <meta name="description" content="Learn how to order your vending machine from Prosper Peace Vending. Simple steps from inquiry to installation with full support.">
+  <meta name="keywords" content="order vending machine malaysia, how to buy vending machine, vending machine process, prosper peace vending order">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Page-Specific Styles -->
+  <style>
+    .order-steps-section {
+      padding: 80px 0;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      transition: var(--transition);
+      border: 1px solid var(--border);
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--accent);
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 15px var(--accent-glow);
+    }
+
+    .step-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .step-card p {
+      color: var(--text-medium);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .step-card .step-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    /* Payment Methods Section */
+    .payment-section {
+      background: var(--light-bg);
+      padding: 80px 0;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .payment-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
+    }
+
+    .payment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+
+    .payment-card .payment-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+    }
+
+    .payment-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .payment-card p {
+      color: var(--text-medium);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .payment-card .whatsapp-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 15px;
+      color: #25d366;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* CTA Banner */
+    .order-cta {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      padding: 60px 0;
+      text-align: center;
+      color: #fff;
+    }
+
+    .order-cta h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .order-cta p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order-cta .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Page Hero */
+    .page-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      padding: 140px 0 60px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .page-hero .badge {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .page-hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 15px 0;
+      position: relative;
+      color: #fff;
+    }
+
+    .page-hero p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .page-hero h1 {
+        font-size: 1.8rem;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .payment-grid {
+        grid-template-columns: 1fr;
+      }
+      .order-cta h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
+        </a>
+
+        <!-- Nav -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="how-to-order.html" class="active">How to Order</a>
+          <div class="nav-item-dropdown">
+            <a href="products.html">Our Products <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="products.html#snack">Snack Machines</a>
+              <a href="products.html#beverage">Beverage Machines</a>
+              <a href="products.html#combo">Combo Machines</a>
+              <a href="products.html#custom">Custom Solutions</a>
+            </div>
+          </div>
+          <div class="nav-item-dropdown">
+            <a href="gallery.html">Gallery <i class="fas fa-chevron-down" style="font-size:0.65rem;margin-left:4px;"></i></a>
+            <div class="dropdown-menu">
+              <a href="gallery.html#photos">Photos</a>
+              <a href="gallery.html#videos">Videos</a>
+            </div>
+          </div>
+          <a href="tips.html">Tips & News</a>
+          <a href="contact.html">Contact Us</a>
+        </nav>
+
+        <div class="header-cta">
+          <!-- Language Toggle -->
+          <div class="lang-toggle">
+            <button class="active">EN</button>
+            <button>BM</button>
+          </div>
+          <!-- Cart Icon -->
+          <a href="quotation.html" class="cart-icon" title="View Quotation">
+            <i class="fas fa-file-invoice"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </a>
+          <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="badge"><i class="fas fa-clipboard-list"></i> Order Guide</span>
+      <h1>How to Order Your <span style="color:var(--gold);">Vending Machine</span></h1>
+      <p>From first inquiry to full installation — here's how the process works.</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ORDER STEPS
+       ============================================ -->
+  <section class="order-steps-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Step by Step</span>
+        <h2>Your Journey to Vending Success</h2>
+        <p>We've made the ordering process simple and straightforward. Here's how it works:</p>
+        <div class="underline"></div>
+      </div>
+      <div class="steps-grid stagger-children">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-icon"><i class="fas fa-comments"></i></div>
+          <h3>Contact & Consultation</h3>
+          <p>Reach out to us via WhatsApp, phone, or our contact form. Our team will understand your needs, location, and budget to recommend the best vending solution.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-icon"><i class="fas fa-search-location"></i></div>
+          <h3>Location Assessment</h3>
+          <p>We'll assess your proposed location to ensure optimal placement, power supply availability, and foot traffic for maximum profitability.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+          <h3>Quotation & Agreement</h3>
+          <p>Receive a detailed quotation with pricing, machine specifications, and service terms. Once agreed, we'll proceed with your order.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+          <h3>Payment & Confirmation</h3>
+          <p>Make your payment via bank transfer, online banking, or e-wallet. We accept flexible payment options to suit your convenience.</p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-card">
+          <div class="step-number">5</div>
+          <div class="step-icon"><i class="fas fa-truck"></i></div>
+          <h3>Delivery & Installation</h3>
+          <p>Our team will deliver and install your vending machine at your location. We handle setup, testing, and configuration of all payment systems.</p>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="step-card">
+          <div class="step-number">6</div>
+          <div class="step-icon"><i class="fas fa-headset"></i></div>
+          <h3>Training & After-Sales Support</h3>
+          <p>We provide full training on machine operation, restocking, and troubleshooting. Plus 24/7 technical support and warranty coverage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PAYMENT METHODS
+       ============================================ -->
+  <section class="payment-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge">Payment Options</span>
+        <h2>Flexible Payment Methods</h2>
+        <p>We accept various payment methods for your convenience. Tap any option below to inquire via WhatsApp.</p>
+        <div class="underline"></div>
+      </div>
+      <div class="payment-grid stagger-children">
+        <a href="https://wa.me/60147592229?text=Hi%2C%20I'd%20like%20to%20inquire%20about%20paying%20via%20Bank%20Transfer%20for%20a%20vending%20machine." target="_blank" class="payment-card">
+          <div class="payment-icon"><i class="fas fa-university"></i></div>
+          <h4>Bank Transfer</h4>
+          <p>Direct bank transfer to our company account. Fast and secure for large purchases.</p>
+          <span class="whatsapp-hint"><i class="fab fa-whatsapp"></i> Tap to inquire</span>
+        </a>
+
+        <a href="https://wa.me/60147592229?text=Hi%2C%20I'd%20like%20to%20inquire%20about%20paying%20via%20Online%20Banking%20for%20a%20vending%20machine." target="_blank" class="payment-card">
+          <div class="payment-icon"><i class="fas fa-laptop"></i></div>
+          <h4>Online Banking</h4>
+          <p>Pay conveniently through your preferred online banking platform — Maybank2u, CIMB Clicks, and more.</p>
+          <span class="whatsapp-hint"><i class="fab fa-whatsapp"></i> Tap to inquire</span>
+        </a>
+
+        <a href="https://wa.me/60147592229?text=Hi%2C%20I'd%20like%20to%20inquire%20about%20paying%20via%20E-Wallet%20for%20a%20vending%20machine." target="_blank" class="payment-card">
+          <div class="payment-icon"><i class="fas fa-mobile-screen-button"></i></div>
+          <h4>E-Wallet / QR Pay</h4>
+          <p>Pay using Touch 'n Go, Boost, GrabPay, or ShopeePay for quick and easy transactions.</p>
+          <span class="whatsapp-hint"><i class="fab fa-whatsapp"></i> Tap to inquire</span>
+        </a>
+
+        <a href="https://wa.me/60147592229?text=Hi%2C%20I'd%20like%20to%20inquire%20about%20Installment%20Payment%20plans%20for%20a%20vending%20machine." target="_blank" class="payment-card">
+          <div class="payment-icon"><i class="fas fa-calendar-check"></i></div>
+          <h4>Installment Plan</h4>
+          <p>Flexible installment options available for qualifying purchases. Start your business with lower upfront costs.</p>
+          <span class="whatsapp-hint"><i class="fab fa-whatsapp"></i> Tap to inquire</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA
+       ============================================ -->
+  <section class="order-cta">
+    <div class="container">
+      <div class="reveal">
+        <h2>Ready to Get Started?</h2>
+        <p>Contact us today and we'll guide you through every step of the process. Getting your vending machine has never been easier!</p>
+        <div class="cta-buttons">
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20ordering%20a%20vending%20machine.%20Can%20you%20guide%20me%20through%20the%20process?" target="_blank" class="btn btn-gold"><i class="fab fa-whatsapp"></i> WhatsApp Us Now</a>
+          <a href="contact.html" class="btn btn-secondary"><i class="fas fa-envelope"></i> Contact Form</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- About -->
+        <div class="footer-about">
+          <a href="index.html" class="logo">
+            <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD.">
+          </a>
+          <p>Malaysia's trusted vending machine supplier providing end-to-end solutions with modern cashless payment technology and dedicated after-sales support.</p>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html"><i class="fas fa-chevron-right"></i> Home</a>
+            <a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a>
+            <a href="how-to-order.html"><i class="fas fa-chevron-right"></i> How to Order</a>
+            <a href="products.html"><i class="fas fa-chevron-right"></i> Our Products</a>
+            <a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a>
+            <a href="tips.html"><i class="fas fa-chevron-right"></i> Tips & News</a>
+            <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div>
+          <h4>Products</h4>
+          <div class="footer-links">
+            <a href="products.html#snack"><i class="fas fa-chevron-right"></i> Snack Machines</a>
+            <a href="products.html#beverage"><i class="fas fa-chevron-right"></i> Beverage Machines</a>
+            <a href="products.html#combo"><i class="fas fa-chevron-right"></i> Combo Machines</a>
+            <a href="products.html#custom"><i class="fas fa-chevron-right"></i> Custom Solutions</a>
+            <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4>Contact Us</h4>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <div class="label">Address</div>
+              <p>Bukit Mertajam, Penang, Malaysia</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <div class="label">Phone</div>
+              <a href="tel:+60147592229">+6014-759 2229</a>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <div class="label">Email</div>
+              <a href="mailto:info@vendingmachinemalaysia.com.my">info@vendingmachinemalaysia.com.my</a>
+            </div>
+          </div>
+          <h4 style="margin-top:24px;">Newsletter</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:8px;">Subscribe for latest updates and offers</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Prosper Peace Vending Sdn. Bhd. (202201039206 / 1484903-U). All rights reserved.</p>
+        <p><a href="terms.html">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
+    <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

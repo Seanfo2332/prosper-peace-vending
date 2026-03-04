@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Our Products': 'Produk Kami',
     'Gallery': 'Galeri',
     'Tips & News': 'Tips & Berita',
-    'Terms': 'Terma',
+    'How to Order': 'Cara Membuat Pesanan',
     'Contact Us': 'Hubungi Kami',
     'Get Quote': 'Dapatkan Sebut Harga',
     // Dropdowns
