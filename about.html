@@ -1262,154 +1262,367 @@
     }
 
     /* ============================================
-       BRANDS - INFINITE MARQUEE
+       BRANDS - IMMERSIVE DARK SHOWCASE
        ============================================ */
-    .brands-section-new {
-      padding: 100px 0;
-      background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
-    }
-
-    .brands-section-new .section-header h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-    }
-
-    .marquee-wrapper {
-      overflow: hidden;
+    .brands-showcase {
+      padding: 120px 0 100px;
+      background: linear-gradient(170deg, #0a1628 0%, #0f1d32 40%, #162544 100%);
       position: relative;
-      margin: 40px 0;
+      overflow: hidden;
     }
 
-    .marquee-wrapper::before,
-    .marquee-wrapper::after {
+    .brands-showcase::before {
       content: '';
       position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 120px;
-      z-index: 2;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 500px 400px at 10% 80%, rgba(14,165,233,0.06), transparent),
+        radial-gradient(ellipse 400px 400px at 90% 20%, rgba(245,158,11,0.05), transparent);
       pointer-events: none;
     }
 
-    .marquee-wrapper::before {
-      left: 0;
-      background: linear-gradient(to right, #f8fafc, transparent);
+    /* Grid pattern overlay */
+    .brands-showcase::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
     }
 
-    .marquee-wrapper::after {
-      right: 0;
-      background: linear-gradient(to left, #f8fafc, transparent);
+    .brands-showcase .section-header .badge {
+      background: rgba(14,165,233,0.12);
+      border: 1px solid rgba(14,165,233,0.2);
     }
 
-    .marquee-track {
-      display: flex;
-      animation: marqueeScroll 25s linear infinite;
-      width: max-content;
+    .brands-showcase .section-header h2 {
+      color: #fff;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     }
 
-    .marquee-track:hover {
-      animation-play-state: paused;
+    .brands-showcase .section-header p {
+      color: rgba(255,255,255,0.45);
     }
 
-    .marquee-item {
-      flex: 0 0 200px;
-      height: 90px;
-      margin: 0 16px;
-      background: #fff;
-      border-radius: 14px;
+    .brands-showcase .section-header .underline {
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+    }
+
+    /* --- Ecosystem categories as big feature cards --- */
+    .eco-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.8fr;
+      gap: 24px;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eco-card {
+      border-radius: 20px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+    }
+
+    .eco-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .eco-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 60%);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .eco-card:hover {
+      transform: translateY(-8px);
+    }
+
+    /* Card 1 - Vending Machines */
+    .eco-card.eco-machines {
+      background: linear-gradient(145deg, rgba(14,165,233,0.12), rgba(14,165,233,0.03));
+    }
+
+    .eco-card.eco-machines:hover {
+      box-shadow: 0 20px 50px rgba(14,165,233,0.15), 0 0 0 1px rgba(14,165,233,0.15);
+    }
+
+    /* Card 2 - Cashless */
+    .eco-card.eco-cashless {
+      background: linear-gradient(145deg, rgba(245,158,11,0.12), rgba(245,158,11,0.03));
+    }
+
+    .eco-card.eco-cashless:hover {
+      box-shadow: 0 20px 50px rgba(245,158,11,0.15), 0 0 0 1px rgba(245,158,11,0.15);
+    }
+
+    /* Card 3 - Cash */
+    .eco-card.eco-cash {
+      background: linear-gradient(145deg, rgba(16,185,129,0.12), rgba(16,185,129,0.03));
+    }
+
+    .eco-card.eco-cash:hover {
+      box-shadow: 0 20px 50px rgba(16,185,129,0.15), 0 0 0 1px rgba(16,185,129,0.15);
+    }
+
+    .eco-card .eco-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.04);
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.4s ease;
+    }
+
+    .eco-card:hover .eco-icon {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .eco-card.eco-machines .eco-icon {
+      background: rgba(14,165,233,0.15);
+      color: #38bdf8;
+    }
+
+    .eco-card.eco-cashless .eco-icon {
+      background: rgba(245,158,11,0.15);
+      color: #fbbf24;
+    }
+
+    .eco-card.eco-cash .eco-icon {
+      background: rgba(16,185,129,0.15);
+      color: #34d399;
+    }
+
+    .eco-card .eco-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eco-card.eco-machines .eco-label { color: #38bdf8; }
+    .eco-card.eco-cashless .eco-label { color: #fbbf24; }
+    .eco-card.eco-cash .eco-label { color: #34d399; }
+
+    .eco-card h4 {
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eco-brands-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eco-brand-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.05);
       transition: all 0.3s ease;
     }
 
-    .marquee-item:hover {
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      transform: translateY(-4px);
+    .eco-brand-item:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.1);
+      transform: translateX(6px);
     }
 
-    .marquee-item img {
-      max-width: 100%;
-      max-height: 60px;
-      object-fit: contain;
-    }
-
-    @keyframes marqueeScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .brands-categories {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 48px;
-    }
-
-    .brand-category {
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px;
-      border: 1px solid var(--border);
-      transition: all 0.4s ease;
-    }
-
-    .brand-category:hover {
-      border-color: var(--accent);
-      box-shadow: 0 8px 25px rgba(14,165,233,0.08);
-      transform: translateY(-4px);
-    }
-
-    .brand-category h5 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid;
+    .eco-brand-item .brand-logo-sm {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 10px;
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .brand-category:nth-child(1) h5 { border-color: var(--accent); }
-    .brand-category:nth-child(2) h5 { border-color: var(--gold); }
-    .brand-category:nth-child(3) h5 { border-color: var(--success); }
-
-    .brand-category h5 i {
-      font-size: 0.85rem;
-    }
-
-    .brand-category:nth-child(1) h5 i { color: var(--accent); }
-    .brand-category:nth-child(2) h5 i { color: var(--gold); }
-    .brand-category:nth-child(3) h5 i { color: var(--success); }
-
-    .brand-category ul {
-      list-style: none;
-    }
-
-    .brand-category ul li {
-      padding: 6px 0;
-      font-size: 0.9rem;
-      color: var(--text-medium);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .brand-category ul li::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
+      justify-content: center;
+      padding: 6px;
       flex-shrink: 0;
     }
 
-    .brand-category:nth-child(1) ul li::before { background: var(--accent); }
-    .brand-category:nth-child(2) ul li::before { background: var(--gold); }
-    .brand-category:nth-child(3) ul li::before { background: var(--success); }
+    .eco-brand-item .brand-logo-sm img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .eco-brand-item .brand-info {
+      flex: 1;
+    }
+
+    .eco-brand-item .brand-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .eco-brand-item .brand-type {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Big floating ghost number */
+    .eco-card .eco-ghost {
+      position: absolute;
+      bottom: -20px;
+      right: 10px;
+      font-size: 8rem;
+      font-weight: 900;
+      font-family: 'Rajdhani', sans-serif;
+      line-height: 1;
+      pointer-events: none;
+      opacity: 0.03;
+      color: #fff;
+    }
+
+    /* --- Bottom logo strip --- */
+    .brands-strip {
+      position: relative;
+      z-index: 1;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brands-strip-label {
+      text-align: center;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.25);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    .brands-logo-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .blogo {
+      width: 130px;
+      height: 64px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blogo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: 12px;
+    }
+
+    .blogo:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+
+    .blogo:hover::before {
+      opacity: 1;
+    }
+
+    .blogo img {
+      max-width: 100%;
+      max-height: 38px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.5;
+      transition: all 0.4s ease;
+    }
+
+    .blogo:hover img {
+      filter: none;
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .eco-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .eco-card.eco-cash {
+        grid-column: span 2;
+        max-width: 400px;
+        justify-self: center;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .brands-showcase {
+        padding: 80px 0 70px;
+      }
+      .eco-grid {
+        grid-template-columns: 1fr;
+      }
+      .eco-card.eco-cash {
+        grid-column: span 1;
+        max-width: none;
+      }
+      .brands-logo-row {
+        gap: 8px;
+      }
+      .blogo {
+        width: 100px;
+        height: 52px;
+        padding: 8px 12px;
+      }
+      .blogo img {
+        max-height: 28px;
+      }
+    }
 
     /* ============================================
        CTA - GRADIENT ANIMATED
@@ -1646,13 +1859,6 @@
       }
       .values-grid-new {
         grid-template-columns: 1fr 1fr;
-      }
-      .brands-categories {
-        grid-template-columns: 1fr;
-      }
-      .marquee-wrapper::before,
-      .marquee-wrapper::after {
-        width: 40px;
       }
       .cta-buttons-new {
         flex-direction: column;
@@ -2031,57 +2237,108 @@
   <!-- ============================================
        BRANDS
        ============================================ -->
-  <section class="brands-section-new" id="brands">
+  <section class="brands-showcase" id="brands">
     <div class="container">
       <div class="section-header fade-up">
-        <span class="badge">Our Partners</span>
-        <h2>Trusted Brands We Carry</h2>
-        <p>We partner with world-class manufacturers and technology providers.</p>
+        <span class="badge">Our Ecosystem</span>
+        <h2>Technology Partners</h2>
+        <p>We integrate world-class hardware and payment systems into a seamless vending experience.</p>
         <div class="underline"></div>
       </div>
-    </div>
-    <div class="marquee-wrapper">
-      <div class="marquee-track">
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
-        <!-- Duplicate for seamless loop -->
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
-        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
+
+      <!-- Ecosystem Cards -->
+      <div class="eco-grid stagger">
+        <!-- Vending Machines -->
+        <div class="eco-card eco-machines scale-in">
+          <div class="eco-ghost">01</div>
+          <div class="eco-icon"><i class="fas fa-cogs"></i></div>
+          <div class="eco-label">Hardware</div>
+          <h4>Vending Machines</h4>
+          <div class="eco-brands-list">
+            <div class="eco-brand-item">
+              <div class="brand-logo-sm"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
+              <div class="brand-info">
+                <div class="brand-name">XY Vending</div>
+                <div class="brand-type">Smart vending solutions</div>
+              </div>
+            </div>
+            <div class="eco-brand-item">
+              <div class="brand-logo-sm"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN"></div>
+              <div class="brand-info">
+                <div class="brand-name">TCN Vending Machine</div>
+                <div class="brand-type">Industrial-grade machines</div>
+              </div>
+            </div>
+            <div class="eco-brand-item">
+              <div class="brand-logo-sm"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
+              <div class="brand-info">
+                <div class="brand-name">Fuji Electric</div>
+                <div class="brand-type">Premium Japanese quality</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cashless Systems -->
+        <div class="eco-card eco-cashless scale-in">
+          <div class="eco-ghost">02</div>
+          <div class="eco-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="eco-label">Digital Payments</div>
+          <h4>Cashless Systems</h4>
+          <div class="eco-brands-list">
+            <div class="eco-brand-item">
+              <div class="brand-logo-sm"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
+              <div class="brand-info">
+                <div class="brand-name">Gest Technology</div>
+                <div class="brand-type">E-wallet integration</div>
+              </div>
+            </div>
+            <div class="eco-brand-item">
+              <div class="brand-logo-sm"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
+              <div class="brand-info">
+                <div class="brand-name">T05 Pay</div>
+                <div class="brand-type">Northern region partner</div>
+              </div>
+            </div>
+            <div class="eco-brand-item">
+              <div class="brand-logo-sm"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend"></div>
+              <div class="brand-info">
+                <div class="brand-name">Yallvend</div>
+                <div class="brand-type">QR payment platform</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cash Payment -->
+        <div class="eco-card eco-cash scale-in">
+          <div class="eco-ghost">03</div>
+          <div class="eco-icon"><i class="fas fa-coins"></i></div>
+          <div class="eco-label">Traditional</div>
+          <h4>Cash Payment</h4>
+          <div class="eco-brands-list">
+            <div class="eco-brand-item">
+              <div class="brand-logo-sm"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="ICT"></div>
+              <div class="brand-info">
+                <div class="brand-name">ICT</div>
+                <div class="brand-type">Coin & bill acceptors</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="brands-categories stagger">
-        <div class="brand-category fade-up">
-          <h5><i class="fas fa-cogs"></i> Vending Machines</h5>
-          <ul>
-            <li>XY Vending Machine</li>
-            <li>TCN Vending Machine</li>
-            <li>Fuji Electric</li>
-          </ul>
-        </div>
-        <div class="brand-category fade-up">
-          <h5><i class="fas fa-mobile-alt"></i> Cashless Systems</h5>
-          <ul>
-            <li>Gest Technology</li>
-            <li>T05 Pay (Northern)</li>
-            <li>Yallvend</li>
-          </ul>
-        </div>
-        <div class="brand-category fade-up">
-          <h5><i class="fas fa-coins"></i> Cash Payment</h5>
-          <ul>
-            <li>ICT</li>
-          </ul>
+
+      <!-- Bottom Logo Strip -->
+      <div class="brands-strip fade-up">
+        <div class="brands-strip-label">Trusted By Leading Brands</div>
+        <div class="brands-logo-row">
+          <div class="blogo"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
+          <div class="blogo"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN"></div>
+          <div class="blogo"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
+          <div class="blogo"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
+          <div class="blogo"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
+          <div class="blogo"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend"></div>
+          <div class="blogo"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="ICT"></div>
         </div>
       </div>
     </div>
