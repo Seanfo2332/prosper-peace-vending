@@ -306,6 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Beverage Machines': 'Mesin Minuman',
     'Combo Machines': 'Mesin Kombo',
     'Custom Solutions': 'Penyelesaian Tersuai',
+    'Cleaning Machines': 'Mesin Pembersihan',
     'Photos': 'Foto',
     'Videos': 'Video',
     // Hero
@@ -320,7 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'Happy Clients': 'Pelanggan Gembira',
     'States Covered': 'Negeri Diliputi',
     // About section
-    'About Us': 'Tentang Kami',
     "Malaysia's Trusted Vending Machine Supplier": 'Pembekal Mesin Layan Diri Dipercayai di Malaysia',
     'Learn More': 'Ketahui Lagi',
     'Cashless Payment Ready': 'Sedia Pembayaran Tanpa Tunai',
@@ -333,12 +333,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'Why Choose Us': 'Mengapa Pilih Kami',
     'The Prosper Peace Advantage': 'Kelebihan Prosper Peace',
     'Easy to Use': 'Mudah Digunakan',
-    'Fast Installation': 'Pemasangan Pantas',
     'Full Warranty': 'Jaminan Penuh',
     'Customer Support': 'Sokongan Pelanggan',
     'Online Sales Report': 'Laporan Jualan Dalam Talian',
     // Products
-    'Our Products': 'Produk Kami',
     'Vending Solutions for Every Need': 'Penyelesaian Vending Untuk Setiap Keperluan',
     'View All Products': 'Lihat Semua Produk',
     'View Details': 'Lihat Butiran',
@@ -356,13 +354,24 @@ document.addEventListener('DOMContentLoaded', () => {
     'Latest News': 'Berita Terkini',
     'Tips & Industry Updates': 'Tips & Kemas Kini Industri',
     'View All Articles': 'Lihat Semua Artikel',
-    // Brands
+    // Brands / Partners
     'Our Partners': 'Rakan Kongsi Kami',
     'Trusted Brands We Carry': 'Jenama Dipercayai Yang Kami Bawa',
+    'Our Ecosystem': 'Ekosistem Kami',
+    'Technology Partners': 'Rakan Teknologi',
+    'Trusted By Leading Brands': 'Dipercayai Oleh Jenama Terkemuka',
+    'Hardware': 'Perkakasan',
+    'Digital Payments': 'Pembayaran Digital',
+    'Traditional': 'Tradisional',
+    'Vending Machines': 'Mesin Layan Diri',
+    'Cashless Systems': 'Sistem Tanpa Tunai',
+    'Cash Payment': 'Pembayaran Tunai',
     // CTA
     'Ready to Start Your Vending Business?': 'Bersedia Untuk Memulakan Perniagaan Vending Anda?',
+    'Ready to Partner With Us?': 'Bersedia Untuk Bekerjasama Dengan Kami?',
     'Request Free Quotation': 'Minta Sebut Harga Percuma',
     'WhatsApp Us': 'WhatsApp Kami',
+    'WhatsApp Us Now': 'WhatsApp Kami Sekarang',
     // Footer
     'Quick Links': 'Pautan Pantas',
     'Products': 'Produk',
@@ -370,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Address': 'Alamat',
     'Phone': 'Telefon',
     'Email': 'E-mel',
+    'Privacy Policy': 'Dasar Privasi',
     // Contact
     'Get In Touch': 'Hubungi Kami',
     'Send Us a Message': 'Hantar Mesej Kepada Kami',
@@ -384,12 +394,27 @@ document.addEventListener('DOMContentLoaded', () => {
     'Technical Support': 'Sokongan Teknikal',
     'Partnership': 'Perkongsian',
     'Business Hours': 'Waktu Perniagaan',
+    'Location': 'Lokasi',
+    'Select a subject': 'Pilih subjek',
+    'Machine Type': 'Jenis Mesin',
+    'Quantity': 'Kuantiti',
+    'Select machine type': 'Pilih jenis mesin',
+    'Snack Machine': 'Mesin Snek',
+    'Beverage Machine': 'Mesin Minuman',
+    'Combo Machine': 'Mesin Kombo',
+    'Custom Solution': 'Penyelesaian Tersuai',
+    'Cleaning Machine': 'Mesin Pembersihan',
+    'Contact Form': 'Borang Hubungi',
     // Gallery
     'All': 'Semua',
     'Machines': 'Mesin',
     'Installation': 'Pemasangan',
     'Events': 'Acara',
     'Locations': 'Lokasi',
+    'Our Gallery': 'Galeri Kami',
+    'Photo Gallery': 'Galeri Foto',
+    'Video Gallery': 'Galeri Video',
+    'Schedule a Visit': 'Jadualkan Lawatan',
     // About page
     'Our Story': 'Kisah Kami',
     'Our Mission': 'Misi Kami',
@@ -400,6 +425,37 @@ document.addEventListener('DOMContentLoaded', () => {
     'Innovation': 'Inovasi',
     'Customer First': 'Pelanggan Diutamakan',
     'Excellence': 'Kecemerlangan',
+    'Our Purpose': 'Tujuan Kami',
+    'Mission & Vision': 'Misi & Visi',
+    'What We Stand For': 'Apa Yang Kami Perjuangkan',
+    'Company Milestones': 'Pencapaian Syarikat',
+    'Who We Are': 'Siapa Kami',
+    'Established 1998': 'Ditubuhkan 1998',
+    'Scroll': 'Tatal',
+    'Years of Excellence': 'Tahun Kecemerlangan',
+    'Est. 1998': 'Dit. 1998',
+    'Demograph': 'Demografi',
+    'Where Our Machines Are Located': 'Di Mana Mesin Kami Berada',
+    'Manufacturing': 'Pembuatan',
+    'Office': 'Pejabat',
+    'Retail Sites': 'Tapak Runcit',
+    'Hotels / Motels': 'Hotel / Motel',
+    'Schools': 'Sekolah',
+    'Universities': 'Universiti',
+    'Hospitals': 'Hospital',
+    'Restaurants / Clubs': 'Restoran / Kelab',
+    'Correctional': 'Pemulihan',
+    'Military Bases': 'Pangkalan Tentera',
+    'Company Founded': 'Syarikat Ditubuhkan',
+    'Multi-State Expansion': 'Pengembangan Pelbagai Negeri',
+    '100+ Machines Deployed': '100+ Mesin Dipasang',
+    'Cashless Payment Integration': 'Integrasi Pembayaran Tanpa Tunai',
+    'Ewallet QR Technology': 'Teknologi QR Ewallet',
+    'Restructured as Sdn Bhd': 'Distruktur Semula Sebagai Sdn Bhd',
+    '500+ Machines Nationwide': '500+ Mesin Seluruh Negara',
+    '500+ Machines Deployed': '500+ Mesin Dipasang',
+    '13 States Covered': '13 Negeri Diliputi',
+    'Cashless & QR Ready': 'Sedia Tanpa Tunai & QR',
     // Tips
     'Business Tips': 'Tips Perniagaan',
     'Maintenance': 'Penyelenggaraan',
@@ -409,11 +465,30 @@ document.addEventListener('DOMContentLoaded', () => {
     'Read More': 'Baca Lagi',
     'min read': 'min bacaan',
     'Subscribe for Updates': 'Langgan Untuk Kemas Kini',
+    'Categories': 'Kategori',
+    'All Articles': 'Semua Artikel',
+    'Popular Tags': 'Tag Popular',
+    'Subscribe Now': 'Langgan Sekarang',
     // Terms
     'Terms & Conditions': 'Terma & Syarat',
+    // How to Order
+    'Order Guide': 'Panduan Pesanan',
+    'Step by Step': 'Langkah Demi Langkah',
+    'Payment Options': 'Pilihan Pembayaran',
+    'Flexible Payment Methods': 'Kaedah Pembayaran Fleksibel',
+    'Bank Transfer': 'Pindahan Bank',
+    'Online Banking': 'Perbankan Dalam Talian',
+    'Installment Plan': 'Pelan Ansuran',
+    // Quotation
+    'Quotation': 'Sebut Harga',
+    'Add More Products': 'Tambah Lagi Produk',
+    'Browse Products': 'Layari Produk',
+    'Checkout': 'Semak',
+    'Your Details': 'Butiran Anda',
     // Common
     'Popular': 'Popular',
     'Best Value': 'Nilai Terbaik',
+    'New': 'Baru',
   };
 
   let currentLang = 'en';
@@ -449,16 +524,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Auto-tag translatable elements on page load
   function autoTagTranslatables() {
-    // Tag elements that match translation keys
     const walkNode = (el) => {
       if (el.nodeType !== 1) return;
       if (['SCRIPT', 'STYLE', 'LINK', 'META', 'IMG', 'BR', 'HR', 'SVG'].includes(el.tagName)) return;
       if (el.classList.contains('lang-toggle')) return;
       if (el.hasAttribute('data-en')) return; // already tagged
 
-      const directText = Array.from(el.childNodes)
-        .filter(n => n.nodeType === 3)
-        .map(n => n.textContent.trim())
+      // Handle placeholders on inputs/textareas
+      if ((el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') && el.placeholder) {
+        var ph = el.placeholder.trim();
+        if (translations[ph]) {
+          el.setAttribute('data-en', ph);
+          el.setAttribute('data-bm', translations[ph]);
+        }
+      }
+
+      // Handle <option> elements
+      if (el.tagName === 'OPTION') {
+        var optText = el.textContent.trim();
+        if (optText && translations[optText]) {
+          el.setAttribute('data-en', optText);
+          el.setAttribute('data-bm', translations[optText]);
+        }
+      }
+
+      var directText = Array.from(el.childNodes)
+        .filter(function(n) { return n.nodeType === 3; })
+        .map(function(n) { return n.textContent.trim(); })
         .join('')
         .trim();
 
@@ -467,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.setAttribute('data-bm', translations[directText]);
       }
 
-      el.childNodes.forEach(child => {
+      el.childNodes.forEach(function(child) {
         if (child.nodeType === 1) walkNode(child);
       });
     };
