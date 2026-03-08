@@ -24,637 +24,1428 @@
   <!-- Page-Specific Styles -->
   <style>
     /* ============================================
-       ABOUT PAGE - COMPANY STORY
+       ABOUT PAGE - CINEMATIC REDESIGN
        ============================================ */
-    .company-story {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
+
+    /* --- HERO BANNER OVERRIDE --- */
+    .page-banner {
+      min-height: 70vh;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a1628 0%, #1a1a2e 40%, #16213e 70%, #0f3460 100%);
     }
 
-    .company-story-image {
+    .page-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 600px at 20% 50%, rgba(14, 165, 233, 0.15), transparent),
+        radial-gradient(ellipse 400px 400px at 80% 30%, rgba(245, 158, 11, 0.1), transparent),
+        radial-gradient(ellipse 300px 300px at 60% 80%, rgba(151, 46, 51, 0.12), transparent);
+      animation: auroraShift 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes auroraShift {
+      0% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+      100% { opacity: 1; transform: scale(1.1) rotate(2deg); }
+    }
+
+    .page-banner .container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .page-banner h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: heroTextReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    .page-banner .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: heroTextReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+    }
+
+    .page-banner .hero-line {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      margin: 24px auto;
+      opacity: 0;
+      animation: heroLineGrow 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+    }
+
+    @keyframes heroTextReveal {
+      from { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    @keyframes heroLineGrow {
+      from { opacity: 0; width: 0; }
+      to { opacity: 1; width: 80px; }
+    }
+
+    .page-banner .breadcrumb {
+      opacity: 0;
+      animation: heroTextReveal 0.8s ease 1.1s forwards;
+    }
+
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(14, 165, 233, 0.4);
+      border-radius: 50%;
+      animation: particleFloat linear infinite;
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; width: 3px; height: 3px; }
+    .particle:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; width: 5px; height: 5px; background: rgba(245,158,11,0.3); }
+    .particle:nth-child(3) { left: 40%; animation-duration: 15s; animation-delay: 4s; }
+    .particle:nth-child(4) { left: 55%; animation-duration: 20s; animation-delay: 1s; width: 6px; height: 6px; background: rgba(151,46,51,0.3); }
+    .particle:nth-child(5) { left: 70%; animation-duration: 14s; animation-delay: 3s; width: 3px; height: 3px; }
+    .particle:nth-child(6) { left: 85%; animation-duration: 16s; animation-delay: 5s; background: rgba(245,158,11,0.25); }
+    .particle:nth-child(7) { left: 15%; animation-duration: 22s; animation-delay: 6s; width: 2px; height: 2px; }
+    .particle:nth-child(8) { left: 60%; animation-duration: 13s; animation-delay: 7s; width: 4px; height: 4px; background: rgba(14,165,233,0.35); }
+    .particle:nth-child(9) { left: 90%; animation-duration: 19s; animation-delay: 2s; width: 3px; height: 3px; }
+    .particle:nth-child(10) { left: 35%; animation-duration: 17s; animation-delay: 4s; width: 5px; height: 5px; background: rgba(151,46,51,0.2); }
+
+    @keyframes particleFloat {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: heroTextReveal 0.8s ease 1.5s forwards;
+      z-index: 2;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .scroll-indicator .mouse {
+      width: 24px;
+      height: 38px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 12px;
       position: relative;
     }
 
-    .company-story-image .main-image {
-      border-radius: 18% 0 18% 18%;
+    .scroll-indicator .mouse::after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: mouseScroll 1.8s ease-in-out infinite;
+    }
+
+    @keyframes mouseScroll {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+      50% { transform: translateX(-50%) translateY(12px); opacity: 0.3; }
+    }
+
+    /* ============================================
+       COMPANY STORY - IMMERSIVE SPLIT
+       ============================================ */
+    .story-section {
+      padding: 120px 0;
+      position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-xl);
     }
 
-    .company-story-image .main-image img {
+    .story-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(14,165,233,0.04) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-visual {
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .story-image-wrapper {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+      transform: rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .story-visual:hover .story-image-wrapper {
+      transform: rotateY(0deg) rotateX(0deg);
+    }
+
+    .story-image-wrapper img {
       width: 100%;
-      height: auto;
+      height: 500px;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .company-story-image .main-image:hover img {
+    .story-visual:hover .story-image-wrapper img {
       transform: scale(1.05);
     }
 
-    .company-story-image .floating-badge {
+    /* Floating accent elements */
+    .story-float {
       position: absolute;
-      bottom: -20px;
+      z-index: 3;
+      border-radius: 16px;
+      backdrop-filter: blur(20px);
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .story-float.years {
+      top: -30px;
       right: -20px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      background: linear-gradient(135deg, rgba(14,165,233,0.9), rgba(2,132,199,0.9));
       color: #fff;
-      padding: 28px;
-      border-radius: var(--radius-md);
+      padding: 24px 28px;
       text-align: center;
-      box-shadow: var(--shadow-lg);
-      z-index: 2;
+      box-shadow: 0 15px 40px rgba(14,165,233,0.3);
     }
 
-    .company-story-image .floating-badge .big-number {
-      font-size: 2.8rem;
-      font-weight: 800;
+    .story-float.years .number {
+      font-size: 3rem;
+      font-weight: 900;
       line-height: 1;
+      letter-spacing: -2px;
     }
 
-    .company-story-image .floating-badge .badge-text {
-      font-size: 0.8rem;
+    .story-float.years .label {
+      font-size: 0.75rem;
       font-weight: 500;
-      opacity: 0.9;
-      margin-top: 6px;
-    }
-
-    .company-story-image .accent-badge {
-      position: absolute;
-      top: -15px;
-      left: -15px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      color: #fff;
-      padding: 16px 22px;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      z-index: 2;
-      font-size: 0.85rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .company-story-text .as-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 28px;
-      color: #972e33;
-      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 4px;
       text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .company-story-text .a-title {
-      color: var(--text-dark);
-      font-weight: 600;
-      font-size: 35px;
-      line-height: 1.2;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .company-story-text .badge {
-      display: inline-block;
-      padding: 6px 18px;
-      background: rgba(14, 165, 233, 0.1);
-      color: var(--accent);
-      font-size: 0.85rem;
-      font-weight: 600;
-      border-radius: var(--radius-full);
       letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
     }
 
-    .company-story-text h2 {
-      margin-bottom: 20px;
-    }
-
-    .company-story-text p {
-      margin-bottom: 18px;
-      font-size: 1.02rem;
-    }
-
-    .company-story-text .company-details {
-      background: var(--light-bg);
-      padding: 20px 24px;
-      border-radius: var(--radius-md);
-      border-left: 4px solid var(--accent);
-      margin: 24px 0;
-    }
-
-    .company-story-text .company-details p {
-      margin-bottom: 6px;
-      font-size: 0.9rem;
-    }
-
-    .company-story-text .company-details strong {
-      color: var(--text-dark);
-    }
-
-    .company-story-text .story-features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .company-story-text .story-features .feature-item {
+    .story-float.est {
+      bottom: 40px;
+      left: -30px;
+      background: linear-gradient(135deg, rgba(151,46,51,0.9), rgba(120,30,35,0.9));
+      color: #fff;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       gap: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 15px 40px rgba(151,46,51,0.25);
+      animation-delay: 2s;
     }
 
-    .company-story-text .story-features .feature-item i {
-      width: 34px;
-      height: 34px;
-      background: rgba(14, 165, 233, 0.1);
-      color: var(--accent);
+    .story-float.est i {
+      font-size: 1.2rem;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* Decorative ring */
+    .story-ring {
+      position: absolute;
+      bottom: -40px;
+      right: 40px;
+      width: 120px;
+      height: 120px;
+      border: 3px solid rgba(14,165,233,0.15);
       border-radius: 50%;
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes ringPulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 0.2; }
+    }
+
+    /* Story text side */
+    .story-content {
+      position: relative;
+    }
+
+    .story-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .story-label::before {
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .story-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .story-title .highlight {
+      background: linear-gradient(135deg, #972e33, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .story-text {
+      font-size: 1.05rem;
+      color: var(--text-medium);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+
+    .company-info-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+      border: 1px solid rgba(14,165,233,0.12);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .company-info-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+    }
+
+    .company-info-card .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 0.92rem;
+    }
+
+    .company-info-card .info-row i {
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
+      background: rgba(14,165,233,0.08);
+      color: var(--accent);
+      border-radius: 8px;
+      font-size: 0.75rem;
       flex-shrink: 0;
     }
 
-    .company-story-text .story-features .feature-item span {
-      font-size: 0.9rem;
-      font-weight: 500;
+    .company-info-card .info-row strong {
+      color: var(--text-dark);
+      min-width: 120px;
+    }
+
+    .story-features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .story-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .story-feature:hover {
+      border-color: var(--accent);
+      transform: translateX(6px);
+      box-shadow: 0 4px 12px rgba(14,165,233,0.08);
+    }
+
+    .story-feature .icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, rgba(14,165,233,0.1), rgba(14,165,233,0.05));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .story-feature:hover .icon {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .story-feature span {
+      font-size: 0.88rem;
+      font-weight: 600;
       color: var(--text-dark);
     }
 
     /* ============================================
-       MISSION & VISION
+       MISSION & VISION - GLASSMORPHIC CARDS
        ============================================ */
-    .mission-vision-grid {
+    .mv-section {
+      padding: 120px 0;
+      background: linear-gradient(180deg, #0a1628 0%, #16213e 50%, #0f3460 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mv-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 500px 500px at 30% 20%, rgba(14,165,233,0.08), transparent),
+        radial-gradient(ellipse 400px 400px at 70% 80%, rgba(245,158,11,0.06), transparent);
+    }
+
+    .mv-section .section-header .badge {
+      background: rgba(14,165,233,0.15);
+      border: 1px solid rgba(14,165,233,0.2);
+    }
+
+    .mv-section .section-header h2 {
+      color: #fff;
+    }
+
+    .mv-section .section-header p {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .mv-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
+      position: relative;
+      z-index: 1;
     }
 
-    .mv-card {
-      padding: 44px 36px;
-      border-radius: 20px;
+    .mv-card-new {
+      border-radius: 24px;
+      padding: 48px 40px;
       position: relative;
       overflow: hidden;
-      transition: var(--transition);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+      cursor: default;
     }
 
-    .mv-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-xl);
+    .mv-card-new.vision {
+      background: linear-gradient(145deg, rgba(151,46,51,0.85), rgba(120,30,35,0.9));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    .mv-card.mv-vision {
-      background: #972e33;
-      color: #fff;
+    .mv-card-new.mission {
+      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    .mv-card.mv-mission {
-      background: #e8e8e8;
-      color: var(--text-dark);
+    .mv-card-new:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
     }
 
-    .mv-card .mv-icon {
+    .mv-card-new::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent 50%);
+      pointer-events: none;
+    }
+
+    .mv-card-new .card-number {
+      font-size: 6rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      font-family: 'Rajdhani', sans-serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .mv-card-new .mv-icon-wrap {
       width: 72px;
       height: 72px;
-      background: #fff;
-      border-radius: 50%;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      color: #972e33;
-      margin-bottom: 24px;
-      transition: var(--transition);
+      font-size: 1.6rem;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.4s ease;
     }
 
-    .mv-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 16px;
-    }
-
-    .mv-card.mv-vision h3 {
+    .mv-card-new.vision .mv-icon-wrap {
+      background: rgba(255,255,255,0.15);
       color: #fff;
     }
 
-    .mv-card p {
-      font-size: 0.95rem;
+    .mv-card-new.mission .mv-icon-wrap {
+      background: rgba(14,165,233,0.15);
+      color: var(--accent);
+    }
+
+    .mv-card-new:hover .mv-icon-wrap {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    .mv-card-new h3 {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mv-card-new p {
+      font-size: 1rem;
       line-height: 1.8;
+      color: rgba(255,255,255,0.7);
+      position: relative;
+      z-index: 1;
     }
 
-    .mv-card.mv-vision p {
-      color: rgba(255,255,255,0.9);
-    }
-
-    .mv-card.mv-mission p {
-      color: var(--text-medium);
-    }
+    .mv-card-new.mission h3 { color: #fff; }
+    .mv-card-new.mission p { color: rgba(255,255,255,0.55); }
 
     /* ============================================
-       DEMOGRAPHICS SECTION
+       STATS - COUNTER STRIP (DARK)
        ============================================ */
-    .demograph-section {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .demograph-section .as-title {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 28px;
-      color: #972e33;
-      font-weight: 500;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .demograph-section .a-title {
-      color: var(--text-dark);
-      font-weight: 600;
-      font-size: 35px;
-      line-height: 1.2;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .demograph-section .a-text {
-      font-size: 15px;
-      color: var(--text-medium);
-    }
-
-    .demograph-section img {
-      width: 100%;
-      border-radius: var(--radius-md);
-    }
-
-    /* ============================================
-       BRANDS SECTION
-       ============================================ */
-    .brands-section {
-      text-align: center;
-    }
-
-    .brands-section .brands-title {
-      font-size: 2rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: var(--text-dark);
-      margin-bottom: 40px;
-    }
-
-    .brands-track-wrapper {
+    .stats-strip {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #0a1628, #16213e);
+      position: relative;
       overflow: hidden;
-      position: relative;
-      width: 100%;
     }
 
-    .brands-track {
-      display: flex;
-      animation: scrollBrands 20s linear infinite;
-      width: max-content;
+    .stats-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 200px,
+        rgba(255,255,255,0.01) 200px,
+        rgba(255,255,255,0.01) 201px
+      );
     }
 
-    .brands-track:hover {
-      animation-play-state: paused;
-    }
-
-    .brand-item {
-      flex: 0 0 220px;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 20px;
-      background: #fff;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-sm);
-      padding: 16px;
-      transition: var(--transition);
-    }
-
-    .brand-item:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
-    }
-
-    .brand-item img {
-      max-width: 100%;
-      max-height: 70px;
-      object-fit: contain;
-    }
-
-    @keyframes scrollBrands {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .brands-lists {
+    .stats-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 40px;
-      text-align: left;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      position: relative;
+      z-index: 1;
     }
 
-    .brands-lists h5.brand-subtitle {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--accent);
+    .stat-block {
+      text-align: center;
+      position: relative;
+      padding: 40px 20px;
     }
 
-    .brands-lists h5.brand-content {
-      font-size: 0.95rem;
-      font-weight: 400;
-      color: var(--text-medium);
-      margin-bottom: 6px;
+    .stat-block::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);
+    }
+
+    .stat-block:last-child::after {
+      display: none;
+    }
+
+    .stat-block .stat-num {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff, rgba(14,165,233,0.8));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-block .stat-suffix {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-block .stat-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+    }
+
+    .stat-block .stat-icon-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+      color: rgba(14,165,233,0.04);
+      pointer-events: none;
     }
 
     /* ============================================
-       TIMELINE
+       TIMELINE - MODERN VERTICAL
        ============================================ */
-    .timeline {
+    .timeline-section {
+      padding: 120px 0;
       position: relative;
-      padding: 20px 0;
+      overflow: hidden;
+      background: #fff;
     }
 
-    .timeline::before {
-      content: '';
+    .tl-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tl-line {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       top: 0;
       bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, var(--accent), var(--gold));
-      border-radius: 2px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--gold), var(--accent));
     }
 
-    .timeline-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 40px;
-      position: relative;
-    }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .timeline-item:nth-child(odd) {
-      flex-direction: row;
-    }
-
-    .timeline-item:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-
-    .timeline-content {
-      width: calc(50% - 40px);
-      background: #fff;
-      padding: 28px 32px;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--border);
-      position: relative;
-      transition: var(--transition);
-    }
-
-    .timeline-content:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .timeline-item:nth-child(odd) .timeline-content {
-      margin-right: auto;
-    }
-
-    .timeline-item:nth-child(even) .timeline-content {
-      margin-left: auto;
-    }
-
-    .timeline-dot {
+    .tl-line-progress {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
-      background: var(--accent);
-      border: 4px solid #fff;
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.2);
-      z-index: 2;
+      top: 0;
+      width: 2px;
+      height: 0;
+      background: linear-gradient(to bottom, var(--accent), var(--gold));
+      box-shadow: 0 0 15px var(--accent-glow);
+      transition: height 0.1s linear;
+      z-index: 1;
     }
 
-    .timeline-content .timeline-year {
+    .tl-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 60px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tl-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tl-item:nth-child(odd) {
+      flex-direction: row;
+      padding-right: calc(50% + 40px);
+      text-align: right;
+    }
+
+    .tl-item:nth-child(even) {
+      flex-direction: row-reverse;
+      padding-left: calc(50% + 40px);
+      text-align: left;
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      z-index: 2;
+      transition: all 0.4s ease;
+    }
+
+    .tl-item.visible .tl-dot {
+      box-shadow: 0 0 0 6px rgba(14,165,233,0.15);
+    }
+
+    .tl-item:hover .tl-dot {
+      background: var(--accent);
+      transform: translateX(-50%) scale(1.3);
+      box-shadow: 0 0 0 8px rgba(14,165,233,0.2);
+    }
+
+    .tl-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tl-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .tl-item:hover .tl-card {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      border-color: rgba(14,165,233,0.2);
+    }
+
+    .tl-item:hover .tl-card::before {
+      transform: scaleX(1);
+    }
+
+    .tl-year {
       display: inline-block;
       background: linear-gradient(135deg, var(--accent), var(--accent-dark));
       color: #fff;
-      padding: 4px 14px;
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
       font-weight: 700;
+      letter-spacing: 1px;
       margin-bottom: 12px;
     }
 
-    .timeline-content h4 {
+    .tl-card h4 {
       font-size: 1.1rem;
-      margin-bottom: 8px;
       color: var(--text-dark);
+      margin-bottom: 8px;
     }
 
-    .timeline-content p {
-      font-size: 0.9rem;
+    .tl-card p {
+      font-size: 0.88rem;
       color: var(--text-medium);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    .timeline-content .timeline-icon {
+    .tl-card .tl-icon {
       position: absolute;
       top: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      background: rgba(14, 165, 233, 0.08);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.95rem;
+      font-size: 2.5rem;
+      color: rgba(14,165,233,0.06);
+      pointer-events: none;
     }
 
+    .tl-item:nth-child(odd) .tl-card .tl-icon { left: 20px; }
+    .tl-item:nth-child(even) .tl-card .tl-icon { right: 20px; }
+
     /* ============================================
-       VALUES SECTION
+       VALUES - INTERACTIVE CARDS
        ============================================ */
-    .values-grid {
+    .values-section {
+      padding: 120px 0;
+      background: linear-gradient(180deg, #f8fafc 0%, #f0f9ff 100%);
+      position: relative;
+    }
+
+    .values-grid-new {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 24px;
     }
 
-    .value-card {
+    .value-card-new {
       background: #fff;
-      padding: 40px 28px;
-      border-radius: var(--radius-md);
+      border-radius: 20px;
+      padding: 44px 28px 36px;
       text-align: center;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
-      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
     }
 
-    .value-card::before {
+    .value-card-new::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      right: 0;
       height: 4px;
       background: linear-gradient(90deg, var(--accent), var(--gold));
       transform: scaleX(0);
-      transition: transform var(--transition);
+      transform-origin: left;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .value-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
+    .value-card-new::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(14,165,233,0.02), rgba(245,158,11,0.02));
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .value-card:hover::before {
+    .value-card-new:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(14,165,233,0.12);
+    }
+
+    .value-card-new:hover::before {
       transform: scaleX(1);
     }
 
-    .value-card .value-icon {
+    .value-card-new:hover::after {
+      opacity: 1;
+    }
+
+    .value-icon-new {
       width: 80px;
       height: 80px;
       margin: 0 auto 24px;
-      background: rgba(14, 165, 233, 0.08);
-      border-radius: 50%;
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.8rem;
-      color: var(--accent);
-      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .value-card:hover .value-icon {
+    .value-card-new:nth-child(1) .value-icon-new {
+      background: rgba(14,165,233,0.08);
+      color: var(--accent);
+    }
+    .value-card-new:nth-child(2) .value-icon-new {
+      background: rgba(245,158,11,0.08);
+      color: var(--gold);
+    }
+    .value-card-new:nth-child(3) .value-icon-new {
+      background: rgba(151,46,51,0.08);
+      color: #972e33;
+    }
+    .value-card-new:nth-child(4) .value-icon-new {
+      background: rgba(16,185,129,0.08);
+      color: var(--success);
+    }
+
+    .value-card-new:hover .value-icon-new {
+      transform: scale(1.15) rotate(-8deg);
+      border-radius: 20px;
+    }
+
+    .value-card-new:nth-child(1):hover .value-icon-new {
       background: var(--accent);
       color: #fff;
-      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(14,165,233,0.3);
+    }
+    .value-card-new:nth-child(2):hover .value-icon-new {
+      background: var(--gold);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(245,158,11,0.3);
+    }
+    .value-card-new:nth-child(3):hover .value-icon-new {
+      background: #972e33;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(151,46,51,0.3);
+    }
+    .value-card-new:nth-child(4):hover .value-icon-new {
+      background: var(--success);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(16,185,129,0.3);
     }
 
-    .value-card h4 {
+    .value-card-new h4 {
       font-size: 1.15rem;
       margin-bottom: 12px;
       color: var(--text-dark);
+      position: relative;
+      z-index: 1;
     }
 
-    .value-card p {
-      font-size: 0.9rem;
+    .value-card-new p {
+      font-size: 0.88rem;
       color: var(--text-medium);
-      line-height: 1.7;
+      line-height: 1.75;
+      position: relative;
+      z-index: 1;
     }
 
     /* ============================================
-       RESPONSIVE - ABOUT PAGE
+       DEMOGRAPHICS - MODERN REVEAL
+       ============================================ */
+    .demo-section {
+      padding: 100px 0;
+      background: #fff;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .demo-text .story-label {
+      margin-bottom: 12px;
+    }
+
+    .demo-text .demo-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .demo-text .demo-desc {
+      font-size: 1rem;
+      color: var(--text-medium);
+      line-height: 1.8;
+    }
+
+    .demo-chart-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+    }
+
+    .demo-chart-wrapper:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    }
+
+    .demo-chart-wrapper img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ============================================
+       BRANDS - INFINITE MARQUEE
+       ============================================ */
+    .brands-section-new {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+    }
+
+    .brands-section-new .section-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    }
+
+    .marquee-wrapper {
+      overflow: hidden;
+      position: relative;
+      margin: 40px 0;
+    }
+
+    .marquee-wrapper::before,
+    .marquee-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .marquee-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, #f8fafc, transparent);
+    }
+
+    .marquee-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, #f8fafc, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marqueeScroll 25s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .marquee-item {
+      flex: 0 0 200px;
+      height: 90px;
+      margin: 0 16px;
+      background: #fff;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+    }
+
+    .marquee-item:hover {
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transform: translateY(-4px);
+    }
+
+    .marquee-item img {
+      max-width: 100%;
+      max-height: 60px;
+      object-fit: contain;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .brands-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .brand-category {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: all 0.4s ease;
+    }
+
+    .brand-category:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 25px rgba(14,165,233,0.08);
+      transform: translateY(-4px);
+    }
+
+    .brand-category h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-category:nth-child(1) h5 { border-color: var(--accent); }
+    .brand-category:nth-child(2) h5 { border-color: var(--gold); }
+    .brand-category:nth-child(3) h5 { border-color: var(--success); }
+
+    .brand-category h5 i {
+      font-size: 0.85rem;
+    }
+
+    .brand-category:nth-child(1) h5 i { color: var(--accent); }
+    .brand-category:nth-child(2) h5 i { color: var(--gold); }
+    .brand-category:nth-child(3) h5 i { color: var(--success); }
+
+    .brand-category ul {
+      list-style: none;
+    }
+
+    .brand-category ul li {
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: var(--text-medium);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-category ul li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .brand-category:nth-child(1) ul li::before { background: var(--accent); }
+    .brand-category:nth-child(2) ul li::before { background: var(--gold); }
+    .brand-category:nth-child(3) ul li::before { background: var(--success); }
+
+    /* ============================================
+       CTA - GRADIENT ANIMATED
+       ============================================ */
+    .cta-section-new {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #0a1628 0%, #972e33 50%, #0f3460 100%);
+      background-size: 200% 200%;
+      animation: ctaGradient 6s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    @keyframes ctaGradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .cta-section-new::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 300px 300px at 20% 50%, rgba(14,165,233,0.15), transparent),
+        radial-gradient(ellipse 300px 300px at 80% 50%, rgba(245,158,11,0.1), transparent);
+    }
+
+    .cta-section-new .cta-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-section-new h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .cta-section-new p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.8;
+    }
+
+    .cta-buttons-new {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-buttons-new .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(245,158,11,0.3);
+    }
+
+    .cta-buttons-new .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(245,158,11,0.4);
+    }
+
+    .cta-buttons-new .btn-outline {
+      background: transparent;
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .cta-buttons-new .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.6);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================
+       SCROLL REVEAL ANIMATION CLASSES
+       ============================================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Stagger delays */
+    .stagger > *:nth-child(1) { transition-delay: 0s; }
+    .stagger > *:nth-child(2) { transition-delay: 0.1s; }
+    .stagger > *:nth-child(3) { transition-delay: 0.2s; }
+    .stagger > *:nth-child(4) { transition-delay: 0.3s; }
+    .stagger > *:nth-child(5) { transition-delay: 0.35s; }
+    .stagger > *:nth-child(6) { transition-delay: 0.4s; }
+    .stagger > *:nth-child(7) { transition-delay: 0.45s; }
+
+    /* ============================================
+       RESPONSIVE
        ============================================ */
     @media (max-width: 1024px) {
-      .company-story {
-        gap: 40px;
+      .story-grid {
+        gap: 50px;
       }
-
-      .values-grid {
+      .values-grid-new {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .demograph-section {
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .stat-block:nth-child(2)::after {
+        display: none;
+      }
+      .demo-grid {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 768px) {
-      .company-story {
+      .page-banner {
+        min-height: 55vh;
+      }
+      .page-banner h1 {
+        font-size: clamp(2.2rem, 10vw, 3rem);
+        letter-spacing: -1px;
+      }
+      .story-section {
+        padding: 80px 0;
+      }
+      .story-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 40px;
       }
-
-      .company-story-image .accent-badge {
-        top: 10px;
-        left: 10px;
+      .story-image-wrapper {
+        transform: none;
       }
-
-      .company-story-image .floating-badge {
+      .story-image-wrapper img {
+        height: 350px;
+      }
+      .story-float.years {
         right: 10px;
-        bottom: -10px;
+        top: -20px;
+        padding: 18px 22px;
       }
-
-      .company-story-text .story-features {
+      .story-float.years .number {
+        font-size: 2.2rem;
+      }
+      .story-float.est {
+        left: 10px;
+        bottom: 20px;
+      }
+      .story-features-grid {
         grid-template-columns: 1fr;
       }
-
-      .company-story-text .as-title {
-        font-size: 18px;
+      .mv-section {
+        padding: 80px 0;
       }
-
-      .company-story-text .a-title {
-        font-size: 28px;
-      }
-
-      .mission-vision-grid {
+      .mv-grid {
         grid-template-columns: 1fr;
       }
-
-      .timeline::before {
-        left: 20px;
+      .tl-line,
+      .tl-line-progress {
+        left: 16px;
       }
-
-      .timeline-item,
-      .timeline-item:nth-child(odd),
-      .timeline-item:nth-child(even) {
+      .tl-dot {
+        left: 16px;
+      }
+      .tl-item,
+      .tl-item:nth-child(odd),
+      .tl-item:nth-child(even) {
         flex-direction: row;
         padding-left: 50px;
+        padding-right: 0;
+        text-align: left;
       }
-
-      .timeline-content {
+      .tl-card {
         width: 100%;
       }
-
-      .timeline-item:nth-child(odd) .timeline-content,
-      .timeline-item:nth-child(even) .timeline-content {
-        margin-left: 0;
-        margin-right: 0;
+      .tl-item:nth-child(odd) .tl-card .tl-icon,
+      .tl-item:nth-child(even) .tl-card .tl-icon {
+        right: 15px;
+        left: auto;
       }
-
-      .timeline-dot {
-        left: 20px;
-      }
-
-      .values-grid {
+      .values-grid-new {
         grid-template-columns: 1fr 1fr;
       }
-
-      .brands-lists {
+      .brands-categories {
         grid-template-columns: 1fr;
-        text-align: center;
       }
-
-      .brand-item {
-        flex: 0 0 160px;
+      .marquee-wrapper::before,
+      .marquee-wrapper::after {
+        width: 40px;
+      }
+      .cta-buttons-new {
+        flex-direction: column;
+        align-items: center;
+      }
+      .scroll-indicator {
+        display: none;
       }
     }
 
     @media (max-width: 480px) {
-      .values-grid {
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .stat-block {
+        padding: 24px 12px;
+      }
+      .stat-block::after {
+        display: none;
+      }
+      .values-grid-new {
         grid-template-columns: 1fr;
       }
     }
@@ -694,12 +1485,9 @@
   <header class="header" id="header">
     <div class="container">
       <div class="header-inner">
-        <!-- Logo -->
         <a href="index.html" class="logo">
           <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
         </a>
-
-        <!-- Nav -->
         <nav class="nav-menu" id="navMenu">
           <a href="index.html">Home</a>
           <a href="about.html" class="active">About Us</a>
@@ -723,22 +1511,17 @@
           <a href="tips.html">Tips & News</a>
           <a href="contact.html">Contact Us</a>
         </nav>
-
         <div class="header-cta">
-          <!-- Language Toggle -->
           <div class="lang-toggle">
             <button class="active">EN</button>
             <button>BM</button>
           </div>
-          <!-- Cart Icon -->
           <a href="quotation.html" class="cart-icon" title="View Quotation">
             <i class="fas fa-file-invoice"></i>
             <span class="cart-badge" id="cartBadge">0</span>
           </a>
           <a href="quotation.html" class="btn btn-primary btn-sm">Get Quote <i class="fas fa-arrow-right"></i></a>
         </div>
-
-        <!-- Mobile Toggle -->
         <div class="menu-toggle" id="menuToggle">
           <span></span>
           <span></span>
@@ -752,63 +1535,99 @@
   <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- ============================================
-       PAGE BANNER
+       CINEMATIC HERO BANNER
        ============================================ -->
   <section class="page-banner">
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
     <div class="container">
-      <h1>About Us</h1>
+      <p class="hero-subtitle">Established 1998</p>
+      <h1>Our Story</h1>
+      <div class="hero-line"></div>
       <div class="breadcrumb">
         <a href="index.html">Home</a>
         <span class="separator"><i class="fas fa-chevron-right"></i></span>
         <span>About Us</span>
       </div>
     </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="mouse"></div>
+    </div>
   </section>
 
   <!-- ============================================
-       COMPANY STORY
+       COMPANY STORY - IMMERSIVE
        ============================================ -->
-  <section class="section" id="story">
+  <section class="story-section" id="story">
     <div class="container">
-      <div class="company-story">
-        <div class="company-story-image reveal-left">
-          <div class="accent-badge">
+      <div class="story-grid">
+        <div class="story-visual fade-left">
+          <div class="story-image-wrapper">
+            <img src="https://cdn1.npcdn.net/images/aboutusimages_new_1731550567.png?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1276&new_height=1194&type=4" alt="Prosper Peace Vending - About Us">
+          </div>
+          <div class="story-float years">
+            <div class="number"><span data-count="27">0</span>+</div>
+            <div class="label">Years of Excellence</div>
+          </div>
+          <div class="story-float est">
             <i class="fas fa-award"></i> Est. 1998
           </div>
-          <div class="main-image">
-            <img src="https://cdn1.npcdn.net/images/aboutusimages_new_1731550567.png?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1276&new_height=1194&type=4" alt="Prosper Peace Vending">
-          </div>
-          <div class="floating-badge">
-            <div class="big-number">27+</div>
-            <div class="badge-text">Years of<br>Experience</div>
-          </div>
+          <div class="story-ring"></div>
         </div>
-        <div class="company-story-text reveal-right">
-          <div class="as-title">Who We Are</div>
-          <div class="a-title">Your Vending Machine Solution</div>
-          <p>Established since 1998, PROSPER PEACE VENDING SDN. BHD. is a leading vending machine, products, and system solutions provider with special emphasis on meeting customers' refreshment needs. Our headquarter is situated in Penang, Malaysia. We have the largest geographical footprint as an independent vending solutions provider within the Northern Region of Peninsular Malaysia.</p>
-          <p>With more than 20 years of experience in the vending machine, we have been growing from strength to strength and gaining reputation amongst our business partners and peer competitors. With our strong mission to provide more comprehensive sets of services on retail convenience, we set our sight on becoming one of the market leaders in the automation technology industry.</p>
-          <div class="company-details">
-            <p><strong>Company:</strong> PROSPER PEACE VENDING SDN. BHD.</p>
-            <p><strong>Registration:</strong> SSM: 202201039206 / 1484903-U</p>
-            <p><strong>Headquarters:</strong> Bukit Mertajam, Penang, Malaysia</p>
+        <div class="story-content fade-right">
+          <div class="story-label">Who We Are</div>
+          <h2 class="story-title">
+            Your Trusted <span class="highlight">Vending Machine</span> Solution Partner
+          </h2>
+          <p class="story-text">
+            Established since 1998, <strong>Prosper Peace Vending Sdn. Bhd.</strong> is a leading vending machine, products, and system solutions provider with special emphasis on meeting customers' refreshment needs. Our headquarter is situated in Penang, Malaysia, with the largest geographical footprint as an independent vending solutions provider within the Northern Region of Peninsular Malaysia.
+          </p>
+          <p class="story-text">
+            With more than 20 years of experience, we have been growing from strength to strength, gaining reputation amongst our business partners and peer competitors. We are also a cutting-edge company at the forefront of revolutionizing payment systems with its specialization in cashless transactions, including our flagship Ewallet QR System.
+          </p>
+          <div class="company-info-card">
+            <div class="info-row">
+              <i class="fas fa-building"></i>
+              <strong>Company:</strong>
+              <span>Prosper Peace Vending Sdn. Bhd.</span>
+            </div>
+            <div class="info-row">
+              <i class="fas fa-id-card"></i>
+              <strong>Registration:</strong>
+              <span>SSM: 202201039206 / 1484903-U</span>
+            </div>
+            <div class="info-row">
+              <i class="fas fa-map-marker-alt"></i>
+              <strong>Headquarters:</strong>
+              <span>Bukit Mertajam, Penang, Malaysia</span>
+            </div>
           </div>
-          <p>Our company is also a cutting-edge company at the forefront of revolutionizing payment systems with its specialization in cashless transactions. With a commitment to seamless and secure financial interactions, we have developed state-of-the-art cashless payment systems that cater to the evolving needs of businesses and consumers alike. One of our flagship products is the Ewallet QR System, a user-friendly and efficient solution that enables individuals to make transactions effortlessly through a simple scan of a QR code.</p>
-          <div class="story-features">
-            <div class="feature-item">
-              <i class="fas fa-check"></i>
+          <div class="story-features-grid stagger">
+            <div class="story-feature fade-up">
+              <div class="icon"><i class="fas fa-box"></i></div>
               <span>500+ Machines Deployed</span>
             </div>
-            <div class="feature-item">
-              <i class="fas fa-check"></i>
+            <div class="story-feature fade-up">
+              <div class="icon"><i class="fas fa-map"></i></div>
               <span>13 States Covered</span>
             </div>
-            <div class="feature-item">
-              <i class="fas fa-check"></i>
+            <div class="story-feature fade-up">
+              <div class="icon"><i class="fas fa-qrcode"></i></div>
               <span>Cashless & QR Ready</span>
             </div>
-            <div class="feature-item">
-              <i class="fas fa-check"></i>
+            <div class="story-feature fade-up">
+              <div class="icon"><i class="fas fa-headset"></i></div>
               <span>24/7 Technical Support</span>
             </div>
           </div>
@@ -818,32 +1637,62 @@
   </section>
 
   <!-- ============================================
+       ANIMATED STATS STRIP
+       ============================================ -->
+  <section class="stats-strip">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-block fade-up">
+          <div class="stat-icon-bg"><i class="fas fa-calendar-check"></i></div>
+          <div class="stat-num"><span data-count="27">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-desc">Years in Business</div>
+        </div>
+        <div class="stat-block fade-up">
+          <div class="stat-icon-bg"><i class="fas fa-box"></i></div>
+          <div class="stat-num"><span data-count="500">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-desc">Machines Deployed</div>
+        </div>
+        <div class="stat-block fade-up">
+          <div class="stat-icon-bg"><i class="fas fa-users"></i></div>
+          <div class="stat-num"><span data-count="200">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-desc">Satisfied Clients</div>
+        </div>
+        <div class="stat-block fade-up">
+          <div class="stat-icon-bg"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="stat-num"><span data-count="13">0</span></div>
+          <div class="stat-desc">States Covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        MISSION & VISION
        ============================================ -->
-  <section class="section" style="background: var(--light-bg);" id="mission-vision">
+  <section class="mv-section" id="mission-vision">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header fade-up">
         <span class="badge">Our Purpose</span>
         <h2>Mission & Vision</h2>
         <p>Guided by purpose and driven by passion, we aim to transform the vending landscape in Malaysia.</p>
         <div class="underline"></div>
       </div>
-      <div class="mission-vision-grid stagger-children">
-        <!-- Vision Card -->
-        <div class="mv-card mv-vision">
-          <div class="mv-icon">
+      <div class="mv-grid stagger">
+        <div class="mv-card-new vision scale-in">
+          <div class="card-number">01</div>
+          <div class="mv-icon-wrap">
             <i class="far fa-eye"></i>
           </div>
           <h3>Our Vision</h3>
-          <p>Our vision is to be the leading provider of convenient, accessible, and reliable vending solutions for customers.</p>
+          <p>To be the leading provider of convenient, accessible, and reliable vending solutions for customers across Malaysia and beyond, setting new standards for the industry.</p>
         </div>
-        <!-- Mission Card -->
-        <div class="mv-card mv-mission">
-          <div class="mv-icon">
+        <div class="mv-card-new mission scale-in">
+          <div class="card-number">02</div>
+          <div class="mv-icon-wrap">
             <i class="fas fa-bullseye"></i>
           </div>
           <h3>Our Mission</h3>
-          <p>Our mission is to provide our customers with the most convenient and high-tech vending machines.</p>
+          <p>To provide our customers with the most convenient and high-tech vending machines, integrating cashless payment innovations to meet the evolving needs of businesses and consumers.</p>
         </div>
       </div>
     </div>
@@ -852,16 +1701,16 @@
   <!-- ============================================
        DEMOGRAPHICS
        ============================================ -->
-  <section class="section" id="demograph">
+  <section class="demo-section" id="demograph">
     <div class="container">
-      <div class="demograph-section reveal">
-        <div>
-          <div class="as-title">Demograph</div>
-          <div class="a-title">Chart Of Vending Machines</div>
-          <p class="a-text">Here we have compiled a chart based on vending locations</p>
+      <div class="demo-grid">
+        <div class="demo-text fade-left">
+          <div class="story-label">Demograph</div>
+          <h3 class="demo-title">Our Nationwide Vending Machine Coverage</h3>
+          <p class="demo-desc">We have compiled a comprehensive chart based on vending locations across all 13 states of Malaysia, showing our widespread presence and commitment to serving every region.</p>
         </div>
-        <div>
-          <img src="https://cdn1.npcdn.net/images/1706675444chart.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=png" alt="Chart of Vending Machine Locations">
+        <div class="demo-chart-wrapper fade-right">
+          <img src="https://cdn1.npcdn.net/images/1706675444chart.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=png" alt="Chart of Vending Machine Locations Across Malaysia">
         </div>
       </div>
     </div>
@@ -870,46 +1719,57 @@
   <!-- ============================================
        BRANDS
        ============================================ -->
-  <section class="section" style="background: var(--light-bg);" id="brands">
+  <section class="brands-section-new" id="brands">
     <div class="container">
-      <div class="brands-section reveal">
-        <div class="brands-title">Brands</div>
-        <div class="brands-track-wrapper">
-          <div class="brands-track">
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
-            <!-- Duplicate for seamless loop -->
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
-            <div class="brand-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
-          </div>
+      <div class="section-header fade-up">
+        <span class="badge">Our Partners</span>
+        <h2>Trusted Brands We Carry</h2>
+        <p>We partner with world-class manufacturers and technology providers.</p>
+        <div class="underline"></div>
+      </div>
+    </div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/tcn.jpg" alt="TCN Vending Machine"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/fe.jpg" alt="Fuji Electric"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/userfiles/25480/file/ict.jpg" alt="iCT"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734153TO5-Pay.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="T05 Pay"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1729734156yallvend-malaysia.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="Yallvend Malaysia"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031593gest.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="GEST"></div>
+        <div class="marquee-item"><img src="https://cdn1.npcdn.net/images/1731031596xy-vending.webp?md5id=b00c9bc00a66596d27993f029a692d5e&new_width=1600&new_height=1600&size=max&type=8&w=1736816700&off_wm=1&from=jpg" alt="XY Vending"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="brands-categories stagger">
+        <div class="brand-category fade-up">
+          <h5><i class="fas fa-cogs"></i> Vending Machines</h5>
+          <ul>
+            <li>XY Vending Machine</li>
+            <li>TCN Vending Machine</li>
+            <li>Fuji Electric</li>
+          </ul>
         </div>
-        <div class="brands-lists">
-          <div>
-            <h5 class="brand-subtitle">Vending Machine</h5>
-            <h5 class="brand-content">XY Vending Machine</h5>
-            <h5 class="brand-content">TCN Vending Machine</h5>
-            <h5 class="brand-content">Fuji Electric</h5>
-          </div>
-          <div>
-            <h5 class="brand-subtitle">Cashless</h5>
-            <h5 class="brand-content">Gest Technology</h5>
-            <h5 class="brand-content">T05 Pay (Northern)</h5>
-            <h5 class="brand-content">Yallvend</h5>
-          </div>
-          <div>
-            <h5 class="brand-subtitle">Cash Payment System</h5>
-            <h5 class="brand-content">ICT</h5>
-          </div>
+        <div class="brand-category fade-up">
+          <h5><i class="fas fa-mobile-alt"></i> Cashless Systems</h5>
+          <ul>
+            <li>Gest Technology</li>
+            <li>T05 Pay (Northern)</li>
+            <li>Yallvend</li>
+          </ul>
+        </div>
+        <div class="brand-category fade-up">
+          <h5><i class="fas fa-coins"></i> Cash Payment</h5>
+          <ul>
+            <li>ICT</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -918,164 +1778,126 @@
   <!-- ============================================
        COMPANY TIMELINE
        ============================================ -->
-  <section class="section" id="timeline">
+  <section class="timeline-section" id="timeline">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header fade-up">
         <span class="badge">Our Journey</span>
         <h2>Company Milestones</h2>
         <p>A timeline of growth, innovation, and commitment to excellence over more than two decades.</p>
         <div class="underline"></div>
       </div>
-      <div class="timeline">
-        <!-- 1998 -->
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-icon"><i class="fas fa-flag"></i></div>
-            <span class="timeline-year">1998</span>
+      <div class="tl-container">
+        <div class="tl-line"></div>
+        <div class="tl-line-progress" id="tlProgress"></div>
+
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-icon"><i class="fas fa-flag"></i></div>
+            <span class="tl-year">1998</span>
             <h4>Company Founded</h4>
             <p>Prosper Peace Vending was established in Bukit Mertajam, Penang, starting as a local vending machine operator serving the community.</p>
           </div>
-          <div class="timeline-dot"></div>
+          <div class="tl-dot"></div>
         </div>
 
-        <!-- 2005 -->
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-icon"><i class="fas fa-map-marked-alt"></i></div>
-            <span class="timeline-year">2005</span>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <span class="tl-year">2005</span>
             <h4>Multi-State Expansion</h4>
             <p>Expanded operations beyond Penang to serve multiple states across Peninsular Malaysia, establishing regional partnerships.</p>
           </div>
-          <div class="timeline-dot"></div>
+          <div class="tl-dot"></div>
         </div>
 
-        <!-- 2010 -->
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-icon"><i class="fas fa-boxes-stacked"></i></div>
-            <span class="timeline-year">2010</span>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-icon"><i class="fas fa-boxes-stacked"></i></div>
+            <span class="tl-year">2010</span>
             <h4>100+ Machines Deployed</h4>
-            <p>Reached the milestone of deploying over 100 vending machines across various locations including offices, factories, and public spaces.</p>
+            <p>Reached the milestone of deploying over 100 vending machines across offices, factories, and public spaces.</p>
           </div>
-          <div class="timeline-dot"></div>
+          <div class="tl-dot"></div>
         </div>
 
-        <!-- 2015 -->
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-icon"><i class="fas fa-credit-card"></i></div>
-            <span class="timeline-year">2015</span>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-icon"><i class="fas fa-credit-card"></i></div>
+            <span class="tl-year">2015</span>
             <h4>Cashless Payment Integration</h4>
             <p>Pioneered cashless payment integration in our vending machines, embracing Malaysia's shift towards digital transactions.</p>
           </div>
-          <div class="timeline-dot"></div>
+          <div class="tl-dot"></div>
         </div>
 
-        <!-- 2020 -->
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-icon"><i class="fas fa-qrcode"></i></div>
-            <span class="timeline-year">2020</span>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-icon"><i class="fas fa-qrcode"></i></div>
+            <span class="tl-year">2020</span>
             <h4>Ewallet QR Technology</h4>
-            <p>Adopted Ewallet QR payment technology supporting Touch 'n Go, Boost, GrabPay, ShopeePay, and other major Malaysian e-wallets.</p>
+            <p>Adopted Ewallet QR payment technology supporting Touch 'n Go, Boost, GrabPay, ShopeePay, and other Malaysian e-wallets.</p>
           </div>
-          <div class="timeline-dot"></div>
+          <div class="tl-dot"></div>
         </div>
 
-        <!-- 2022 -->
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-icon"><i class="fas fa-building"></i></div>
-            <span class="timeline-year">2022</span>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-icon"><i class="fas fa-building"></i></div>
+            <span class="tl-year">2022</span>
             <h4>Restructured as Sdn Bhd</h4>
-            <p>Company restructured and officially registered as Prosper Peace Vending Sdn. Bhd. (SSM: 202201039206 / 1484903-U), marking a new chapter of corporate growth.</p>
+            <p>Company restructured and officially registered as Prosper Peace Vending Sdn. Bhd. (SSM: 202201039206 / 1484903-U).</p>
           </div>
-          <div class="timeline-dot"></div>
+          <div class="tl-dot"></div>
         </div>
 
-        <!-- 2024 -->
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
-            <span class="timeline-year">2024</span>
+        <div class="tl-item">
+          <div class="tl-card">
+            <div class="tl-icon"><i class="fas fa-rocket"></i></div>
+            <span class="tl-year">2024</span>
             <h4>500+ Machines Nationwide</h4>
             <p>Achieved the landmark of 500+ vending machines deployed across all 13 states of Malaysia, solidifying our position as a nationwide leader.</p>
           </div>
-          <div class="timeline-dot"></div>
+          <div class="tl-dot"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================
-       STATS / COUNTER
+       CORE VALUES
        ============================================ -->
-  <section class="stats-section">
+  <section class="values-section" id="values">
     <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item reveal">
-          <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
-          <div class="stat-number"><span data-count="27">0</span><span class="suffix">+</span></div>
-          <div class="stat-label">Years in Business</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-icon"><i class="fas fa-box"></i></div>
-          <div class="stat-number"><span data-count="500">0</span><span class="suffix">+</span></div>
-          <div class="stat-label">Machines Deployed</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-icon"><i class="fas fa-users"></i></div>
-          <div class="stat-number"><span data-count="200">0</span><span class="suffix">+</span></div>
-          <div class="stat-label">Satisfied Clients</div>
-        </div>
-        <div class="stat-item reveal">
-          <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="stat-number"><span data-count="13">0</span></div>
-          <div class="stat-label">States Covered</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       VALUES SECTION
-       ============================================ -->
-  <section class="section" id="values">
-    <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header fade-up">
         <span class="badge">What We Stand For</span>
         <h2>Our Core Values</h2>
         <p>The principles that guide everything we do and define who we are as a company.</p>
         <div class="underline"></div>
       </div>
-      <div class="values-grid stagger-children">
-        <!-- Integrity -->
-        <div class="value-card">
-          <div class="value-icon">
+      <div class="values-grid-new stagger">
+        <div class="value-card-new fade-up">
+          <div class="value-icon-new">
             <i class="fas fa-handshake"></i>
           </div>
           <h4>Integrity</h4>
           <p>We operate with honesty and transparency in every business relationship, building trust that lasts a lifetime.</p>
         </div>
-        <!-- Innovation -->
-        <div class="value-card">
-          <div class="value-icon">
+        <div class="value-card-new fade-up">
+          <div class="value-icon-new">
             <i class="fas fa-lightbulb"></i>
           </div>
           <h4>Innovation</h4>
           <p>We continuously embrace new technologies and solutions to keep our clients ahead in the fast-evolving vending industry.</p>
         </div>
-        <!-- Customer First -->
-        <div class="value-card">
-          <div class="value-icon">
+        <div class="value-card-new fade-up">
+          <div class="value-icon-new">
             <i class="fas fa-heart"></i>
           </div>
           <h4>Customer First</h4>
           <p>Our customers are at the centre of every decision. We listen, adapt, and deliver solutions tailored to their unique needs.</p>
         </div>
-        <!-- Excellence -->
-        <div class="value-card">
-          <div class="value-icon">
+        <div class="value-card-new fade-up">
+          <div class="value-icon-new">
             <i class="fas fa-trophy"></i>
           </div>
           <h4>Excellence</h4>
@@ -1088,14 +1910,14 @@
   <!-- ============================================
        CTA SECTION
        ============================================ -->
-  <section class="cta-section">
+  <section class="cta-section-new">
     <div class="container">
-      <div class="cta-content reveal">
+      <div class="cta-inner fade-up">
         <h2>Ready to Partner With Us?</h2>
         <p>Join hundreds of satisfied clients across Malaysia. Whether you need a single vending machine or a fleet, our team is here to help you find the perfect solution.</p>
-        <div class="cta-buttons">
-          <a href="contact.html" class="btn btn-gold"><i class="fas fa-file-invoice"></i> Request Free Quotation</a>
-          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." class="btn btn-secondary" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        <div class="cta-buttons-new">
+          <a href="contact.html" class="btn-gold"><i class="fas fa-file-invoice"></i> Request Free Quotation</a>
+          <a href="https://wa.me/60147592229?text=Hi%2C%20I'm%20interested%20in%20your%20vending%20machine%20solutions." class="btn-outline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
         </div>
       </div>
     </div>
@@ -1107,7 +1929,6 @@
   <footer class="footer" id="footer">
     <div class="container">
       <div class="footer-grid">
-        <!-- About -->
         <div class="footer-about">
           <a href="index.html" class="logo">
             <img src="https://cdn1.npcdn.net/images/np_25480_1704764926.png" alt="PROSPER PEACE VENDING SDN. BHD." title="PROSPER PEACE VENDING SDN. BHD.">
@@ -1120,8 +1941,6 @@
             <a href="#"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
-
-        <!-- Quick Links -->
         <div>
           <h4>Quick Links</h4>
           <div class="footer-links">
@@ -1134,8 +1953,6 @@
             <a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a>
           </div>
         </div>
-
-        <!-- Products -->
         <div>
           <h4>Products</h4>
           <div class="footer-links">
@@ -1146,8 +1963,6 @@
             <a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a>
           </div>
         </div>
-
-        <!-- Contact Info -->
         <div>
           <h4>Contact Us</h4>
           <div class="footer-contact-item">
@@ -1202,5 +2017,97 @@
   <!-- JavaScript -->
   <script src="js/main.js"></script>
   <script src="js/cart.js"></script>
+
+  <!-- About Page Enhanced Animations -->
+  <script>
+  (function() {
+    // Scroll-triggered reveal for custom animation classes
+    const animEls = document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in');
+    const animObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          animObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    animEls.forEach(el => animObserver.observe(el));
+
+    // Timeline items reveal
+    const tlItems = document.querySelectorAll('.tl-item');
+    const tlObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          tlObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+    tlItems.forEach(item => tlObserver.observe(item));
+
+    // Timeline progress line
+    const tlContainer = document.querySelector('.tl-container');
+    const tlProgress = document.getElementById('tlProgress');
+    if (tlContainer && tlProgress) {
+      window.addEventListener('scroll', function() {
+        const rect = tlContainer.getBoundingClientRect();
+        const containerTop = rect.top;
+        const containerHeight = rect.height;
+        const windowHeight = window.innerHeight;
+
+        if (containerTop < windowHeight && containerTop + containerHeight > 0) {
+          const scrolledInContainer = windowHeight - containerTop;
+          const progress = Math.min(Math.max(scrolledInContainer / (containerHeight + windowHeight * 0.3), 0), 1);
+          tlProgress.style.height = (progress * containerHeight) + 'px';
+        }
+      });
+    }
+
+    // Parallax on story image
+    const storyVisual = document.querySelector('.story-visual');
+    if (storyVisual && window.innerWidth > 768) {
+      window.addEventListener('scroll', function() {
+        const rect = storyVisual.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+          const translateY = (progress - 0.5) * 30;
+          storyVisual.style.transform = 'translateY(' + translateY + 'px)';
+        }
+      });
+    }
+
+    // Smooth tilt on value cards (desktop)
+    if (window.innerWidth > 1024) {
+      document.querySelectorAll('.value-card-new').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = (y - centerY) / 15;
+          const rotateY = (centerX - x) / 15;
+          card.style.transform = 'perspective(800px) rotateX(' + (-rotateX) + 'deg) rotateY(' + rotateY + 'deg) translateY(-12px)';
+        });
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = '';
+        });
+      });
+    }
+
+    // Hide scroll indicator on scroll
+    const scrollInd = document.querySelector('.scroll-indicator');
+    if (scrollInd) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          scrollInd.style.opacity = '0';
+          scrollInd.style.transition = 'opacity 0.5s ease';
+        } else {
+          scrollInd.style.opacity = '1';
+        }
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
